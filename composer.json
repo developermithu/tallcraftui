@@ -1,0 +1,26 @@
+{
+    "name": "developermithu/tallcraftui",
+    "description": "TallCraftUI is a comprehensive and elegant Laravel package designed for building user-friendly interfaces with the TALL stack.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Developermithu\\Tallcraftui\\": "src/"
+        }
+    },
+    "extra": {
+    "laravel": {
+        "providers": [
+            "Developermithu\\Tallcraftui\\TallCraftUiServiceProvider"
+        ]
+    }
+},
+    "authors": [
+        {
+            "name": "developermithu",
+            "email": "developermithu@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
