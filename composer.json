@@ -22,5 +22,7 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "blade-ui-kit/blade-heroicons": "^2.1"
+    }
 }
