@@ -16,13 +16,19 @@
 - [x] icon left 
 - [x] icon right
 - [x] placeholder
-- [ ] hint
-- [ ] preffix
-- [ ] suffix
-- [ ] required attribute or (*) with label
+- [x] hint
+- [x] preffix
+- [x] suffix
+- [x] disabled
+- [x] readonly
+- [x] input type
+- [x] file input
+- [x] required attribute or (*) with label
+- [x] wire:model
+- [x] prepend
+- [x] append
 - [ ] floating label
-- [ ] wire:model 
-- [ ] input type
+- [ ] make usable without livewire wire:model
   
 
 ### Button
@@ -36,3 +42,18 @@
 - [ ] type
 - [ ] color attribute (primary, secondary, danger, warning, success)
 - [ ] size attribute (xs, sm, md, lg, xl, xxl)
+
+
+## 
+
+Add this property in the `tailwind.config.js` content section through `php artisan install:tallcraftui` command.
+
+```js
+tailwind.config.js
+
+    content: [
+
+        // TallCraftUI
+        "./vendor/developermithu/tallcraftui/src/View/Components/**/*.php",
+    ],
+```

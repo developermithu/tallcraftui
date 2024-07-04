@@ -24,6 +24,8 @@ class TallCraftUiServiceProvider extends ServiceProvider
         Blade::component('tall-input', Input::class);
         Blade::component('tall-icon', Icon::class);
 
+        Blade::component('button', Button::class);
+        Blade::component('input', Input::class);
         Blade::component('icon', Icon::class);
     }
 }
