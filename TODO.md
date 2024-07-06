@@ -35,13 +35,18 @@
 
 - [x] label
 - [x] label or slot
-- [ ] icon
-- [ ] icon left
-- [ ] icon right
+- [x] icon
+- [x] icon left
+- [x] icon right
 - [ ] spinner
-- [ ] type
-- [ ] color attribute (primary, secondary, danger, warning, success)
-- [ ] size attribute (xs, sm, md, lg, xl, xxl)
+- [ ] wire target
+- [x] type
+- [x] color attribute (primary, secondary, danger, info, warning, success)
+- [x] size attribute (sm, md, lg, xl, xxl)
+- [x] flat styles
+- [x] outline styles
+- [x] circle
+- [x] only icon button
 
 
 ## 
