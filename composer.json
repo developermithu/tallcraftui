@@ -21,8 +21,9 @@
             "email": "developermithu@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "blade-ui-kit/blade-heroicons": "^2.1"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

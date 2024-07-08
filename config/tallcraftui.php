@@ -13,4 +13,26 @@ return [
      *
      */
     'prefix' => '',
+
+
+    /**
+     * Icons configuration
+     */
+    'icons' => [
+        /**
+         * ---------------------------
+         * Allowed icons: heroicons,
+         * ---------------------------
+         */
+        'type' => 'heroicons',
+
+        /**
+         * --------------------
+         * Default icon style
+         * --------------------
+         * 
+         * Allowed values: outline, solid
+         */
+        'style' => 'outline',
+    ],
 ];
