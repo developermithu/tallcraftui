@@ -2,6 +2,7 @@
 
 namespace Developermithu\Tallcraftui;
 
+use Developermithu\Tallcraftui\Console\Commands\InstallTallcraftuiCommand;
 use Developermithu\Tallcraftui\View\Components\Button;
 use Developermithu\Tallcraftui\View\Components\Icon;
 use Developermithu\Tallcraftui\View\Components\Input;
@@ -21,6 +22,13 @@ class TallCraftUiServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/tallcraftui.php' => config_path('tallcraftui.php'),
         ], 'tallcraftui-config');
+
+        // Register the application's commands.
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                InstallTallcraftuiCommand::class,
+            ]);
+        }
     }
 
     private function registerComponents(): void

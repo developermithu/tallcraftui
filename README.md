@@ -54,6 +54,14 @@ with button
 <x-button label="Save" wire:click="save" spinner />
 ```
 
+## Installation
+
+```bash
+composer require developermithu/tallcraftui
+
+php artisan install:tallcraftui
+```
+
 ## Publish the configuration file
 
  To rename tallcraftui components with a custom prefix, first publish the configuration file:
