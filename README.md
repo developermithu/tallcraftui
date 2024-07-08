@@ -34,3 +34,22 @@ And clear the cache after changing `blade-heroicons.php` file.
 ```
 php artisan view:clear
 ```
+
+### Using Spinner
+
+with forms
+
+```php
+    <form wire:submit="create" class="space-y-5">
+        <x-input label="Name *" wire:model="name" />
+        <x-input label="Email *" wire:model="email" />
+        
+        <x-button label="Submit" spinner="create" />
+    </form>
+```
+
+with button
+
+```php
+    <x-button label="Save" wire:click="save" spinner />
+```

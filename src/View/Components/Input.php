@@ -100,12 +100,15 @@ class Input extends Component
                                 $attributes
                                     ->merge(['type' => 'text'])
                                     ->class([
-                                        "block w-full rounded-md border-gray-200 py-2.5 shadow-sm sm:text-sm dark:border-gray-700 disabled:cursor-not-allowed disabled:bg-gray-50 read-only:bg-gray-50 read-only:border-dashed dark:bg-gray-800 dark:text-white",
+                                        "block w-full rounded border-gray-200 py-2.5 shadow-sm text-sm outline-none dark:border-gray-700  dark:bg-gray-800 dark:text-white",
                                         "pl-9" => $iconLeft, 
                                         "pe-9" => $icon || $iconRight, 
                                         "rounded-l-none" => $preffix || $prepend, 
                                         "rounded-r-none" => $suffix || $append,
                                         "file:border-0 file:bg-transparent file:px-3" => $attributes->get('type') === 'file',
+                                        "border-red-500 focus:border-red-500 focus:ring-red-500" => $error,
+                                        "bg-gray-200 opacity-80 cursor-not-allowed" => $attributes->get('disabled'),
+                                        "bg-gray-200 opacity-80 border-gray-400 border-dashed pointer-events-none" => $attributes->get('readonly'),
                                     ])
                              }} 
                             />
