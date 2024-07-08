@@ -40,16 +40,50 @@ php artisan view:clear
 with forms
 
 ```php
-    <form wire:submit="create" class="space-y-5">
-        <x-input label="Name *" wire:model="name" />
-        <x-input label="Email *" wire:model="email" />
-        
-        <x-button label="Submit" spinner="create" />
-    </form>
+<form wire:submit="create" class="space-y-5">
+    <x-input label="Name *" wire:model="name" />
+    <x-input label="Email *" wire:model="email" />
+    
+    <x-button label="Submit" spinner="create" />
+</form>
 ```
 
 with button
 
 ```php
-    <x-button label="Save" wire:click="save" spinner />
+<x-button label="Save" wire:click="save" spinner />
+```
+
+## Publish the configuration file
+
+ To rename tallcraftui components with a custom prefix, first publish the configuration file:
+ 
+```bash
+php artisan vendor:publish --tag=tallcraftui-config
+```
+
+
+/config/tallcraftui.php
+
+```php
+return [
+    /**
+     * Default prefix for all components
+     * 
+     * Note: After changing the prefix, clear the view cache 
+     * using `php artisan view:clear`
+     *
+     * Examples:
+     * prefix => ''         // <x-input />
+     * prefix => 'tall-'    // <x-tall-input />
+     *
+     */
+    'prefix' => '',
+];
+```
+
+After renaming, ensure you clear the view cache:
+
+```bash
+php artisan view:clear
 ```

@@ -10,22 +10,25 @@ use Illuminate\Support\ServiceProvider;
 
 class TallCraftUiServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function register(): void
     {
     }
 
     public function boot(): void
     {
-        // No matter if components has custom prefix or not,
-        // we also register bellow alias to avoid naming collision,
-        // because they are used inside some TallCraft's components itself.
+        $this->registerComponents();
 
-        Blade::component('tall-button', Button::class);
-        Blade::component('tall-input', Input::class);
-        Blade::component('tall-icon', Icon::class);
+        $this->publishes([
+            __DIR__ . '/../config/tallcraftui.php' => config_path('tallcraftui.php'),
+        ], 'tallcraftui-config');
+    }
 
-        Blade::component('button', Button::class);
-        Blade::component('input', Input::class);
-        Blade::component('icon', Icon::class);
+    private function registerComponents(): void
+    {
+        $prefix = config('tallcraftui.prefix');
+
+        Blade::component($prefix . 'button', Button::class);
+        Blade::component($prefix . 'input', Input::class);
+        Blade::component($prefix . 'icon', Icon::class);
     }
 }
