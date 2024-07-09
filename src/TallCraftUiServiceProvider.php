@@ -6,6 +6,7 @@ use Developermithu\Tallcraftui\Console\Commands\InstallTallcraftuiCommand;
 use Developermithu\Tallcraftui\View\Components\Button;
 use Developermithu\Tallcraftui\View\Components\Icon;
 use Developermithu\Tallcraftui\View\Components\Input;
+use Developermithu\Tallcraftui\View\Components\Select;
 use Developermithu\Tallcraftui\View\Components\Textarea;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
@@ -40,5 +41,6 @@ class TallCraftUiServiceProvider extends ServiceProvider
         Blade::component($prefix . 'input', Input::class);
         Blade::component($prefix . 'icon', Icon::class);
         Blade::component($prefix . 'textarea', Textarea::class);
+        Blade::component($prefix . 'select', Select::class);
     }
 }
