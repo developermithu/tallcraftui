@@ -3,6 +3,7 @@
 namespace Developermithu\Tallcraftui;
 
 use Developermithu\Tallcraftui\Console\Commands\InstallTallcraftuiCommand;
+use Developermithu\Tallcraftui\View\Components\Alert;
 use Developermithu\Tallcraftui\View\Components\Button;
 use Developermithu\Tallcraftui\View\Components\Checkbox;
 use Developermithu\Tallcraftui\View\Components\Icon;
@@ -46,5 +47,6 @@ class TallCraftUiServiceProvider extends ServiceProvider
         Blade::component($prefix . 'select', Select::class);
         Blade::component($prefix . 'checkbox', Checkbox::class);
         Blade::component($prefix . 'radio', Radio::class);
+        Blade::component($prefix . 'alert', Alert::class);
     }
 }
