@@ -9,48 +9,44 @@ jobs:
   release:
     runs-on: ubuntu-latest
 
+    env:
+      # initial version number
+      CURRENT_VERSION: "0.9.0"
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "14"
-
-      - name: Get current version
-        id: current_version
-        run: echo "CURRENT_VERSION=$(cat version.txt)" >> $GITHUB_ENV
-
       - name: Bump version
         id: bump_version
         run: |
-          CURRENT_VERSION=$(cat version.txt)
-          IFS='.' read -r -a VERSION_PARTS <<< "$CURRENT_VERSION"
+          # Bump the version (you can customize this logic as needed)
+          IFS='.' read -r -a VERSION_PARTS <<< "${{ env.CURRENT_VERSION }}"
           MAJOR=${VERSION_PARTS[0]}
           MINOR=${VERSION_PARTS[1]}
           PATCH=${VERSION_PARTS[2]}
           PATCH=$((PATCH + 1))
           NEW_VERSION="$MAJOR.$MINOR.$PATCH"
-          echo $NEW_VERSION > version.txt
           echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
 
       - name: Generate changelog
         id: generate_changelog
         run: |
-          NEW_VERSION=$NEW_VERSION
+          NEW_VERSION=${{ env.NEW_VERSION }}
           DATE=$(date +'%Y-%m-%d')
-          echo "## [$NEW_VERSION] - $DATE" >> CHANGELOG.md
-          git log --pretty=format:"- %s" $(git describe --tags --abbrev=0)..HEAD >> CHANGELOG.md
-          echo "" >> CHANGELOG.md
+          echo "## [$NEW_VERSION] - $DATE" >> temp_changelog.md
+          git log --pretty=format:"- %s" $(git describe --tags --abbrev=0)..HEAD >> temp_changelog.md
+          echo "" >> temp_changelog.md
+          cat CHANGELOG.md >> temp_changelog.md
+          mv temp_changelog.md CHANGELOG.md
 
       - name: Commit changes
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git add CHANGELOG.md version.txt
-          git commit -m "chore(release): $NEW_VERSION [skip ci]"
-          git tag -a "v$NEW_VERSION" -m "Release version $NEW_VERSION"
+          git add CHANGELOG.md
+          git commit -m "chore(release): ${{ env.NEW_VERSION }} [skip ci]"
+          git tag -a "v${{ env.NEW_VERSION }}" -m "Release version ${{ env.NEW_VERSION }}"
           git push origin main --tags
 
       - name: Create GitHub release
@@ -59,7 +55,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: "v${{ env.NEW_VERSION }}"
-          release_name: "Release v${{ env.NEW_VERSION }}"
+          release_name: "v${{ env.NEW_VERSION }}"
           body: |
             ## Changelog
             ${{ steps.generate_changelog.outputs.changelog }}
