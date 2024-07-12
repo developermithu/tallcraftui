@@ -26,8 +26,8 @@ class InstallTallcraftuiCommand extends Command
         Artisan::call('view:clear');
 
         $this->info("\n");
-        $this->info("✅  Run `npm run dev` or `yarn dev`");
-        $this->info("🌟  Give it a star: https://github.com/developermithu/tallcraftui");
+        $this->info('✅  Run `npm run dev` or `yarn dev`');
+        $this->info('🌟  Give it a star: https://github.com/developermithu/tallcraftui');
     }
 
     private function setupTailwindConfig()
@@ -47,7 +47,7 @@ class InstallTallcraftuiCommand extends Command
             return $this->warn('TallcraftUI already installed.');
         }
 
-        $this->info("\n" . 'Installing TallcraftUI...');
+        $this->info("\n".'Installing TallcraftUI...');
 
         $contents = $originalContents
             ->squish()
@@ -72,7 +72,7 @@ class InstallTallcraftuiCommand extends Command
 
     public function renameComponentPrefix()
     {
-        $composerJson = File::get(base_path("composer.json"));
+        $composerJson = File::get(base_path('composer.json'));
 
         collect(['jetstream', 'breeze'])->each(function (string $target) use ($composerJson) {
             if (str($composerJson)->contains($target)) {
@@ -88,8 +88,8 @@ class InstallTallcraftuiCommand extends Command
 
                 $this->info("\n");
                 $this->warn("Added 'tall-' prefix to tallcraftuiUI components to avoid conflicts with `$target` 🚨");
-                $this->warn("* Examples: <x-tall-button />, <x-tall-input />");
-                $this->warn("* See config/tallcraftui.php for details.");
+                $this->warn('* Examples: <x-tall-button />, <x-tall-input />');
+                $this->warn('* See config/tallcraftui.php for details.');
             }
         });
     }

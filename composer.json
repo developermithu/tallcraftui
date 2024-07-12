@@ -9,12 +9,12 @@
         }
     },
     "extra": {
-    "laravel": {
-        "providers": [
-            "Developermithu\\Tallcraftui\\TallCraftUiServiceProvider"
-        ]
-    }
-},
+        "laravel": {
+            "providers": [
+                "Developermithu\\Tallcraftui\\TallCraftUiServiceProvider"
+            ]
+        }
+    },
     "authors": [
         {
             "name": "developermithu",
@@ -23,6 +23,9 @@
     ],
     "require": {
         "blade-ui-kit/blade-heroicons": "^2.1"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.16"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

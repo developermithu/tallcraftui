@@ -40,8 +40,7 @@ class Button extends Component
         public bool $spinnerRing = false,
         public bool $spinnerDots = false,
         public bool $spinnerPulse = false,
-    ) {
-    }
+    ) {}
 
     public function spinnerTarget(): ?string
     {

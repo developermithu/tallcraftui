@@ -56,7 +56,7 @@ class Textarea extends Component
                     >     
                         {{ __($labelWithoutStar) }}
 
-                        @if ($hasStar || $attributes->get('required'))
+                        @if($hasStar || $attributes->get('required'))
                             <span class="text-red-500">*</span>
                         @endif
                     </label>

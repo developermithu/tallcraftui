@@ -24,8 +24,7 @@ class Alert extends Component
 
         public bool $dismissible = false,
         public ?array $errors = null,
-    ) {
-    }
+    ) {}
 
     public function alertIcon(): string
     {
