@@ -25,12 +25,7 @@ class Textarea extends Component
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-            <div 
-                @class([
-                    '',
-                    'inline-flex items-center gap-3' => $inline 
-                ])
-            >
+            <div @class(['inline-flex items-center gap-3' => $inline])>
                 @php
                     $name = $attributes->wire('model')->value();
                     $error = $errors->has($name) ? $errors->first($name) : null;

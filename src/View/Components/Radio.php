@@ -26,6 +26,29 @@ class Radio extends Component
         $this->uuid = md5(serialize($this));
     }
 
+    public function colorClasses(): string
+    {
+        return match (true) {
+            $this->secondary => 'text-gray-600 focus:ring-gray-600',
+            $this->warning => 'text-yellow-600 focus:ring-yellow-600',
+            $this->success => 'text-green-600 focus:ring-green-600',
+            $this->info => 'text-blue-600 focus:ring-blue-600',
+            $this->danger => 'text-red-600 focus:ring-red-600',
+            default => 'text-indigo-600 focus:ring-indigo-600', // primary
+        };
+    }
+
+    public function sizeClasses(): string
+    {
+        return match (true) {
+            $this->attributes->get('sm') => 'size-4',
+            $this->attributes->get('lg') => 'size-6',
+            $this->attributes->get('xl') => 'size-7',
+            $this->attributes->get('xxl') => 'size-8',
+            default => 'size-[18px]',
+        };
+    }
+
     public function render(): View|Closure|string
     {
         return <<<'HTML'
@@ -43,13 +66,6 @@ class Radio extends Component
 
                 // Remove '*' from the label for translation
                 $labelWithoutStar = rtrim($label, ' *');
-
-                // Radio sizes
-                $sm = $attributes->get('sm');
-                $lg = $attributes->get('lg');
-                $xl = $attributes->get('xl');
-                $xxl = $attributes->get('xxl');
-                $md = $attributes->get('md') || (!$sm && !$lg && !$xl && !$xxl);
             @endphp
                 
             <div class="relative flex gap-x-3">
@@ -80,23 +96,10 @@ class Radio extends Component
                         {{ $attributes
                             ->class([
                                 "border-gray-300",
-                                
-                                "size-4" => $sm,
-                                "size-[18px]" => $md,
-                                "size-6" => $lg,
-                                "size-7" => $xl,
-                                "size-8" => $xxl, 
-                                
-                                "text-indigo-600 focus:ring-indigo-600" => $primary && !$secondary && !$warning && !$info && !$success && !$danger,
-                                "text-gray-600 focus:ring-gray-600" => $secondary,
-                                "text-yellow-600 focus:ring-yellow-600" => $warning,
-                                "text-green-600 focus:ring-green-600" => $success,
-                                "text-blue-600 focus:ring-blue-600" => $info,
-                                "text-red-600 focus:ring-red-600" => $danger,  
-                                                              
+                                $sizeClasses(), 
+                                $colorClasses(),       
                                 "!border-red-300" => $error,                                
-                                "!text-gray-300 pointer-events-none" => $attributes->get('disabled'),                                
-                                "!text-gray-300 pointer-events-none" => $attributes->get('readonly'),                              
+                                "!text-gray-300 pointer-events-none" => $attributes->get('disabled') || $attributes->get('readonly'),                             
                             ])
                         }}
                     />
