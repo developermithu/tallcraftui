@@ -36,7 +36,7 @@ class Input extends Component
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-            <div @class(['inline-flex items-center gap-3' => $inline])>
+            <div @class(['flex items-center gap-3' => $inline])>
                 @php
                     $name = $attributes->wire('model')->value();
                     $error = $errors->has($name) ? $errors->first($name) : null;
@@ -69,9 +69,9 @@ class Input extends Component
                  @endif
 
                 <div class="relative flex items-center flex-1">
-                    @if($iconLeft)
+                    @if($iconLeft || $icon)
                         <span class="absolute inset-y-0 grid w-10 start-0 place-content-center">
-                            <x-icon :name="$iconLeft" :class="$iconClass" />
+                            <x-icon :name="$iconLeft ?? $icon" :class="$iconClass" />
                         </span>
                     @endif
 
@@ -96,8 +96,8 @@ class Input extends Component
                                     ->merge(['type' => 'text'])
                                     ->class([
                                         "block w-full rounded border-gray-200 py-2.5 shadow-sm text-sm outline-none dark:border-gray-700  dark:bg-gray-800 dark:text-white",
-                                        "pl-9" => $iconLeft, 
-                                        "pe-9" => $icon || $iconRight, 
+                                        "pl-9" => $icon || $iconLeft, 
+                                        "pe-9" => $iconRight, 
                                         "rounded-l-none" => $preffix || $prepend, 
                                         "rounded-r-none" => $suffix || $append,
                                         "file:border-0 file:bg-transparent file:px-3" => $attributes->get('type') === 'file',
@@ -117,9 +117,9 @@ class Input extends Component
                         @endif
                     </div>
 
-                    @if($iconRight || $icon)
+                    @if($iconRight)
                         <span class="absolute inset-y-0 grid w-10 end-0 place-content-center">
-                            <x-icon :name="$iconRight ?? $icon" :class="$iconClass" />
+                            <x-icon :name="$iconRight" :class="$iconClass" />
                         </span>
                     @endif
 

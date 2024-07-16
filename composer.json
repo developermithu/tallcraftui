@@ -1,8 +1,22 @@
 {
     "name": "developermithu/tallcraftui",
-    "description": "TallCraftUI is a comprehensive and elegant Laravel package designed for building user-friendly interfaces with the TALL stack.",
+    "description": "TallCraftUI is a versatile and customizable UI package designed for the TALL stack.",
     "type": "library",
     "license": "MIT",
+    "keywords": ["laravel", "livewire", "tallcraftui", "tallstack", "tallstack ui components", "laravel livewire ui components", "Blade ui components"],
+    "authors": [
+        {
+            "name": "developermithu",
+            "email": "developermithu@gmail.com",
+            "homepage": "https://developermithu.com"
+        }
+    ],
+    "require": {
+        "blade-ui-kit/blade-heroicons": "^2.1"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.16"
+    },
     "autoload": {
         "psr-4": {
             "Developermithu\\Tallcraftui\\": "src/"
@@ -14,18 +28,6 @@
                 "Developermithu\\Tallcraftui\\TallCraftUiServiceProvider"
             ]
         }
-    },
-    "authors": [
-        {
-            "name": "developermithu",
-            "email": "developermithu@gmail.com"
-        }
-    ],
-    "require": {
-        "blade-ui-kit/blade-heroicons": "^2.1"
-    },
-    "require-dev": {
-        "laravel/pint": "^1.16"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

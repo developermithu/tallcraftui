@@ -12,7 +12,8 @@ class Icon extends Component
         public string $name = 'face-smile',
         public ?string $class = null,
         public bool $solid = false,
-    ) {}
+    ) {
+    }
 
     public function name()
     {
@@ -26,13 +27,13 @@ class Icon extends Component
 
     public function class()
     {
-        return 'w-5 h-5 '.$this->class;
+        return 'w-5 h-5 ' . $this->class;
     }
 
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-            <div>
+            <div {{ $attributes }} >
                 @svg($name(), $class())
             </div>
         HTML;
