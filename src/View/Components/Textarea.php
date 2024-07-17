@@ -29,32 +29,12 @@ class Textarea extends Component
                 @php
                     $name = $attributes->wire('model')->value();
                     $error = $errors->has($name) ? $errors->first($name) : null;
-                    
                     $uuid = $uuid . $name;
-                    
-                    // Remove extra space & make label lowercase
-                    $label = trim(Str::lower($label));
-
-                    // Check if the label contains '*'
-                    $hasStar = strpos($label, '*') !== false;
-
-                    // Remove '*' from the label for translation
-                    $labelWithoutStar = rtrim($label, ' *');
+                    $required = $attributes->get('required') ? true : false;
                 @endphp
             
                 @if($label)
-                    <label for="{{ $uuid }}"
-                        @class([
-                            "text-sm font-medium capitalize text-gray-700",
-                            "block mb-1.5" => !$inline    
-                        ])
-                    >     
-                        {{ __($labelWithoutStar) }}
-
-                        @if($hasStar || $attributes->get('required'))
-                            <span class="text-red-500">*</span>
-                        @endif
-                    </label>
+                    <x-tall-label :for="$uuid" :label="$label" :required="$required" :inline="$inline" />
                  @endif
 
                 <div class="relative flex items-center flex-1">
@@ -76,7 +56,7 @@ class Textarea extends Component
                                         "block w-full rounded border-gray-200 py-2.5 shadow-sm text-sm outline-none dark:border-gray-700  dark:bg-gray-800 dark:text-white",
                                         "pl-9" => $iconLeft, 
                                         "pe-9" => $icon || $iconRight,
-                                        "border-red-500 focus:border-red-500 focus:ring-red-500" => $error,
+                                        "border-red-500 dark:border-red-500 focus:border-red-500 focus:ring-red-500" => $error,
                                         "bg-gray-200 opacity-80 cursor-not-allowed" => $attributes->get('disabled'),
                                         "bg-gray-200 opacity-80 border-gray-400 border-dashed pointer-events-none" => $attributes->get('readonly'),
                                     ])
@@ -84,7 +64,7 @@ class Textarea extends Component
                         ></textarea>
 
                         @if($hint && !$error)
-                            <p class="mt-1 text-sm text-gray-500"> {{ $hint }} </p>
+                            <x-tall-hint :hint="$hint" />
                         @endif
                         
                         @if($error)

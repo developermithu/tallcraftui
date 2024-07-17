@@ -40,46 +40,26 @@ class Input extends Component
                 @php
                     $name = $attributes->wire('model')->value();
                     $error = $errors->has($name) ? $errors->first($name) : null;
-                    
                     $uuid = $uuid . $name;
-                    
-                    // Remove extra space & make label lowercase
-                    $label = trim(Str::lower($label));
-
-                    // Check if the label contains '*'
-                    $hasStar = strpos($label, '*') !== false;
-
-                    // Remove '*' from the label for translation
-                    $labelWithoutStar = rtrim($label, ' *');
+                    $required = $attributes->get('required') ? true : false;
                 @endphp
             
                 @if($label)
-                    <label for="{{ $uuid }}"
-                        @class([
-                            "text-sm font-medium capitalize text-gray-700",
-                            "block mb-1.5" => !$inline    
-                        ])
-                    >     
-                        {{ __($labelWithoutStar) }}
-
-                        @if ($hasStar || $attributes->get('required'))
-                            <span class="text-red-500">*</span>
-                        @endif
-                    </label>
+                    <x-tall-label :for="$uuid" :label="$label" :required="$required" :inline="$inline" />
                  @endif
 
                 <div class="relative flex items-center flex-1">
                     @if($iconLeft || $icon)
                         <span class="absolute inset-y-0 grid w-10 start-0 place-content-center">
-                            <x-icon :name="$iconLeft ?? $icon" :class="$iconClass" />
+                            <x-icon :name="$iconLeft ?? $icon" class="dark:text-gray-400 {{ $iconClass }}" />
                         </span>
                     @endif
 
                     @if($preffix || $prepend)
                         <div
                             @class([
-                                "inline-flex items-center text-sm text-gray-500 rounded-r-none min-w-fit rounded-s-md border-e-0 bg-gray-50",
-                                "px-4 py-2.5 border border-gray-200" => $preffix || $prepend && $prependIsSelect === false,    
+                                "inline-flex items-center text-sm text-gray-500 rounded-r-none min-w-fit rounded-s border-e-0 bg-gray-50 dark:bg-gray-700 dark:text-gray-300",
+                                "px-4 py-2.5 border border-gray-200 dark:border-gray-700" => $preffix || $prepend && $prependIsSelect === false,    
                             ])
                         >
                             {{ $prepend ?? $preffix }}
@@ -95,13 +75,13 @@ class Input extends Component
                                 $attributes
                                     ->merge(['type' => 'text'])
                                     ->class([
-                                        "block w-full rounded border-gray-200 py-2.5 shadow-sm text-sm outline-none dark:border-gray-700  dark:bg-gray-800 dark:text-white",
+                                        "block w-full rounded border-gray-200 py-2.5 shadow-sm text-sm outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
                                         "pl-9" => $icon || $iconLeft, 
                                         "pe-9" => $iconRight, 
                                         "rounded-l-none" => $preffix || $prepend, 
                                         "rounded-r-none" => $suffix || $append,
-                                        "file:border-0 file:bg-transparent file:px-3" => $attributes->get('type') === 'file',
-                                        "border-red-500 focus:border-red-500 focus:ring-red-500" => $error,
+                                        "file:border-0 dark:file:text-gray-300 file:bg-transparent file:px-3" => $attributes->get('type') === 'file',
+                                        "border-red-500 dark:border-red-500 focus:border-red-500 focus:ring-red-500" => $error,
                                         "bg-gray-200 opacity-80 cursor-not-allowed" => $attributes->get('disabled'),
                                         "bg-gray-200 opacity-80 border-gray-400 border-dashed pointer-events-none" => $attributes->get('readonly'),
                                     ])
@@ -109,7 +89,7 @@ class Input extends Component
                             />
 
                         @if($hint && !$error)
-                            <p class="mt-1 text-sm text-gray-500"> {{ $hint }} </p>
+                            <x-tall-hint :hint="$hint" />
                         @endif
                         
                         @if($error)
@@ -119,15 +99,15 @@ class Input extends Component
 
                     @if($iconRight)
                         <span class="absolute inset-y-0 grid w-10 end-0 place-content-center">
-                            <x-icon :name="$iconRight" :class="$iconClass" />
+                            <x-icon :name="$iconRight" class="dark:text-gray-400 {{ $iconClass }}" />
                         </span>
                     @endif
 
                     @if($suffix || $append)
                         <div 
                             @class([
-                                "inline-flex items-center min-w-fit rounded-s-md rounded-l-none border-s-0 bg-gray-50 text-sm text-gray-500",
-                                "px-4 py-2.5 border border-gray-200" => $suffix || $append && $appendIsSelect === false,     
+                                "inline-flex items-center min-w-fit rounded-e rounded-l-none border-s-0 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:text-gray-300",
+                                "px-4 py-2.5 border border-gray-200 dark:border-gray-700" => $suffix || $append && $appendIsSelect === false,     
                             ])
                         >
                             {{ $append ?? $suffix }}

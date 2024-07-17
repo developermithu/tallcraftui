@@ -39,12 +39,12 @@ class Alert extends Component
     public function alertClasses(): string
     {
         return match (true) {
-            $this->secondary => 'text-gray-600 border-gray-200 bg-gray-50 dark:bg-gray-800/10 dark:border-gray-900 dark:text-gray-500',
-            $this->warning => 'text-yellow-800 border-yellow-200 bg-yellow-50 dark:bg-yellow-800/10 dark:border-yellow-900 dark:text-yellow-500',
-            $this->info => 'text-blue-800 border-blue-200 bg-blue-50 dark:bg-blue-800/10 dark:border-blue-900 dark:text-blue-500',
-            $this->danger => 'text-red-800 border-red-200 bg-red-50 dark:bg-red-800/10 dark:border-red-900 dark:text-red-500',
-            $this->success => 'text-teal-800 border-teal-200 bg-teal-50 dark:bg-teal-800/10 dark:border-teal-900 dark:text-teal-500',
-            default => 'text-indigo-800 border-indigo-200 bg-indigo-50 dark:bg-indigo-800/10 dark:border-indigo-900 dark:text-indigo-500',
+            $this->secondary => 'text-gray-600 border-gray-200 bg-gray-50 dark:bg-gray-800/50 dark:border-gray-700 dark:text-gray-500',
+            $this->warning => 'text-yellow-800 border-yellow-200 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-900 dark:text-yellow-500',
+            $this->info => 'text-blue-800 border-blue-200 bg-blue-50 dark:bg-blue-800/20 dark:border-blue-900 dark:text-blue-500',
+            $this->danger => 'text-red-800 border-red-200 bg-red-50 dark:bg-red-800/20 dark:border-red-900 dark:text-red-500',
+            $this->success => 'text-teal-800 border-teal-200 bg-teal-50 dark:bg-teal-800/20 dark:border-teal-900 dark:text-teal-500',
+            default => 'text-indigo-800 border-indigo-200 bg-indigo-50 dark:bg-indigo-800/20 dark:border-indigo-900 dark:text-indigo-500',
         };
     }
 
@@ -69,9 +69,9 @@ class Alert extends Component
                 x-cloak
                 x-transition.duration.500ms.opacity
                 @class(["p-4 text-sm transition duration-300 border rounded-lg", $alertClasses()])>
-                <div class="flex">
+                <div class="flex items-start">
                     <div class="flex-shrink-0">
-                        <x-icon :name="$alertIcon()" class="size-6" />
+                        <x-icon :name="$alertIcon()" class="{{ $errors ? '!text-red-500': '' }}" />
                     </div>
 
                     <div @class(["ms-2","ms-4" => $description])>

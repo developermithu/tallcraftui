@@ -55,34 +55,19 @@ class Checkbox extends Component
             @php
                 $name = $attributes->wire('model')->value();
                 $error = $errors->has($name) ? $errors->first($name) : null;
-                
                 $uuid = $uuid . $name;
-                
-                // Remove extra space & make label lowercase
-                $label = trim(Str::lower($label));
-
-                // Check if the label contains '*'
-                $hasStar = strpos($label, '*') !== false;
-
-                // Remove '*' from the label for translation
-                $labelWithoutStar = rtrim($label, ' *');
+                $required = $attributes->get('required') ? true : false;
             @endphp
                 
             <div class="relative flex gap-x-3">
                 @if($textLeft)
-                    <div class="text-sm leading-6">
-                        <label for="{{ $uuid }}" class="text-sm font-medium text-gray-700 capitalize ">
-                            {{ __($labelWithoutStar) }}
-
-                            @if ($hasStar || $attributes->get('required'))
-                                <span class="text-red-500">*</span>
-                            @endif
-                        </label>
+                    <div class="leading-6">
+                        @if($label)
+                            <x-tall-label :for="$uuid" :label="$label" :required="$required" checkbox />
+                        @endif
                         
                         @if($hint)
-                            <p class="text-gray-500">
-                                {{ __($hint) }}
-                            </p>
+                            <x-tall-hint :hint="$hint" />
                         @endif
                         
                         @if($error)
@@ -107,19 +92,13 @@ class Checkbox extends Component
 
                 <!-- Default -->
                 @if(!$textLeft)
-                    <div class="text-sm leading-6">
-                        <label for="{{ $uuid }}" class="text-sm font-medium text-gray-700 capitalize ">
-                            {{ __($labelWithoutStar) }}
-
-                            @if ($hasStar || $attributes->get('required'))
-                                <span class="text-red-500">*</span>
-                            @endif
-                        </label>
+                    <div class="leading-6">
+                        @if($label)
+                            <x-tall-label :for="$uuid" :label="$label" :required="$required" checkbox />
+                        @endif
                         
                         @if($hint)
-                            <p class="text-gray-500">
-                                {{ __($hint) }}
-                            </p>
+                            <x-tall-hint :hint="$hint" />
                         @endif
                         
                         @if($error)
