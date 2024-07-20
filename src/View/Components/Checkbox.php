@@ -22,6 +22,27 @@ class Checkbox extends Component
         public bool $info = false,
         public bool $success = false,
         public bool $danger = false,
+
+        // Tailwind Colors 
+        public bool $black = false,
+        public bool $white = false,
+        public bool $slate = false,
+        public bool $gray = false,
+        public bool $zinc = false,
+        public bool $neutral = false,
+        public bool $stone = false,
+        public bool $red = false,
+        public bool $orange = false,
+        public bool $amber = false,
+        public bool $yellow = false,
+        public bool $lime = false,
+        public bool $green = false,
+        public bool $cyan = false,
+        public bool $sky = false,
+        public bool $purple = false,
+        public bool $fuchsia = false,
+        public bool $pink = false,
+        public bool $rose = false,
     ) {
         $this->uuid = md5(serialize($this));
     }
@@ -34,6 +55,27 @@ class Checkbox extends Component
             $this->success => 'text-green-600 focus:ring-green-600',
             $this->info => 'text-blue-600 focus:ring-blue-600',
             $this->danger => 'text-red-600 focus:ring-red-600',
+
+            // Tailwind Colors 
+            $this->black => 'text-black focus:ring-black',
+            $this->white => 'text-white focus:ring-white !border-gray-200',
+            $this->slate => 'text-slate-600 focus:ring-slate-600',
+            $this->gray => 'text-gray-600 focus:ring-gray-600',
+            $this->zinc => 'text-zinc-600 focus:ring-zinc-600',
+            $this->neutral => 'text-neutral-600 focus:ring-neutral-600',
+            $this->stone => 'text-stone-600 focus:ring-stone-600',
+            $this->red => 'text-red-600 focus:ring-red-600',
+            $this->orange => 'text-orange-600 focus:ring-orange-600',
+            $this->amber => 'text-amber-600 focus:ring-amber-600',
+            $this->yellow => 'text-yellow-600 focus:ring-yellow-600',
+            $this->lime => 'text-lime-600 focus:ring-lime-600',
+            $this->green => 'text-green-600 focus:ring-green-600',
+            $this->cyan => 'text-cyan-600 focus:ring-cyan-600',
+            $this->sky => 'text-sky-600 focus:ring-sky-600',
+            $this->purple => 'text-purple-600 focus:ring-purple-600',
+            $this->fuchsia => 'text-fuchsia-600 focus:ring-fuchsia-600',
+            $this->pink => 'text-pink-600 focus:ring-pink-600',
+            $this->rose => 'text-rose-600 focus:ring-rose-600',
             default => 'text-indigo-600 focus:ring-indigo-600', // primary
         };
     }

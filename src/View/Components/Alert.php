@@ -22,9 +22,31 @@ class Alert extends Component
         public bool $success = false,
         public bool $danger = false,
 
+        // Tailwind Colors 
+        public bool $black = false,
+        public bool $white = false,
+        public bool $slate = false,
+        public bool $gray = false,
+        public bool $zinc = false,
+        public bool $neutral = false,
+        public bool $stone = false,
+        public bool $red = false,
+        public bool $orange = false,
+        public bool $amber = false,
+        public bool $yellow = false,
+        public bool $lime = false,
+        public bool $green = false,
+        public bool $cyan = false,
+        public bool $sky = false,
+        public bool $purple = false,
+        public bool $fuchsia = false,
+        public bool $pink = false,
+        public bool $rose = false,
+
         public bool $dismissible = false,
         public ?array $errors = null,
-    ) {}
+    ) {
+    }
 
     public function alertIcon(): string
     {
@@ -44,6 +66,27 @@ class Alert extends Component
             $this->info => 'text-blue-800 border-blue-200 bg-blue-50 dark:bg-blue-800/20 dark:border-blue-900 dark:text-blue-500',
             $this->danger => 'text-red-800 border-red-200 bg-red-50 dark:bg-red-800/20 dark:border-red-900 dark:text-red-500',
             $this->success => 'text-teal-800 border-teal-200 bg-teal-50 dark:bg-teal-800/20 dark:border-teal-900 dark:text-teal-500',
+
+            // Tailwind Colors 
+            $this->black => 'text-black-800 border-black-200 bg-black-50 dark:bg-black-800/20 dark:border-black-900 dark:text-black-500',
+            $this->white => 'text-white-800 border-white-200 bg-white-50 dark:bg-white-800/20 dark:border-white-900 dark:text-white-500',
+            $this->slate => 'text-slate-800 border-slate-200 bg-slate-50 dark:bg-slate-800/20 dark:border-slate-900 dark:text-slate-500',
+            $this->gray => 'text-gray-800 border-gray-200 bg-gray-50 dark:bg-gray-800/20 dark:border-gray-900 dark:text-gray-500',
+            $this->zinc => 'text-zinc-800 border-zinc-200 bg-zinc-50 dark:bg-zinc-800/20 dark:border-zinc-900 dark:text-zinc-500',
+            $this->neutral => 'text-neutral-800 border-neutral-200 bg-neutral-50 dark:bg-neutral-800/20 dark:border-neutral-900 dark:text-neutral-500',
+            $this->stone => 'text-stone-800 border-stone-200 bg-stone-50 dark:bg-stone-800/20 dark:border-stone-900 dark:text-stone-500',
+            $this->red => 'text-red-800 border-red-200 bg-red-50 dark:bg-red-800/20 dark:border-red-900 dark:text-red-500',
+            $this->orange => 'text-orange-800 border-orange-200 bg-orange-50 dark:bg-orange-800/20 dark:border-orange-900 dark:text-orange-500',
+            $this->amber => 'text-amber-800 border-amber-200 bg-amber-50 dark:bg-amber-800/20 dark:border-amber-900 dark:text-amber-500',
+            $this->yellow => 'text-yellow-800 border-yellow-200 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-900 dark:text-yellow-500',
+            $this->lime => 'text-lime-800 border-lime-200 bg-lime-50 dark:bg-lime-800/20 dark:border-lime-900 dark:text-lime-500',
+            $this->green => 'text-green-800 border-green-200 bg-green-50 dark:bg-green-800/20 dark:border-green-900 dark:text-green-500',
+            $this->cyan => 'text-cyan-800 border-cyan-200 bg-cyan-50 dark:bg-cyan-800/20 dark:border-cyan-900 dark:text-cyan-500',
+            $this->sky => 'text-sky-800 border-sky-200 bg-sky-50 dark:bg-sky-800/20 dark:border-sky-900 dark:text-sky-500',
+            $this->purple => 'text-purple-800 border-purple-200 bg-purple-50 dark:bg-purple-800/20 dark:border-purple-900 dark:text-purple-500',
+            $this->fuchsia => 'text-fuchsia-800 border-fuchsia-200 bg-fuchsia-50 dark:bg-fuchsia-800/20 dark:border-fuchsia-900 dark:text-fuchsia-500',
+            $this->pink => 'text-pink-800 border-pink-200 bg-pink-50 dark:bg-pink-800/20 dark:border-pink-900 dark:text-pink-500',
+            $this->rose => 'text-rose-800 border-rose-200 bg-rose-50 dark:bg-rose-800/20 dark:border-rose-900 dark:text-rose-500',
             default => 'text-indigo-800 border-indigo-200 bg-indigo-50 dark:bg-indigo-800/20 dark:border-indigo-900 dark:text-indigo-500',
         };
     }
@@ -56,6 +99,27 @@ class Alert extends Component
             $this->info => 'text-blue-700 dark:text-blue-400',
             $this->danger => 'text-red-700 dark:text-red-400',
             $this->success => 'text-teal-700 dark:text-teal-400',
+
+            // Tailwind Colors 
+            $this->black => 'text-black-700 dark:text-black-400',
+            $this->white => 'text-white-700 dark:text-white-400',
+            $this->slate => 'text-slate-700 dark:text-slate-400',
+            $this->gray => 'text-gray-700 dark:text-gray-400',
+            $this->zinc => 'text-zinc-700 dark:text-zinc-400',
+            $this->neutral => 'text-neutral-700 dark:text-neutral-400',
+            $this->stone => 'text-stone-700 dark:text-stone-400',
+            $this->red => 'text-red-700 dark:text-red-400',
+            $this->orange => 'text-orange-700 dark:text-orange-400',
+            $this->amber => 'text-amber-700 dark:text-amber-400',
+            $this->yellow => 'text-yellow-700 dark:text-yellow-400',
+            $this->lime => 'text-lime-700 dark:text-lime-400',
+            $this->green => 'text-green-700 dark:text-green-400',
+            $this->cyan => 'text-cyan-700 dark:text-cyan-400',
+            $this->sky => 'text-sky-700 dark:text-sky-400',
+            $this->purple => 'text-purple-700 dark:text-purple-400',
+            $this->fuchsia => 'text-fuchsia-700 dark:text-fuchsia-400',
+            $this->pink => 'text-pink-700 dark:text-pink-400',
+            $this->rose => 'text-rose-700 dark:text-rose-400',
             default => 'text-indigo-700 dark:text-indigo-400',
         };
     }
@@ -103,7 +167,7 @@ class Alert extends Component
                                 @if($danger) <x-button @click="visible = false" icon="x-mark" flat circle sm danger /> @endif
                                 @if($success) <x-button @click="visible = false" icon="x-mark" flat circle sm success /> @endif
                                 @if(!$secondary && !$warning && !$info && !$danger && !$success ) 
-                                    <x-button @click="visible = false" icon="x-mark" flat circle sm /> 
+                                    <x-button @click="visible = false" icon="x-mark" flat circle sm danger /> 
                                 @endif
                         @else 
                             {{ $actions }}    
