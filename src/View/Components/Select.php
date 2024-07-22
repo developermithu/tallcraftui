@@ -20,6 +20,21 @@ class Select extends Component
         $this->uuid = md5(serialize($this));
     }
 
+    public function roundClasses()
+    {
+        return match (true) {
+            $this->attributes->get('rounded-none') => "rounded-none",
+            $this->attributes->get('rounded-sm') => "rounded-sm",
+            $this->attributes->get('rounded-md') => "rounded-md",
+            $this->attributes->get('rounded-lg') => "rounded-lg",
+            $this->attributes->get('rounded-xl') => "rounded-xl",
+            $this->attributes->get('rounded-2xl') => "rounded-2xl",
+            $this->attributes->get('rounded-3xl') => "rounded-3xl",
+            $this->attributes->get('rounded-full') => "rounded-full",
+            default => "rounded",
+        };
+    }
+
     public function render(): View|Closure|string
     {
         return <<<'HTML'
@@ -42,10 +57,11 @@ class Select extends Component
                             {{ 
                                 $attributes
                                     ->class([
-                                        "block w-full rounded border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300",
+                                        "block w-full border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300",
                                         "border-red-500 focus:border-red-500 focus:ring-red-500" => $error,
                                         "bg-gray-200 opacity-80 cursor-not-allowed" => $attributes->get('disabled'),
                                         "bg-gray-200 opacity-80 border-gray-400 border-dashed pointer-events-none" => $attributes->get('readonly'),
+                                        $roundClasses(),
                                     ])
                              }}>
                     

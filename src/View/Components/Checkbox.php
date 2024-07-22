@@ -93,6 +93,21 @@ class Checkbox extends Component
         };
     }
 
+    public function roundClasses()
+    {
+        return match (true) {
+            $this->attributes->get('rounded-none') => "rounded-none",
+            $this->attributes->get('rounded-sm') => "rounded-sm",
+            $this->attributes->get('rounded-md') => "rounded-md",
+            $this->attributes->get('rounded-lg') => "rounded-lg",
+            $this->attributes->get('rounded-xl') => "rounded-xl",
+            $this->attributes->get('rounded-2xl') => "rounded-2xl",
+            $this->attributes->get('rounded-3xl') => "rounded-3xl",
+            $this->attributes->get('rounded-full') => "rounded-full",
+            default => "rounded",
+        };
+    }
+
     public function render(): View|Closure|string
     {
         return <<<'HTML'
@@ -124,11 +139,12 @@ class Checkbox extends Component
                     <input id="{{ $uuid }}" type="checkbox"
                         {{ $attributes
                             ->class([
-                                "border-gray-300 rounded",
+                                "border-gray-300",
                                 $sizeClasses(), 
                                 $colorClasses(),       
                                 "!border-red-300" => $error,                                
-                                "!text-gray-300 pointer-events-none" => $attributes->get('disabled') || $attributes->get('readonly'),                            
+                                "!text-gray-300 pointer-events-none" => $attributes->get('disabled') || $attributes->get('readonly'),    
+                                $roundClasses(),                        
                             ])
                         }}
                     />

@@ -103,7 +103,7 @@ class Button extends Component
 
     public function buttonBaseClasses(): string
     {
-        return 'inline-flex gap-x-1.5 items-center border border-transparent rounded font-semibold text-xs uppercase tracking-widest disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-200 dark:focus:ring-offset-0';
+        return 'inline-flex gap-x-1.5 items-center border border-transparent font-semibold text-xs uppercase tracking-widest disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-200 dark:focus:ring-offset-0';
     }
 
     public function colorClasses(): string
@@ -234,6 +234,21 @@ class Button extends Component
         };
     }
 
+    public function roundClasses()
+    {
+        return match (true) {
+            $this->attributes->get('rounded-none') => "rounded-none",
+            $this->attributes->get('rounded-sm') => "rounded-sm",
+            $this->attributes->get('rounded-md') => "rounded-md",
+            $this->attributes->get('rounded-lg') => "rounded-lg",
+            $this->attributes->get('rounded-xl') => "rounded-xl",
+            $this->attributes->get('rounded-2xl') => "rounded-2xl",
+            $this->attributes->get('rounded-3xl') => "rounded-3xl",
+            $this->attributes->get('rounded-full') => "rounded-full",
+            default => "rounded",
+        };
+    }
+
     public function getSpinner(): string
     {
         return match (true) {
@@ -275,6 +290,7 @@ class Button extends Component
                         $sizeClasses(), 
                         $outlineClasses(), 
                         $flatClasses(), 
+                        $roundClasses(), 
                         $circleClasses(),
                         "bg-transparent" => $outline || $flat,
                         "focus:!border-transparent" => $outline,
