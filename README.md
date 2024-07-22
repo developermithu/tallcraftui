@@ -16,7 +16,7 @@ TallCraftUI is a versatile and customizable UI package designed for the TALL sta
 10. - [ ] Badge
 11. - [ ] Avatar
 12. - [ ] Dropdown
-13. - [ ] Breadcrumb
+13. - [x] Breadcrumb
 14. - [ ] Modal
 15. - [ ] Form
 16. - [ ] Table
