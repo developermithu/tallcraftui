@@ -18,6 +18,7 @@ class Radio extends Component
         // Radio colors
         public bool $primary = true,
         public bool $secondary = false,
+        public bool $tertiary = false,
         public bool $warning = false,
         public bool $info = false,
         public bool $success = false,
@@ -50,11 +51,12 @@ class Radio extends Component
     public function colorClasses(): string
     {
         return match (true) {
-            $this->secondary => 'text-gray-600 focus:ring-gray-600',
-            $this->warning => 'text-yellow-600 focus:ring-yellow-600',
-            $this->success => 'text-green-600 focus:ring-green-600',
-            $this->info => 'text-blue-600 focus:ring-blue-600',
-            $this->danger => 'text-red-600 focus:ring-red-600',
+            $this->secondary => 'text-secondary/90 focus:ring-secondary/90',
+            $this->tertiary => 'text-tertiary/90 focus:ring-tertiary/90',
+            $this->warning => 'text-warning/90 focus:ring-warning/90',
+            $this->success => 'text-success/90 focus:ring-success/90',
+            $this->info => 'text-info/90 focus:ring-info/90',
+            $this->danger => 'text-danger/90 focus:ring-danger/90',
 
             // Tailwind Colors 
             $this->black => 'text-black focus:ring-black',

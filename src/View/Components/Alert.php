@@ -17,6 +17,7 @@ class Alert extends Component
         // Alert types
         public bool $primary = true,
         public bool $secondary = false,
+        public bool $tertiary = false,
         public bool $warning = false,
         public bool $info = false,
         public bool $success = false,
@@ -61,11 +62,12 @@ class Alert extends Component
     public function alertClasses(): string
     {
         return match (true) {
-            $this->secondary => 'text-gray-600 border-gray-200 bg-gray-50 dark:bg-gray-800/50 dark:border-gray-700 dark:text-gray-500',
-            $this->warning => 'text-yellow-800 border-yellow-200 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-900 dark:text-yellow-500',
-            $this->info => 'text-blue-800 border-blue-200 bg-blue-50 dark:bg-blue-800/20 dark:border-blue-900 dark:text-blue-500',
-            $this->danger => 'text-red-800 border-red-200 bg-red-50 dark:bg-red-800/20 dark:border-red-900 dark:text-red-500',
-            $this->success => 'text-teal-800 border-teal-200 bg-teal-50 dark:bg-teal-800/20 dark:border-teal-900 dark:text-teal-500',
+            $this->secondary => 'text-secondary border-secondary/20 bg-secondary/10 dark:bg-secondary/15 dark:border-secondary/50 dark:text-secondary',
+            $this->tertiary => 'text-tertiary border-tertiary/20 bg-tertiary/10 dark:bg-tertiary/15 dark:border-tertiary/50 dark:text-tertiary',
+            $this->warning => 'text-warning border-warning/20 bg-warning/10 dark:bg-warning/15 dark:border-warning/50 dark:text-warning',
+            $this->info => 'text-info border-info/20 bg-info/10 dark:bg-info/15 dark:border-info/50 dark:text-info',
+            $this->danger => 'text-danger border-danger/20 bg-danger/10 dark:bg-danger/15 dark:border-danger/50 dark:text-danger',
+            $this->success => 'text-success border-success/20 bg-success/10 dark:bg-success/15 dark:border-success/50 dark:text-success',
 
             // Tailwind Colors 
             $this->black => 'text-black-800 border-black-200 bg-black-50 dark:bg-black-800/20 dark:border-black-900 dark:text-black-500',
@@ -87,18 +89,19 @@ class Alert extends Component
             $this->fuchsia => 'text-fuchsia-800 border-fuchsia-200 bg-fuchsia-50 dark:bg-fuchsia-800/20 dark:border-fuchsia-900 dark:text-fuchsia-500',
             $this->pink => 'text-pink-800 border-pink-200 bg-pink-50 dark:bg-pink-800/20 dark:border-pink-900 dark:text-pink-500',
             $this->rose => 'text-rose-800 border-rose-200 bg-rose-50 dark:bg-rose-800/20 dark:border-rose-900 dark:text-rose-500',
-            default => 'text-indigo-800 border-indigo-200 bg-indigo-50 dark:bg-indigo-800/20 dark:border-indigo-900 dark:text-indigo-500',
+            default => 'text-primary border-primary/20 bg-primary/10 dark:bg-primary/20 dark:border-primary dark:text-primary/80', // primary
         };
     }
 
     public function descriptionClasses(): string
     {
         return match (true) {
-            $this->secondary => 'text-gray-700 dark:text-gray-400',
-            $this->warning => 'text-yellow-700 dark:text-yellow-400',
-            $this->info => 'text-blue-700 dark:text-blue-400',
-            $this->danger => 'text-red-700 dark:text-red-400',
-            $this->success => 'text-teal-700 dark:text-teal-400',
+            $this->secondary => 'text-secondary/80 dark:text-secondary/80',
+            $this->tertiary => 'text-tertiary/80 dark:text-tertiary/80',
+            $this->warning => 'text-warning/80 dark:text-warning/80',
+            $this->info => 'text-info/80 dark:text-info/80',
+            $this->danger => 'text-danger/80 dark:text-danger/80',
+            $this->success => 'text-success/80 dark:text-success/80',
 
             // Tailwind Colors 
             $this->black => 'text-black-700 dark:text-black-400',
@@ -120,7 +123,7 @@ class Alert extends Component
             $this->fuchsia => 'text-fuchsia-700 dark:text-fuchsia-400',
             $this->pink => 'text-pink-700 dark:text-pink-400',
             $this->rose => 'text-rose-700 dark:text-rose-400',
-            default => 'text-indigo-700 dark:text-indigo-400',
+            default => 'text-primary/80 dark:text-primary/80',
         };
     }
 
@@ -135,7 +138,7 @@ class Alert extends Component
                 @class(["p-4 text-sm transition duration-300 border rounded-lg", $alertClasses()])>
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
-                        <x-icon :name="$alertIcon()" class="{{ $errors ? '!text-red-500': '' }}" />
+                        <x-icon :name="$alertIcon()" class="{{ $errors ? '!text-danger/80': '' }}" />
                     </div>
 
                     <div @class(["ms-2","ms-4" => $description])>

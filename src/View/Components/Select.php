@@ -42,7 +42,7 @@ class Select extends Component
                             {{ 
                                 $attributes
                                     ->class([
-                                        "block w-full rounded border-gray-200 py-2.5 shadow-sm text-sm outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300",
+                                        "block w-full rounded border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300",
                                         "border-red-500 focus:border-red-500 focus:ring-red-500" => $error,
                                         "bg-gray-200 opacity-80 cursor-not-allowed" => $attributes->get('disabled'),
                                         "bg-gray-200 opacity-80 border-gray-400 border-dashed pointer-events-none" => $attributes->get('readonly'),

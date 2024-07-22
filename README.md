@@ -49,7 +49,6 @@ if($errors->any())
 @endif
 ```
 
-
 ## Installation
 
 ```bash
@@ -57,6 +56,25 @@ composer require developermithu/tallcraftui
 
 php artisan install:tallcraftui
 ```
+
+## Modify `tailwind.config.js`
+
+```js
+    theme: {
+        extend: {
+            colors: {
+                primary: "#6d28d9",
+                secondary: "#a21caf",
+                tertiary: "#00BBC9",
+                danger: "#b91c1c",
+                warning: "#a16207",
+                success: "#15803d",
+                info: "#1d4ed8",
+            },
+        },
+    },
+```
+
 
 ## Publish the configuration file
 

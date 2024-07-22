@@ -75,7 +75,7 @@ class Input extends Component
                                 $attributes
                                     ->merge(['type' => 'text'])
                                     ->class([
-                                        "block w-full rounded border-gray-200 py-2.5 shadow-sm text-sm outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
+                                        "block w-full rounded border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
                                         "pl-9" => $icon || $iconLeft, 
                                         "pe-9" => $iconRight, 
                                         "rounded-l-none" => $preffix || $prepend, 

@@ -24,6 +24,7 @@ class Button extends Component
         // Button colors
         public bool $primary = true,
         public bool $secondary = false,
+        public bool $tertiary = false,
         public bool $warning = false,
         public bool $info = false,
         public bool $success = false,
@@ -73,6 +74,7 @@ class Button extends Component
     {
         return $this->primary
             && !$this->secondary
+            && !$this->tertiary
             && !$this->danger
             && !$this->warning
             && !$this->info
@@ -109,12 +111,13 @@ class Button extends Component
         $notOtherStyle = !$this->outline && !$this->flat;
 
         return match (true) {
-            $this->isPrimaryWithoutOthers() && $notOtherStyle => 'bg-violet-600 text-white hover:bg-violet-700 focus:bg-violet-700 focus:ring-violet-500',
-            $this->secondary && $notOtherStyle => 'bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 focus:ring-gray-500 dark:bg-gray-300 dark:hover:bg-gray-400 dark:focus:bg-gray-400 dark:focus:ring-gray-600 dark:focus:text-gray-900',
-            $this->warning && $notOtherStyle => 'bg-yellow-600 text-white hover:bg-yellow-700 focus:bg-yellow-700 focus:ring-yellow-500',
-            $this->danger && $notOtherStyle => 'bg-red-600 text-white hover:bg-red-700 focus:bg-red-700 focus:ring-red-500',
-            $this->success && $notOtherStyle => 'bg-green-600 text-white hover:bg-green-700 focus:bg-green-700 focus:ring-green-500',
-            $this->info && $notOtherStyle => 'bg-blue-600 text-white hover:bg-blue-700 focus:bg-blue-700 focus:ring-blue-500',
+            $this->isPrimaryWithoutOthers() && $notOtherStyle => 'bg-primary/90 text-white hover:bg-primary focus:bg-primary focus:ring-primary',
+            $this->secondary && $notOtherStyle => 'bg-secondary/90 text-white hover:bg-secondary focus:bg-secondary focus:ring-secondary',
+            $this->tertiary && $notOtherStyle => 'bg-tertiary/90 text-white hover:bg-tertiary focus:bg-tertiary focus:ring-tertiary',
+            $this->warning && $notOtherStyle => 'bg-warning/90 text-white hover:bg-warning focus:bg-warning focus:ring-warning',
+            $this->danger && $notOtherStyle => 'bg-danger/90 text-white hover:bg-danger focus:bg-danger focus:ring-danger',
+            $this->success && $notOtherStyle => 'bg-success/90 text-white hover:bg-success focus:bg-success focus:ring-success',
+            $this->info && $notOtherStyle => 'bg-info/90 text-white hover:bg-info focus:bg-info focus:ring-info',
 
             $this->black && $notOtherStyle => 'bg-black text-white hover:bg-black/90 focus:bg-black/90 focus:ring-black/70',
             $this->white && $notOtherStyle => 'bg-black/5 dark:bg-white text-gray-500 dark:text-gray-700 hover:bg-black/10 dark:hover:bg-white/90 focus:bg-black/15 dark:focus:bg-white/90 focus:ring-black/20 dark:focus:ring-white/70',
@@ -142,12 +145,13 @@ class Button extends Component
     public function outlineClasses(): string
     {
         return match (true) {
-            $this->outline && $this->isPrimaryWithoutOthers() => '!border-violet-300 dark:!border-violet-600 text-violet-600 hover:bg-violet-500/10 focus:bg-violet-500/15 focus:ring-violet-500',
-            $this->outline && $this->secondary => '!border-gray-300 dark:!border-gray-400 text-gray-600 dark:text-gray-400 hover:bg-gray-500/10 focus:bg-gray-500/15 focus:!border-transparent focus:ring-gray-500',
-            $this->outline && $this->warning => '!border-yellow-300 dark:!border-yellow-600 text-yellow-600 hover:bg-yellow-500/10 focus:bg-yellow-500/15 focus:ring-yellow-500',
-            $this->outline && $this->success => '!border-green-300 dark:!border-green-600 text-green-600 hover:bg-green-500/10 focus:bg-green-500/15 focus:ring-green-500',
-            $this->outline && $this->danger => '!border-red-300 dark:!border-red-600 text-red-600 hover:bg-red-500/10 focus:bg-red-500/15 focus:ring-red-500',
-            $this->outline && $this->info => '!border-blue-300 dark:!border-blue-600 text-blue-600 hover:bg-blue-500/10 focus:bg-blue-500/15 focus:ring-blue-500',
+            $this->outline && $this->isPrimaryWithoutOthers() => '!border-primary/40 dark:!border-primary/90 text-primary/90 hover:bg-primary/10 focus:bg-primary/15 focus:ring-primary/70',
+            $this->outline && $this->secondary => '!border-secondary/40 dark:!border-secondary/90 text-secondary/90 hover:bg-secondary/10 focus:bg-secondary/15 focus:ring-secondary/70',
+            $this->outline && $this->tertiary => '!border-tertiary/40 dark:!border-tertiary/90 text-tertiary/90 hover:bg-tertiary/10 focus:bg-tertiary/15 focus:ring-tertiary/70',
+            $this->outline && $this->warning => '!border-warning/40 dark:!border-warning/90 text-warning/90 hover:bg-warning/10 focus:bg-warning/15 focus:ring-warning/70',
+            $this->outline && $this->success => '!border-success/40 dark:!border-success/90 text-success/90 hover:bg-success/10 focus:bg-success/15 focus:ring-success/70',
+            $this->outline && $this->danger => '!border-danger/40 dark:!border-danger/90 text-danger/90 hover:bg-danger/10 focus:bg-danger/15 focus:ring-danger/70',
+            $this->outline && $this->info => '!border-info/40 dark:!border-info/90 text-info/90 hover:bg-info/10 focus:bg-info/15 focus:ring-info/70',
 
             $this->outline && $this->black => '!border-black/20 dark:!border-black/80 dark:text-white/20 text-black hover:bg-black/10 focus:bg-black/15 focus:ring-black/60',
             $this->outline && $this->white => '!border-gray-200 dark:!border-white text-black/20 dark:text-white/60 hover:bg-black/5 dark:hover:bg-white/10 focus:bg-black/10 dark:focus:bg-white/15 dark:focus:ring-white/80 focus:ring-black/20',
@@ -175,12 +179,13 @@ class Button extends Component
     public function flatClasses(): string
     {
         return match (true) {
-            $this->flat && $this->isPrimaryWithoutOthers() => 'text-violet-600  hover:bg-violet-500/10 focus:bg-violet-500/15 focus:ring-violet-500',
-            $this->flat && $this->secondary => 'text-gray-600 dark:text-gray-400 hover:bg-gray-500/10 focus:bg-gray-500/15 focus:ring-gray-500',
-            $this->flat && $this->warning => 'text-yellow-600 hover:bg-yellow-500/10 focus:bg-yellow-500/15 focus:ring-yellow-500',
-            $this->flat && $this->success => 'text-green-600 hover:bg-green-500/10 focus:bg-green-500/15 focus:ring-green-500',
-            $this->flat && $this->danger => 'text-red-600 hover:bg-red-500/10 focus:bg-red-500/15 focus:ring-red-500',
-            $this->flat && $this->info => 'text-blue-600 hover:bg-blue-500/10 focus:bg-blue-500/15 focus:ring-blue-500',
+            $this->flat && $this->isPrimaryWithoutOthers() => 'text-primary hover:bg-primary/10 focus:bg-primary/15 focus:ring-primary/70',
+            $this->flat && $this->secondary => 'text-secondary hover:bg-secondary/10 focus:bg-secondary/15 focus:ring-secondary/70',
+            $this->flat && $this->tertiary => 'text-tertiary hover:bg-tertiary/10 focus:bg-tertiary/15 focus:ring-tertiary/70',
+            $this->flat && $this->warning => 'text-warning hover:bg-warning/10 focus:bg-warning/15 focus:ring-warning/70',
+            $this->flat && $this->success => 'text-success hover:bg-success/10 focus:bg-success/15 focus:ring-success/70',
+            $this->flat && $this->danger => 'text-danger hover:bg-danger/10 focus:bg-danger/15 focus:ring-danger/70',
+            $this->flat && $this->info => 'text-info hover:bg-info/10 focus:bg-info/15 focus:ring-info/70',
 
             $this->flat && $this->black => 'dark:text-white/20 text-black hover:bg-black/10 focus:bg-black/15 focus:ring-black/80',
             $this->flat && $this->white => 'text-black/20 dark:text-white hover:bg-black/5 dark:hover:bg-white/10 focus:bg-black/10 dark:focus:bg-white/15 focus:ring-black/20 dark:focus:ring-white/80',

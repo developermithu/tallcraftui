@@ -18,6 +18,7 @@ class Checkbox extends Component
         // Checkbox colors
         public bool $primary = true,
         public bool $secondary = false,
+        public bool $tertiary = false,
         public bool $warning = false,
         public bool $info = false,
         public bool $success = false,
@@ -50,11 +51,12 @@ class Checkbox extends Component
     public function colorClasses(): string
     {
         return match (true) {
-            $this->secondary => 'text-gray-600 focus:ring-gray-600',
-            $this->warning => 'text-yellow-600 focus:ring-yellow-600',
-            $this->success => 'text-green-600 focus:ring-green-600',
-            $this->info => 'text-blue-600 focus:ring-blue-600',
-            $this->danger => 'text-red-600 focus:ring-red-600',
+            $this->secondary => 'text-secondary/90 focus:ring-secondary/90',
+            $this->tertiary => 'text-tertiary/90 focus:ring-tertiary/90',
+            $this->warning => 'text-warning/90 focus:ring-warning/90',
+            $this->success => 'text-success/90 focus:ring-success/90',
+            $this->info => 'text-info/90 focus:ring-info/90',
+            $this->danger => 'text-danger/90 focus:ring-danger/90',
 
             // Tailwind Colors 
             $this->black => 'text-black focus:ring-black',
@@ -76,7 +78,7 @@ class Checkbox extends Component
             $this->fuchsia => 'text-fuchsia-600 focus:ring-fuchsia-600',
             $this->pink => 'text-pink-600 focus:ring-pink-600',
             $this->rose => 'text-rose-600 focus:ring-rose-600',
-            default => 'text-indigo-600 focus:ring-indigo-600', // primary
+            default => 'text-primary/90 focus:ring-primary/90', // primary
         };
     }
 
