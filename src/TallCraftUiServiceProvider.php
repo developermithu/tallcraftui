@@ -12,6 +12,7 @@ use Developermithu\Tallcraftui\View\Components\Hint;
 use Developermithu\Tallcraftui\View\Components\Icon;
 use Developermithu\Tallcraftui\View\Components\Input;
 use Developermithu\Tallcraftui\View\Components\Label;
+use Developermithu\Tallcraftui\View\Components\Modal;
 use Developermithu\Tallcraftui\View\Components\Radio;
 use Developermithu\Tallcraftui\View\Components\Select;
 use Developermithu\Tallcraftui\View\Components\Textarea;
@@ -54,6 +55,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
         Blade::component($prefix . 'alert', Alert::class);
         Blade::component($prefix . 'breadcrumb', Breadcrumb::class);
         Blade::component($prefix . 'breadcrumb-item', BreadcrumbItem::class);
+        Blade::component($prefix . 'modal', Modal::class);
 
         // TallCraftUI internal components
         Blade::component('tall-label', Label::class);
