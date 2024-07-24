@@ -15,8 +15,7 @@ class BreadcrumbItem extends Component
         public ?string $iconLeft = null,
         public ?string $iconRight = null,
         public bool $iconNone = false,
-    ) {
-    }
+    ) {}
 
     public function render(): View|Closure|string
     {

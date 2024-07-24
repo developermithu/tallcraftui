@@ -23,7 +23,7 @@ class Alert extends Component
         public bool $success = false,
         public bool $danger = false,
 
-        // Tailwind Colors 
+        // Tailwind Colors
         public bool $black = false,
         public bool $white = false,
         public bool $slate = false,
@@ -46,8 +46,7 @@ class Alert extends Component
 
         public bool $dismissible = false,
         public ?array $errors = null,
-    ) {
-    }
+    ) {}
 
     public function alertIcon(): string
     {
@@ -69,7 +68,7 @@ class Alert extends Component
             $this->danger => 'text-danger border-danger/20 bg-danger/10 dark:bg-danger/15 dark:border-danger/50 dark:text-danger',
             $this->success => 'text-success border-success/20 bg-success/10 dark:bg-success/15 dark:border-success/50 dark:text-success',
 
-            // Tailwind Colors 
+            // Tailwind Colors
             $this->black => 'text-black-800 border-black-200 bg-black-50 dark:bg-black-800/20 dark:border-black-900 dark:text-black-500',
             $this->white => 'text-white-800 border-white-200 bg-white-50 dark:bg-white-800/20 dark:border-white-900 dark:text-white-500',
             $this->slate => 'text-slate-800 border-slate-200 bg-slate-50 dark:bg-slate-800/20 dark:border-slate-900 dark:text-slate-500',
@@ -103,7 +102,7 @@ class Alert extends Component
             $this->danger => 'text-danger/80 dark:text-danger/80',
             $this->success => 'text-success/80 dark:text-success/80',
 
-            // Tailwind Colors 
+            // Tailwind Colors
             $this->black => 'text-black-700 dark:text-black-400',
             $this->white => 'text-white-700 dark:text-white-400',
             $this->slate => 'text-slate-700 dark:text-slate-400',
@@ -130,15 +129,15 @@ class Alert extends Component
     public function roundClasses()
     {
         return match (true) {
-            $this->attributes->get('rounded-none') => "rounded-none",
-            $this->attributes->get('rounded-sm') => "rounded-sm",
-            $this->attributes->get('rounded-md') => "rounded-md",
-            $this->attributes->get('rounded-lg') => "rounded-lg",
-            $this->attributes->get('rounded-xl') => "rounded-xl",
-            $this->attributes->get('rounded-2xl') => "rounded-2xl",
-            $this->attributes->get('rounded-3xl') => "rounded-3xl",
-            $this->attributes->get('rounded-full') => "rounded-full",
-            default => "rounded",
+            $this->attributes->get('rounded-none') => 'rounded-none',
+            $this->attributes->get('rounded-sm') => 'rounded-sm',
+            $this->attributes->get('rounded-md') => 'rounded-md',
+            $this->attributes->get('rounded-lg') => 'rounded-lg',
+            $this->attributes->get('rounded-xl') => 'rounded-xl',
+            $this->attributes->get('rounded-2xl') => 'rounded-2xl',
+            $this->attributes->get('rounded-3xl') => 'rounded-3xl',
+            $this->attributes->get('rounded-full') => 'rounded-full',
+            default => 'rounded',
         };
     }
 

@@ -24,7 +24,7 @@ class Radio extends Component
         public bool $success = false,
         public bool $danger = false,
 
-        // Tailwind Colors 
+        // Tailwind Colors
         public bool $black = false,
         public bool $white = false,
         public bool $slate = false,
@@ -58,7 +58,7 @@ class Radio extends Component
             $this->info => 'text-info/90 focus:ring-info/90',
             $this->danger => 'text-danger/90 focus:ring-danger/90',
 
-            // Tailwind Colors 
+            // Tailwind Colors
             $this->black => 'text-black focus:ring-black',
             $this->white => 'text-white focus:ring-white !border-gray-200',
             $this->slate => 'text-slate-600 focus:ring-slate-600',

@@ -24,7 +24,7 @@ class Checkbox extends Component
         public bool $success = false,
         public bool $danger = false,
 
-        // Tailwind Colors 
+        // Tailwind Colors
         public bool $black = false,
         public bool $white = false,
         public bool $slate = false,
@@ -58,7 +58,7 @@ class Checkbox extends Component
             $this->info => 'text-info/90 focus:ring-info/90',
             $this->danger => 'text-danger/90 focus:ring-danger/90',
 
-            // Tailwind Colors 
+            // Tailwind Colors
             $this->black => 'text-black focus:ring-black',
             $this->white => 'text-white focus:ring-white !border-gray-200',
             $this->slate => 'text-slate-600 focus:ring-slate-600',
@@ -96,15 +96,15 @@ class Checkbox extends Component
     public function roundClasses()
     {
         return match (true) {
-            $this->attributes->get('rounded-none') => "rounded-none",
-            $this->attributes->get('rounded-sm') => "rounded-sm",
-            $this->attributes->get('rounded-md') => "rounded-md",
-            $this->attributes->get('rounded-lg') => "rounded-lg",
-            $this->attributes->get('rounded-xl') => "rounded-xl",
-            $this->attributes->get('rounded-2xl') => "rounded-2xl",
-            $this->attributes->get('rounded-3xl') => "rounded-3xl",
-            $this->attributes->get('rounded-full') => "rounded-full",
-            default => "rounded",
+            $this->attributes->get('rounded-none') => 'rounded-none',
+            $this->attributes->get('rounded-sm') => 'rounded-sm',
+            $this->attributes->get('rounded-md') => 'rounded-md',
+            $this->attributes->get('rounded-lg') => 'rounded-lg',
+            $this->attributes->get('rounded-xl') => 'rounded-xl',
+            $this->attributes->get('rounded-2xl') => 'rounded-2xl',
+            $this->attributes->get('rounded-3xl') => 'rounded-3xl',
+            $this->attributes->get('rounded-full') => 'rounded-full',
+            default => 'rounded',
         };
     }
 

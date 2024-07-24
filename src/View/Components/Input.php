@@ -36,45 +36,45 @@ class Input extends Component
     public function inputRoundClasses()
     {
         return match (true) {
-            $this->attributes->get('rounded-none') => "rounded-none",
-            $this->attributes->get('rounded-sm') => "rounded-sm",
-            $this->attributes->get('rounded-md') => "rounded-md",
-            $this->attributes->get('rounded-lg') => "rounded-lg",
-            $this->attributes->get('rounded-xl') => "rounded-xl",
-            $this->attributes->get('rounded-2xl') => "rounded-2xl",
-            $this->attributes->get('rounded-3xl') => "rounded-3xl",
-            $this->attributes->get('rounded-full') => "rounded-full",
-            default => "rounded",
+            $this->attributes->get('rounded-none') => 'rounded-none',
+            $this->attributes->get('rounded-sm') => 'rounded-sm',
+            $this->attributes->get('rounded-md') => 'rounded-md',
+            $this->attributes->get('rounded-lg') => 'rounded-lg',
+            $this->attributes->get('rounded-xl') => 'rounded-xl',
+            $this->attributes->get('rounded-2xl') => 'rounded-2xl',
+            $this->attributes->get('rounded-3xl') => 'rounded-3xl',
+            $this->attributes->get('rounded-full') => 'rounded-full',
+            default => 'rounded',
         };
     }
-    
+
     public function preffixRoundClasses()
     {
         return match (true) {
-            $this->attributes->get('rounded-none') => "rounded-s-none",
-            $this->attributes->get('rounded-sm') => "rounded-s-sm",
-            $this->attributes->get('rounded-md') => "rounded-s-md",
-            $this->attributes->get('rounded-lg') => "rounded-s-lg",
-            $this->attributes->get('rounded-xl') => "rounded-s-xl",
-            $this->attributes->get('rounded-2xl') => "rounded-s-2xl",
-            $this->attributes->get('rounded-3xl') => "rounded-s-3xl",
-            $this->attributes->get('rounded-full') => "rounded-s-full",
-            default => "rounded-s",
+            $this->attributes->get('rounded-none') => 'rounded-s-none',
+            $this->attributes->get('rounded-sm') => 'rounded-s-sm',
+            $this->attributes->get('rounded-md') => 'rounded-s-md',
+            $this->attributes->get('rounded-lg') => 'rounded-s-lg',
+            $this->attributes->get('rounded-xl') => 'rounded-s-xl',
+            $this->attributes->get('rounded-2xl') => 'rounded-s-2xl',
+            $this->attributes->get('rounded-3xl') => 'rounded-s-3xl',
+            $this->attributes->get('rounded-full') => 'rounded-s-full',
+            default => 'rounded-s',
         };
     }
-    
+
     public function suffixRoundClasses()
     {
         return match (true) {
-            $this->attributes->get('rounded-none') => "rounded-e-none",
-            $this->attributes->get('rounded-sm') => "rounded-e-sm",
-            $this->attributes->get('rounded-md') => "rounded-e-md",
-            $this->attributes->get('rounded-lg') => "rounded-e-lg",
-            $this->attributes->get('rounded-xl') => "rounded-e-xl",
-            $this->attributes->get('rounded-2xl') => "rounded-e-2xl",
-            $this->attributes->get('rounded-3xl') => "rounded-e-3xl",
-            $this->attributes->get('rounded-full') => "rounded-e-full",
-            default => "rounded-e",
+            $this->attributes->get('rounded-none') => 'rounded-e-none',
+            $this->attributes->get('rounded-sm') => 'rounded-e-sm',
+            $this->attributes->get('rounded-md') => 'rounded-e-md',
+            $this->attributes->get('rounded-lg') => 'rounded-e-lg',
+            $this->attributes->get('rounded-xl') => 'rounded-e-xl',
+            $this->attributes->get('rounded-2xl') => 'rounded-e-2xl',
+            $this->attributes->get('rounded-3xl') => 'rounded-e-3xl',
+            $this->attributes->get('rounded-full') => 'rounded-e-full',
+            default => 'rounded-e',
         };
     }
 

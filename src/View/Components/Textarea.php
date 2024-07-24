@@ -25,15 +25,15 @@ class Textarea extends Component
     public function roundClasses()
     {
         return match (true) {
-            $this->attributes->get('rounded-none') => "rounded-none",
-            $this->attributes->get('rounded-sm') => "rounded-sm",
-            $this->attributes->get('rounded-md') => "rounded-md",
-            $this->attributes->get('rounded-lg') => "rounded-lg",
-            $this->attributes->get('rounded-xl') => "rounded-xl",
-            $this->attributes->get('rounded-2xl') => "rounded-2xl",
-            $this->attributes->get('rounded-3xl') => "rounded-3xl",
-            $this->attributes->get('rounded-full') => "rounded-full",
-            default => "rounded",
+            $this->attributes->get('rounded-none') => 'rounded-none',
+            $this->attributes->get('rounded-sm') => 'rounded-sm',
+            $this->attributes->get('rounded-md') => 'rounded-md',
+            $this->attributes->get('rounded-lg') => 'rounded-lg',
+            $this->attributes->get('rounded-xl') => 'rounded-xl',
+            $this->attributes->get('rounded-2xl') => 'rounded-2xl',
+            $this->attributes->get('rounded-3xl') => 'rounded-3xl',
+            $this->attributes->get('rounded-full') => 'rounded-full',
+            default => 'rounded',
         };
     }
 
