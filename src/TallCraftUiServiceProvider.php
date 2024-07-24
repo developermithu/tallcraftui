@@ -8,6 +8,8 @@ use Developermithu\Tallcraftui\View\Components\Breadcrumb;
 use Developermithu\Tallcraftui\View\Components\BreadcrumbItem;
 use Developermithu\Tallcraftui\View\Components\Button;
 use Developermithu\Tallcraftui\View\Components\Checkbox;
+use Developermithu\Tallcraftui\View\Components\Dropdown;
+use Developermithu\Tallcraftui\View\Components\DropdownItem;
 use Developermithu\Tallcraftui\View\Components\Hint;
 use Developermithu\Tallcraftui\View\Components\Icon;
 use Developermithu\Tallcraftui\View\Components\Input;
@@ -54,6 +56,8 @@ class TallCraftUiServiceProvider extends ServiceProvider
         Blade::component($prefix.'breadcrumb', Breadcrumb::class);
         Blade::component($prefix.'breadcrumb-item', BreadcrumbItem::class);
         Blade::component($prefix.'modal', Modal::class);
+        Blade::component($prefix.'dropdown', Dropdown::class);
+        Blade::component($prefix.'dropdown-item', DropdownItem::class);
 
         // TallCraftUI internal components
         Blade::component('tall-label', Label::class);
