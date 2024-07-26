@@ -53,7 +53,7 @@ class Textarea extends Component
                  @endif
 
                 <div class="relative flex items-center flex-1">
-                    @if($iconLeft)
+                    @if($icon || $iconLeft)
                         <span class="absolute inset-y-0 grid w-10 start-0 place-content-center">
                             <x-icon :name="$iconLeft" :class="$iconClass" />
                         </span>
@@ -88,7 +88,7 @@ class Textarea extends Component
                         @endif
                     </div>
 
-                    @if($iconRight || $icon)
+                    @if($iconRight)
                         <span class="absolute inset-y-0 grid w-10 end-0 place-content-center">
                             <x-icon :name="$iconRight ?? $icon" :class="$iconClass" />
                         </span>

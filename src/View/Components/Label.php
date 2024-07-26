@@ -35,12 +35,12 @@ class Label extends Component
             <label for="{{ $for }}"
                 {{ $attributes
                     ->class([
-                        "text-sm font-medium capitalize text-gray-700 dark:text-gray-100",
+                        "text-sm font-medium text-gray-700 dark:text-gray-100",
                         "block mb-1.5" => !$inline && !$checkboxOrRadio   
                     ])
                 }}
             >     
-                {{ __($labelWithoutStar) }}
+                {{ Str::ucfirst(__($labelWithoutStar)) }}
 
                 @if ($isRequired)
                     <span class="text-red-500">*</span>

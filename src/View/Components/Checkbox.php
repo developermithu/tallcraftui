@@ -88,7 +88,7 @@ class Checkbox extends Component
             $this->attributes->get('sm') => 'size-4',
             $this->attributes->get('lg') => 'size-6',
             $this->attributes->get('xl') => 'size-7',
-            $this->attributes->get('xxl') => 'size-8',
+            $this->attributes->get('2xl') => 'size-8',
             default => 'size-[18px]',
         };
     }

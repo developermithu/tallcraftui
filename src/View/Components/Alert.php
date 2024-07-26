@@ -144,6 +144,10 @@ class Alert extends Component
     public function render(): View|Closure|string
     {
         return <<<'HTML'
+            @php
+                $alertTitle = $title ?? ($errors ? 'Something went wrong!' : 'Alert title goes here');
+            @endphp
+            
             <div 
                 x-data="{ visible: true }"
                 x-show="visible"
@@ -157,7 +161,7 @@ class Alert extends Component
 
                     <div @class(["ms-2","ms-4" => $description])>
                         <h3 class="text-sm font-medium">
-                            {{ $title ?? $errors ? 'Something wents wrong!' : 'Alert title goes here' }}
+                            {{ $alertTitle }}
                         </h3>
                         
                         @if($description)

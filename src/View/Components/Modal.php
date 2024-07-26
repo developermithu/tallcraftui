@@ -125,11 +125,13 @@ class Modal extends Component
                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     {{ 
-                        $attributes->class([
-                            "overflow-hidden transition-all transform bg-white dark:bg-gray-800 shadow-xl",
-                            $sizeClasses(),
-                            $roundClasses(),
-                        ]) 
+                        $attributes
+                            ->except('wire:model')
+                            ->class([
+                                "overflow-hidden transition-all transform bg-white dark:bg-gray-800 shadow-xl",
+                                $sizeClasses(),
+                                $roundClasses(),
+                            ]) 
                     }}
                 >
                     {{ $slot }}
