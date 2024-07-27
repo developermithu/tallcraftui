@@ -1,27 +1,13 @@
 # TallCraftUi  
 
-TallCraftUI is a versatile and customizable UI package designed for the TALL stack **(Tailwind CSS, Alpine.js, Laravel, and Livewire)**. It provides a set of components to simplify livewire application development and seamlessly integrate with **TALL stack** projects.
+TallCraftUI is a versatile and customizable UI package for the TALL stack **(Tailwind CSS, Alpine.js, Laravel, and Livewire)**. It provides a set of components to simplify livewire application development and seamlessly integrate with **TALL stack** projects.
 
-## Available Components
 
-1. - [x] Alert
-2. - [x] Button
-3. - [x] Icon
-4. - [x] Input
-5. - [x] Textarea
-6. - [x] Radio
-7. - [x] Select
-8. - [x] Checkbox
-9. - [ ] Toogle
-10. - [ ] Badge
-11. - [ ] Avatar
-12. - [x] Dropdown
-13. - [x] Breadcrumb
-14. - [x] Modal
-15. - [ ] Form
-16. - [ ] Table
- 
-Full documentation comming soon. Stay tuned!
+<p align="center">
+ <a href="https://packagist.org/packages/developermithu/tallcraftui"><img src="https://img.shields.io/packagist/v/developermithu/tallcraftui?style=flat-square" alt="Latest Version on Packagist"></a>
+ <a href="https://packagist.org/packages/developermithu/tallcraftui"><img src="https://img.shields.io/packagist/dt/developermithu/tallcraftui?style=flat-square" alt="Total Downloads"></a>
+ <a href="https://github.com/developermithu/tallcraftui?tab=MIT-1-ov-file"><img src="https://img.shields.io/github/license/developermithu/tallcraftui?style=flat-square" alt="GitHub license"></a>
+</p>
 
 
 ## Basic Usage
