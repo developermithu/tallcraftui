@@ -60,7 +60,9 @@ class TallCraftUiServiceProvider extends ServiceProvider
         Blade::component($prefix.'dropdown-item', DropdownItem::class);
 
         // TallCraftUI internal components
-        Blade::component('tall-label', Label::class);
-        Blade::component('tall-hint', Hint::class);
+        Blade::component('tc-icon', Icon::class);
+        Blade::component('tc-button', Button::class);
+        Blade::component('tc-label', Label::class);
+        Blade::component('tc-hint', Hint::class);
     }
 }

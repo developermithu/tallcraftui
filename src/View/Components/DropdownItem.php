@@ -24,7 +24,7 @@ class DropdownItem extends Component
                 {{ $attributes->get('href') ? 'wire:navigate' : '' }}
             >
                 @if($icon)
-                    <x-icon :name="$icon" />
+                    <x-tc-icon :name="$icon" />
                 @endif
 
                 {{ $label ? __($label) : '' }}

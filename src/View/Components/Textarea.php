@@ -49,13 +49,13 @@ class Textarea extends Component
                 @endphp
             
                 @if($label)
-                    <x-tall-label :for="$uuid" :label="$label" :required="$required" :inline="$inline" />
+                    <x-tc-label :for="$uuid" :label="$label" :required="$required" :inline="$inline" />
                  @endif
 
                 <div class="relative flex items-center flex-1">
                     @if($icon || $iconLeft)
                         <span class="absolute inset-y-0 grid w-10 start-0 place-content-center">
-                            <x-icon :name="$iconLeft" :class="$iconClass" />
+                            <x-tc-icon :name="$iconLeft" :class="$iconClass" />
                         </span>
                     @endif
                 
@@ -80,7 +80,7 @@ class Textarea extends Component
                         ></textarea>
 
                         @if($hint && !$error)
-                            <x-tall-hint :hint="$hint" />
+                            <x-tc-hint :hint="$hint" />
                         @endif
                         
                         @if($error)
@@ -90,7 +90,7 @@ class Textarea extends Component
 
                     @if($iconRight)
                         <span class="absolute inset-y-0 grid w-10 end-0 place-content-center">
-                            <x-icon :name="$iconRight ?? $icon" :class="$iconClass" />
+                            <x-tc-icon :name="$iconRight ?? $icon" :class="$iconClass" />
                         </span>
                     @endif
                 </div>

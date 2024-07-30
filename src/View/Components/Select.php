@@ -47,7 +47,7 @@ class Select extends Component
                 @endphp
             
                 @if($label)
-                    <x-tall-label :for="$uuid" :label="$label" :required="$required" />
+                    <x-tc-label :for="$uuid" :label="$label" :required="$required" />
                  @endif
 
                 <div class="relative flex items-center flex-1">
@@ -77,7 +77,7 @@ class Select extends Component
                         </select>
 
                         @if($hint && !$error)
-                            <x-tall-hint :hint="$hint" />
+                            <x-tc-hint :hint="$hint" />
                         @endif
                         
                         @if($error)

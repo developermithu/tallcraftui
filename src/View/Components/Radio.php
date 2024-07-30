@@ -107,11 +107,11 @@ class Radio extends Component
                 @if($textLeft)
                     <div class="leading-6">
                         @if($label)
-                            <x-tall-label :for="$uuid" :label="$label" :required="$required" radio />
+                            <x-tc-label :for="$uuid" :label="$label" :required="$required" radio />
                         @endif
                         
                         @if($hint)
-                            <x-tall-hint :hint="$hint" />
+                            <x-tc-hint :hint="$hint" />
                         @endif
                         
                         @if($error)
@@ -138,11 +138,11 @@ class Radio extends Component
                 @if(!$textLeft)
                     <div class="leading-6">
                         @if($label)
-                            <x-tall-label :for="$uuid" :label="$label" :required="$required" radio />
+                            <x-tc-label :for="$uuid" :label="$label" :required="$required" radio />
                         @endif
                         
                         @if($hint)
-                            <x-tall-hint :hint="$hint" />
+                            <x-tc-hint :hint="$hint" />
                         @endif
                         
                         @if($error)

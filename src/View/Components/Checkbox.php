@@ -122,11 +122,11 @@ class Checkbox extends Component
                 @if($textLeft)
                     <div class="leading-6">
                         @if($label)
-                            <x-tall-label :for="$uuid" :label="$label" :required="$required" checkbox />
+                            <x-tc-label :for="$uuid" :label="$label" :required="$required" checkbox />
                         @endif
                         
                         @if($hint)
-                            <x-tall-hint :hint="$hint" />
+                            <x-tc-hint :hint="$hint" />
                         @endif
                         
                         @if($error)
@@ -154,11 +154,11 @@ class Checkbox extends Component
                 @if(!$textLeft)
                     <div class="leading-6">
                         @if($label)
-                            <x-tall-label :for="$uuid" :label="$label" :required="$required" checkbox />
+                            <x-tc-label :for="$uuid" :label="$label" :required="$required" checkbox />
                         @endif
                         
                         @if($hint)
-                            <x-tall-hint :hint="$hint" />
+                            <x-tc-hint :hint="$hint" />
                         @endif
                         
                         @if($error)

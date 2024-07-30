@@ -296,9 +296,9 @@ class Button extends Component
                 ]) }}>
                 
                 @if($icon)
-                    <x-icon :name="$icon" :class="$iconClass" />
+                    <x-tc-icon :name="$icon" :class="$iconClass" />
                 @elseif ($iconLeft)
-                    <x-icon :name="$iconLeft" :class="$iconClass" />
+                    <x-tc-icon :name="$iconLeft" :class="$iconClass" />
                 @endif
 
                 {{ $label ? __($label) : '' }}
@@ -306,7 +306,7 @@ class Button extends Component
                 {{ $slot }}
 
                 @if($iconRight && !$spinner)
-                    <x-icon :name="$iconRight" :class="$iconClass" />
+                    <x-tc-icon :name="$iconRight" :class="$iconClass" />
                 @endif
 
                 @if($spinner)

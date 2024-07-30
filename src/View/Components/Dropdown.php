@@ -76,7 +76,7 @@ class Dropdown extends Component
                     @isset($trigger)
                         {{ $trigger }}
                     @else 
-                        <x-button icon="chevron-down" flat circle />
+                        <x-tc-button icon="chevron-down" flat circle />
                     @endisset
                 </div>
 

@@ -23,15 +23,15 @@ class BreadcrumbItem extends Component
             <li>
                 <div class="flex items-center gap-1 md:gap-2">
                     @if($icon)
-                        <x-icon :name="$icon" class="text-gray-400 size-6" />
+                        <x-tc-icon :name="$icon" class="text-gray-400 size-6" />
                     @endif
                     
                     @if(!$icon && !$iconNone) 
-                        <x-icon name="chevron-right" class="text-gray-400 size-6" />
+                        <x-tc-icon name="chevron-right" class="text-gray-400 size-6" />
                     @endif
 
                     @isset($iconLeft)
-                        <x-icon :name="$iconLeft" class="text-gray-400 size-6" />
+                        <x-tc-icon :name="$iconLeft" class="text-gray-400 size-6" />
                     @endisset
                 
                     @isset($href)
@@ -47,7 +47,7 @@ class BreadcrumbItem extends Component
                     @endisset
 
                     @isset($iconRight)
-                        <x-icon :name="$iconRight" class="text-gray-400 size-6" />
+                        <x-tc-icon :name="$iconRight" class="text-gray-400 size-6" />
                     @endisset
                 </div>
             </li>

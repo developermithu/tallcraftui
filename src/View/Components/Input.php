@@ -90,13 +90,13 @@ class Input extends Component
                 @endphp
             
                 @if($label)
-                    <x-tall-label :for="$uuid" :label="$label" :required="$required" :inline="$inline" />
+                    <x-tc-label :for="$uuid" :label="$label" :required="$required" :inline="$inline" />
                  @endif
 
                 <div class="relative flex items-center flex-1">
                     @if($iconLeft || $icon)
                         <span class="absolute inset-y-0 grid w-10 start-0 place-content-center">
-                            <x-icon :name="$iconLeft ?? $icon" class="dark:text-gray-400 {{ $iconClass }}" />
+                            <x-tc-icon :name="$iconLeft ?? $icon" class="dark:text-gray-400 {{ $iconClass }}" />
                         </span>
                     @endif
 
@@ -136,7 +136,7 @@ class Input extends Component
                             />
 
                         @if($hint && !$error)
-                            <x-tall-hint :hint="$hint" />
+                            <x-tc-hint :hint="$hint" />
                         @endif
                         
                         @if($error)
@@ -146,7 +146,7 @@ class Input extends Component
 
                     @if($iconRight)
                         <span class="absolute inset-y-0 grid w-10 end-0 place-content-center">
-                            <x-icon :name="$iconRight" class="dark:text-gray-400 {{ $iconClass }}" />
+                            <x-tc-icon :name="$iconRight" class="dark:text-gray-400 {{ $iconClass }}" />
                         </span>
                     @endif
 

@@ -156,7 +156,7 @@ class Alert extends Component
                 @class(["p-4 text-sm transition duration-300 border", $alertClasses(), $roundClasses()])>
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
-                        <x-icon :name="$alertIcon()" class="{{ $errors ? '!text-danger/80': '' }}" />
+                        <x-tc-icon :name="$alertIcon()" class="{{ $errors ? '!text-danger/80': '' }}" />
                     </div>
 
                     <div @class(["ms-2","ms-4" => $description])>
@@ -182,13 +182,13 @@ class Alert extends Component
                     <div class="ps-3 ms-auto">
                         <div class="-mx-1.5 -my-1.5">
                         @if($dismissible && !$actions)
-                                @if($secondary) <x-button @click="visible = false" icon="x-mark" flat circle sm secondary /> @endif
-                                @if($warning) <x-button @click="visible = false" icon="x-mark" flat circle sm warning /> @endif
-                                @if($info) <x-button @click="visible = false" icon="x-mark" flat circle sm info /> @endif
-                                @if($danger) <x-button @click="visible = false" icon="x-mark" flat circle sm danger /> @endif
-                                @if($success) <x-button @click="visible = false" icon="x-mark" flat circle sm success /> @endif
+                                @if($secondary) <x-tc-button @click="visible = false" icon="x-mark" flat circle sm secondary /> @endif
+                                @if($warning) <x-tc-button @click="visible = false" icon="x-mark" flat circle sm warning /> @endif
+                                @if($info) <x-tc-button @click="visible = false" icon="x-mark" flat circle sm info /> @endif
+                                @if($danger) <x-tc-button @click="visible = false" icon="x-mark" flat circle sm danger /> @endif
+                                @if($success) <x-tc-button @click="visible = false" icon="x-mark" flat circle sm success /> @endif
                                 @if(!$secondary && !$warning && !$info && !$danger && !$success ) 
-                                    <x-button @click="visible = false" icon="x-mark" flat circle sm danger /> 
+                                    <x-tc-button @click="visible = false" icon="x-mark" flat circle sm danger /> 
                                 @endif
                         @else 
                             {{ $actions }}    
