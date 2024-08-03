@@ -78,7 +78,7 @@ class Radio extends Component
             $this->fuchsia => 'text-fuchsia-600 focus:ring-fuchsia-600',
             $this->pink => 'text-pink-600 focus:ring-pink-600',
             $this->rose => 'text-rose-600 focus:ring-rose-600',
-            default => 'text-indigo-600 focus:ring-indigo-600', // primary
+            default => 'text-primary/90 focus:ring-primary/90', // primary
         };
     }
 
@@ -138,15 +138,15 @@ class Radio extends Component
                 @if(!$textLeft)
                     <div class="leading-6">
                         @if($label)
-                            <x-tc-label :for="$uuid" :label="$label" :required="$required" radio />
+                            <x-tc-label :for="$uuid" :label="$label" :required="$required" radio 
+                                @class([
+                                    "text-red-500" => $error,
+                                ]) 
+                            />
                         @endif
                         
                         @if($hint)
                             <x-tc-hint :hint="$hint" />
-                        @endif
-                        
-                        @if($error)
-                            <p class="mt-0.5 text-sm text-red-500"> {{ $error }} </p>
                         @endif
                     </div>
                 @endif

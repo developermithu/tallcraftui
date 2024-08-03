@@ -154,15 +154,15 @@ class Checkbox extends Component
                 @if(!$textLeft)
                     <div class="leading-6">
                         @if($label)
-                            <x-tc-label :for="$uuid" :label="$label" :required="$required" checkbox />
+                            <x-tc-label :for="$uuid" :label="$label" :required="$required" checkbox 
+                                @class([
+                                    "text-red-500" => $error,
+                                ]) 
+                            />
                         @endif
                         
                         @if($hint)
                             <x-tc-hint :hint="$hint" />
-                        @endif
-                        
-                        @if($error)
-                            <p class="mt-0.5 text-sm text-red-500"> {{ $error }} </p>
                         @endif
                     </div>
                 @endif

@@ -20,13 +20,14 @@ class Modal extends Component
             $this->attributes->get('md') => 'w-full sm:max-w-md',
             $this->attributes->get('lg') => 'w-full sm:max-w-lg',
             $this->attributes->get('xl') => 'w-full sm:max-w-xl',
+            $this->attributes->get('2xl') => 'w-full sm:max-w-2xl',
             $this->attributes->get('3xl') => 'w-full sm:mx-6 md:mx-8 lg:mx-0 sm:max-w-3xl',
             $this->attributes->get('4xl') => 'w-full sm:mx-6 md:mx-8 lg:mx-0 sm:max-w-4xl',
             $this->attributes->get('5xl') => 'w-full sm:mx-6 md:mx-8 lg:mx-0 sm:max-w-5xl',
             $this->attributes->get('6xl') => 'w-full sm:mx-6 md:mx-8 xl:mx-0 sm:max-w-6xl',
             $this->attributes->get('7xl') => 'w-full sm:mx-6 md:mx-8 2xl:mx-0 sm:max-w-7xl',
             $this->attributes->get('full') => 'w-full mx-4 sm:mx-6 md:mx-8 lg:mx-14 xl:mx-20 sm:max-w-full',
-            default => 'w-full sm:max-w-2xl', // default 2xl
+            default => 'w-full sm:max-w-lg', // default lg
         };
     }
 
@@ -128,7 +129,7 @@ class Modal extends Component
                         $attributes
                             ->except('wire:model')
                             ->class([
-                                "overflow-hidden transition-all transform bg-white dark:bg-gray-800 shadow-xl",
+                                "overflow-hidden transition-all transform bg-white dark:bg-gray-900 shadow-xl",
                                 $sizeClasses(),
                                 $roundClasses(),
                             ]) 

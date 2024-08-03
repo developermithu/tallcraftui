@@ -134,14 +134,6 @@ class Input extends Component
                                     ])
                              }} 
                             />
-
-                        @if($hint && !$error)
-                            <x-tc-hint :hint="$hint" />
-                        @endif
-                        
-                        @if($error)
-                            <p class="mt-1 text-sm text-red-500"> {{ $error }} </p>
-                        @endif
                     </div>
 
                     @if($iconRight)
@@ -162,6 +154,14 @@ class Input extends Component
                         </div>
                     @endif
                 </div>
+
+                @if($hint && !$error)
+                    <x-tc-hint :hint="$hint" />
+                @endif
+
+                @if($error)
+                    <p class="mt-1 text-sm text-red-500"> {{ $error }} </p>
+                @endif
             </div>
         HTML;
     }

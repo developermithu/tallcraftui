@@ -40,7 +40,8 @@ class Dropdown extends Component
             $this->attributes->get('top') => 'origin-top',
             $this->attributes->get('bottom') => 'origin-bottom',
             $this->attributes->get('left') => 'origin-top-left left-0',
-            default => 'origin-top-right right-0', // default right
+            $this->attributes->get('right') => 'origin-top-right right-0',
+            default => 'origin-top', // top
         };
     }
 
@@ -88,7 +89,7 @@ class Dropdown extends Component
                     x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
 
                     @class([
-                        "absolute z-50 mt-3 shadow-lg",
+                        "absolute bg-white dark:bg-gray-800 z-50 mt-3 shadow-lg",
                         $sizeClasses(),   
                         $roundClasses(), 
                         $dropdownPosition(), 
