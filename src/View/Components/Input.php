@@ -17,7 +17,7 @@ class Input extends Component
         public ?string $iconRight = null,
         public ?string $iconClass = 'size-4',
         public ?string $hint = null,
-        public ?string $preffix = null,
+        public ?string $prefix = null,
         public ?string $suffix = null,
         public ?bool $inline = false,
 
@@ -48,7 +48,7 @@ class Input extends Component
         };
     }
 
-    public function preffixRoundClasses()
+    public function prefixRoundClasses()
     {
         return match (true) {
             $this->attributes->get('rounded-none') => 'rounded-s-none',
@@ -100,15 +100,15 @@ class Input extends Component
                         </span>
                     @endif
 
-                    @if($preffix || $prepend)
+                    @if($prefix || $prepend)
                         <div
                             @class([
                                 "inline-flex items-center text-sm text-gray-500 rounded-r-none min-w-fit border-e-0 bg-gray-50 dark:bg-gray-700 dark:text-gray-300",
-                                "px-4 py-2.5 border border-gray-200 dark:border-gray-700" => $preffix || $prepend && $prependIsSelect === false,    
-                                $preffixRoundClasses(),
+                                "px-4 py-2.5 border border-gray-200 dark:border-gray-700" => $prefix || $prepend && $prependIsSelect === false,    
+                                $prefixRoundClasses(),
                             ])
                         >
-                            {{ $prepend ?? $preffix }}
+                            {{ $prepend ?? $prefix }}
                         </div>
                     @endif
                 
@@ -124,7 +124,7 @@ class Input extends Component
                                         "block w-full border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
                                         "pl-9" => $icon || $iconLeft, 
                                         "pe-9" => $iconRight, 
-                                        "rounded-l-none" => $preffix || $prepend, 
+                                        "rounded-l-none" => $prefix || $prepend, 
                                         "rounded-r-none" => $suffix || $append,
                                         "file:border-0 dark:file:text-gray-300 file:bg-transparent file:px-3" => $attributes->get('type') === 'file',
                                         "border-red-500 dark:border-red-500 focus:border-red-500 focus:ring-red-500" => $error,
