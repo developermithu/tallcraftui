@@ -44,8 +44,13 @@ class Button extends Component
         public bool $yellow = false,
         public bool $lime = false,
         public bool $green = false,
+        public bool $emerald = false,
+        public bool $teal = false,
         public bool $cyan = false,
         public bool $sky = false,
+        public bool $blue = false,
+        public bool $indigo = false,
+        public bool $violet = false,
         public bool $purple = false,
         public bool $fuchsia = false,
         public bool $pink = false,
@@ -92,8 +97,13 @@ class Button extends Component
             && ! $this->yellow
             && ! $this->lime
             && ! $this->green
+            && ! $this->emerald
+            && ! $this->teal
             && ! $this->cyan
             && ! $this->sky
+            && ! $this->blue
+            && ! $this->indigo
+            && ! $this->violet
             && ! $this->purple
             && ! $this->fuchsia
             && ! $this->pink
@@ -131,8 +141,13 @@ class Button extends Component
             $this->yellow && $notOtherStyle => 'bg-yellow-600 text-white hover:bg-yellow-700 focus:bg-yellow-700 focus:ring-yellow-500',
             $this->lime && $notOtherStyle => 'bg-lime-600 text-white hover:bg-lime-700 focus:bg-lime-700 focus:ring-lime-500',
             $this->green && $notOtherStyle => 'bg-green-600 text-white hover:bg-green-700 focus:bg-green-700 focus:ring-green-500',
+            $this->emerald && $notOtherStyle => 'bg-emerald-600 text-white hover:bg-emerald-700 focus:bg-emerald-700 focus:ring-emerald-500',
+            $this->teal && $notOtherStyle => 'bg-teal-600 text-white hover:bg-teal-700 focus:bg-teal-700 focus:ring-teal-500',
             $this->cyan && $notOtherStyle => 'bg-cyan-600 text-white hover:bg-cyan-700 focus:bg-cyan-700 focus:ring-cyan-500',
             $this->sky && $notOtherStyle => 'bg-sky-600 text-white hover:bg-sky-700 focus:bg-sky-700 focus:ring-sky-500',
+            $this->blue && $notOtherStyle => 'bg-blue-600 text-white hover:bg-blue-700 focus:bg-blue-700 focus:ring-blue-500',
+            $this->indigo && $notOtherStyle => 'bg-indigo-600 text-white hover:bg-indigo-700 focus:bg-indigo-700 focus:ring-indigo-500',
+            $this->violet && $notOtherStyle => 'bg-violet-600 text-white hover:bg-violet-700 focus:bg-violet-700 focus:ring-violet-500',
             $this->purple && $notOtherStyle => 'bg-purple-600 text-white hover:bg-purple-700 focus:bg-purple-700 focus:ring-purple-500',
             $this->fuchsia && $notOtherStyle => 'bg-fuchsia-600 text-white hover:bg-fuchsia-700 focus:bg-fuchsia-700 focus:ring-fuchsia-500',
             $this->pink && $notOtherStyle => 'bg-pink-600 text-white hover:bg-pink-700 focus:bg-pink-700 focus:ring-pink-500',
@@ -165,8 +180,13 @@ class Button extends Component
             $this->outline && $this->yellow => '!border-yellow-300 dark:!border-yellow-600 text-yellow-600 hover:bg-yellow-500/10 focus:bg-yellow-500/15 focus:ring-yellow-500',
             $this->outline && $this->lime => '!border-lime-300 dark:!border-lime-600 text-lime-600 hover:bg-lime-500/10 focus:bg-lime-500/15 focus:ring-lime-500',
             $this->outline && $this->green => '!border-green-300 dark:!border-green-600 text-green-600 hover:bg-green-500/10 focus:bg-green-500/15 focus:ring-green-500',
+            $this->outline && $this->emerald => '!border-emerald-300 dark:!border-emerald-600 text-emerald-600 hover:bg-emerald-500/10 focus:bg-emerald-500/15 focus:ring-emerald-500',
+            $this->outline && $this->teal => '!border-teal-300 dark:!border-teal-600 text-teal-600 hover:bg-teal-500/10 focus:bg-teal-500/15 focus:ring-teal-500',
             $this->outline && $this->cyan => '!border-cyan-300 dark:!border-cyan-600 text-cyan-600 hover:bg-cyan-500/10 focus:bg-cyan-500/15 focus:ring-cyan-500',
             $this->outline && $this->sky => '!border-sky-300 dark:!border-sky-600 text-sky-600 hover:bg-sky-500/10 focus:bg-sky-500/15 focus:ring-sky-500',
+            $this->outline && $this->blue => '!border-blue-300 dark:!border-blue-600 text-blue-600 hover:bg-blue-500/10 focus:bg-blue-500/15 focus:ring-blue-500',
+            $this->outline && $this->indigo => '!border-indigo-300 dark:!border-indigo-600 text-indigo-600 hover:bg-indigo-500/10 focus:bg-indigo-500/15 focus:ring-indigo-500',
+            $this->outline && $this->violet => '!border-violet-300 dark:!border-violet-600 text-violet-600 hover:bg-violet-500/10 focus:bg-violet-500/15 focus:ring-violet-500',
             $this->outline && $this->purple => '!border-purple-300 dark:!border-purple-600 text-purple-600 hover:bg-purple-500/10 focus:bg-purple-500/15 focus:ring-purple-500',
             $this->outline && $this->fuchsia => '!border-fuchsia-300 dark:!border-fuchsia-600 text-fuchsia-600 hover:bg-fuchsia-500/10 focus:bg-fuchsia-500/15 focus:ring-fuchsia-500',
             $this->outline && $this->pink => '!border-pink-300 dark:!border-pink-600 text-pink-600 hover:bg-pink-500/10 focus:bg-pink-500/15 focus:ring-pink-500',
@@ -199,8 +219,13 @@ class Button extends Component
             $this->flat && $this->yellow => 'text-yellow-600 hover:bg-yellow-500/10 focus:bg-yellow-500/15 focus:ring-yellow-500',
             $this->flat && $this->lime => 'text-lime-600 hover:bg-lime-500/10 focus:bg-lime-500/15 focus:ring-lime-500',
             $this->flat && $this->green => 'text-green-600 hover:bg-green-500/10 focus:bg-green-500/15 focus:ring-green-500',
+            $this->flat && $this->emerald => 'text-emerald-600 hover:bg-emerald-500/10 focus:bg-emerald-500/15 focus:ring-emerald-500',
+            $this->flat && $this->teal => 'text-teal-600 hover:bg-teal-500/10 focus:bg-teal-500/15 focus:ring-teal-500',
             $this->flat && $this->cyan => 'text-cyan-600 hover:bg-cyan-500/10 focus:bg-cyan-500/15 focus:ring-cyan-500',
             $this->flat && $this->sky => 'text-sky-600 hover:bg-sky-500/10 focus:bg-sky-500/15 focus:ring-sky-500',
+            $this->flat && $this->blue => 'text-blue-600 hover:bg-blue-500/10 focus:bg-blue-500/15 focus:ring-blue-500',
+            $this->flat && $this->indigo => 'text-indigo-600 hover:bg-indigo-500/10 focus:bg-indigo-500/15 focus:ring-indigo-500',
+            $this->flat && $this->violet => 'text-violet-600 hover:bg-violet-500/10 focus:bg-violet-500/15 focus:ring-violet-500',
             $this->flat && $this->purple => 'text-purple-600 hover:bg-purple-500/10 focus:bg-purple-500/15 focus:ring-purple-500',
             $this->flat && $this->fuchsia => 'text-fuchsia-600 hover:bg-fuchsia-500/10 focus:bg-fuchsia-500/15 focus:ring-fuchsia-500',
             $this->flat && $this->pink => 'text-pink-600 hover:bg-pink-500/10 focus:bg-pink-500/15 focus:ring-pink-500',

@@ -38,8 +38,13 @@ class Badge extends Component
         public bool $yellow = false,
         public bool $lime = false,
         public bool $green = false,
+        public bool $emerald = false,
+        public bool $teal = false,
         public bool $cyan = false,
         public bool $sky = false,
+        public bool $blue = false,
+        public bool $indigo = false,
+        public bool $violet = false,
         public bool $purple = false,
         public bool $fuchsia = false,
         public bool $pink = false,
@@ -53,32 +58,37 @@ class Badge extends Component
     private function isPrimaryWithoutOthers(): bool
     {
         return $this->primary
-            && !$this->secondary
-            && !$this->tertiary
-            && !$this->danger
-            && !$this->warning
-            && !$this->info
-            && !$this->success
+            && ! $this->secondary
+            && ! $this->tertiary
+            && ! $this->danger
+            && ! $this->warning
+            && ! $this->info
+            && ! $this->success
 
-            && !$this->black
-            && !$this->white
-            && !$this->slate
-            && !$this->gray
-            && !$this->zinc
-            && !$this->neutral
-            && !$this->stone
-            && !$this->red
-            && !$this->orange
-            && !$this->amber
-            && !$this->yellow
-            && !$this->lime
-            && !$this->green
-            && !$this->cyan
-            && !$this->sky
-            && !$this->purple
-            && !$this->fuchsia
-            && !$this->pink
-            && !$this->rose;
+            && ! $this->black
+            && ! $this->white
+            && ! $this->slate
+            && ! $this->gray
+            && ! $this->zinc
+            && ! $this->neutral
+            && ! $this->stone
+            && ! $this->red
+            && ! $this->orange
+            && ! $this->amber
+            && ! $this->yellow
+            && ! $this->lime
+            && ! $this->green
+            && ! $this->emerald
+            && ! $this->teal
+            && ! $this->cyan
+            && ! $this->sky
+            && ! $this->blue
+            && ! $this->indigo
+            && ! $this->violet
+            && ! $this->purple
+            && ! $this->fuchsia
+            && ! $this->pink
+            && ! $this->rose;
     }
 
     public function colorClasses(): string
@@ -108,8 +118,13 @@ class Badge extends Component
             $this->yellow && $notOtherStyle => 'bg-yellow-100 dark:bg-yellow-800/10 text-yellow-800',
             $this->lime && $notOtherStyle => 'bg-lime-100 dark:bg-lime-800/10 text-lime-800',
             $this->green && $notOtherStyle => 'bg-green-100 dark:bg-green-800/10 text-green-800',
+            $this->emerald && $notOtherStyle => 'bg-emerald-100 dark:bg-emerald-800/10 text-emerald-800',
+            $this->teal && $notOtherStyle => 'bg-teal-100 dark:bg-teal-800/10 text-teal-800',
             $this->cyan && $notOtherStyle => 'bg-cyan-100 dark:bg-cyan-800/10 text-cyan-800',
             $this->sky && $notOtherStyle => 'bg-sky-100 dark:bg-sky-800/10 text-sky-800',
+            $this->blue && $notOtherStyle => 'bg-blue-100 dark:bg-blue-800/10 text-blue-800',
+            $this->indigo && $notOtherStyle => 'bg-indigo-100 dark:bg-indigo-800/10 text-indigo-800',
+            $this->violet && $notOtherStyle => 'bg-violet-100 dark:bg-violet-800/10 text-violet-800',
             $this->purple && $notOtherStyle => 'bg-purple-100 dark:bg-purple-800/10 text-purple-800',
             $this->fuchsia && $notOtherStyle => 'bg-fuchsia-100 dark:bg-fuchsia-800/10 text-fuchsia-800',
             $this->pink && $notOtherStyle => 'bg-pink-100 dark:bg-pink-800/10 text-pink-800',
@@ -142,8 +157,13 @@ class Badge extends Component
             $this->outline && $this->yellow => 'bg-transparent text-yellow-500 border border-yellow-500',
             $this->outline && $this->lime => 'bg-transparent text-lime-500 border border-lime-500',
             $this->outline && $this->green => 'bg-transparent text-green-500 border border-green-500',
+            $this->outline && $this->emerald => 'bg-transparent text-emerald-500 border border-emerald-500',
+            $this->outline && $this->teal => 'bg-transparent text-teal-500 border border-teal-500',
             $this->outline && $this->cyan => 'bg-transparent text-cyan-500 border border-cyan-500',
             $this->outline && $this->sky => 'bg-transparent text-sky-500 border border-sky-500',
+            $this->outline && $this->blue => 'bg-transparent text-blue-500 border border-blue-500',
+            $this->outline && $this->indigo => 'bg-transparent text-indigo-500 border border-indigo-500',
+            $this->outline && $this->violet => 'bg-transparent text-violet-500 border border-violet-500',
             $this->outline && $this->purple => 'bg-transparent text-purple-500 border border-purple-500',
             $this->outline && $this->fuchsia => 'bg-transparent text-fuchsia-500 border border-fuchsia-500',
             $this->outline && $this->pink => 'bg-transparent text-pink-500 border border-pink-500',
