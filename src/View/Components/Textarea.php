@@ -18,6 +18,7 @@ class Textarea extends Component
         public ?string $iconClass = 'size-4',
         public ?string $hint = null,
         public ?bool $inline = false,
+        public ?bool $autoResize = false,
     ) {
         $this->uuid = md5(serialize($this));
     }
@@ -61,6 +62,17 @@ class Textarea extends Component
                 
                     <div class="w-full">
                         <textarea
+                            @if($autoResize)
+                                x-data="{ 
+                                    resize () { 
+                                        $el.style.height = '0px'; 
+                                        $el.style.height = $el.scrollHeight + 'px' 
+                                    } 
+                                }"
+                                x-init="resize()"
+                                @input="resize()"
+                            @endif
+                            
                             id="{{ $uuid }}"
                             placeholder="{{ $attributes->whereStartsWith('placeholder')->first() }}"
                             autocomplete="{{ $attributes->get('autocomplete', 'off') }}"
@@ -68,7 +80,7 @@ class Textarea extends Component
                                 $attributes
                                     ->merge(['rows' => '3'])
                                     ->class([
-                                        "block w-full border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-white",
+                                        "block w-full min-h-[80px] border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-white",
                                         "pl-9" => $iconLeft, 
                                         "pe-9" => $icon || $iconRight,
                                         "border-red-500 dark:border-red-500 focus:border-red-500 focus:ring-red-500" => $error,
