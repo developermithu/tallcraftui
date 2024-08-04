@@ -4,6 +4,7 @@ namespace Developermithu\Tallcraftui;
 
 use Developermithu\Tallcraftui\Console\Commands\InstallTallcraftuiCommand;
 use Developermithu\Tallcraftui\View\Components\Alert;
+use Developermithu\Tallcraftui\View\Components\Badge;
 use Developermithu\Tallcraftui\View\Components\Breadcrumb;
 use Developermithu\Tallcraftui\View\Components\BreadcrumbItem;
 use Developermithu\Tallcraftui\View\Components\Button;
@@ -46,6 +47,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
         $prefix = config('tallcraftui.prefix');
 
         Blade::component($prefix.'button', Button::class);
+        Blade::component($prefix.'badge', Badge::class);
         Blade::component($prefix.'input', Input::class);
         Blade::component($prefix.'icon', Icon::class);
         Blade::component($prefix.'textarea', Textarea::class);
