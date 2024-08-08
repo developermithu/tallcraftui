@@ -13,7 +13,6 @@ class Badge extends Component
         public ?string $icon = null,
         public ?string $iconLeft = null,
         public ?string $iconRight = null,
-        public ?string $iconClass = '!size-3',
 
         // Badge colors
         public bool $primary = true,
@@ -52,8 +51,7 @@ class Badge extends Component
 
         // Badge styles
         public bool $outline = false,
-    ) {
-    }
+    ) {}
 
     private function isPrimaryWithoutOthers(): bool
     {
@@ -172,7 +170,7 @@ class Badge extends Component
         };
     }
 
-    public function sizeClasses(): string
+    public function badgeSize(): string
     {
         return match (true) {
             $this->attributes->get('sm') => 'text-xs px-1.5',
@@ -181,6 +179,18 @@ class Badge extends Component
             $this->attributes->get('xl') => 'text-base px-3 py-1.5',
             $this->attributes->get('2xl') => 'text-lg px-3.5 py-2',
             default => 'text-xs px-2 py-0.5',
+        };
+    }
+
+    public function iconSize(): string
+    {
+        return match (true) {
+            $this->attributes->get('sm') => 'size-3',
+            $this->attributes->get('md') => 'size-3',
+            $this->attributes->get('lg') => 'size-3.5',
+            $this->attributes->get('xl') => 'size-4',
+            $this->attributes->get('2xl') => 'size-[18px]',
+            default => 'size-3',
         };
     }
 
@@ -203,9 +213,9 @@ class Badge extends Component
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-            <span {{ $attributes->class([
-                        "inline-flex gap-x-1 items-center font-semibold",
-                            $sizeClasses(), 
+            <span {{ $attributes->withoutTwMergeClasses()->twMerge([
+                        "inline-flex gap-x-1 w-fit items-center font-semibold",
+                            $badgeSize(), 
                             $colorClasses(), 
                             $outlineClasses(),
                             $roundClasses(),
@@ -213,15 +223,15 @@ class Badge extends Component
                     }}
                 >
                 @if($icon)
-                    <x-tc-icon :name="$icon" :class="$iconClass" />
+                    <x-tc-icon :name="$icon" {{ $attributes->twMergeFor('icon', $iconSize()) }} />
                 @elseif ($iconLeft)
-                    <x-tc-icon :name="$iconLeft" :class="$iconClass" />
+                    <x-tc-icon :name="$iconLeft" {{ $attributes->twMergeFor('icon', $iconSize()) }} />
                 @endif
 
                 {{ __($label) }}
 
                 @if($iconRight)
-                    <x-tc-icon :name="$iconRight" :class="$iconClass" />
+                    <x-tc-icon :name="$iconRight" {{ $attributes->twMergeFor('icon', $iconSize()) }} />
                 @endif
             </span>
         HTML;

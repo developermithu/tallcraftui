@@ -10,7 +10,6 @@ class Icon extends Component
 {
     public function __construct(
         public string $name = 'face-smile',
-        public ?string $class = null,
         public bool $solid = false,
     ) {}
 
@@ -24,17 +23,10 @@ class Icon extends Component
         return "heroicon-$iconFormat-$this->name";
     }
 
-    public function class()
-    {
-        return 'w-5 h-5 dark:text-gray-100 '.$this->class;
-    }
-
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-            <div {{ $attributes }} >
-                @svg($name(), $class())
-            </div>
+            <x-dynamic-component :component="$name()" {{ $attributes->twMerge(['w-5 h-5']) }} />
         HTML;
     }
 }

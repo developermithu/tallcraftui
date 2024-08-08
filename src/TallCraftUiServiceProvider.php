@@ -19,6 +19,7 @@ use Developermithu\Tallcraftui\View\Components\Modal;
 use Developermithu\Tallcraftui\View\Components\Radio;
 use Developermithu\Tallcraftui\View\Components\Select;
 use Developermithu\Tallcraftui\View\Components\Textarea;
+use Developermithu\Tallcraftui\View\Components\Toggle;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -51,6 +52,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
         Blade::component($prefix.'input', Input::class);
         Blade::component($prefix.'icon', Icon::class);
         Blade::component($prefix.'textarea', Textarea::class);
+        Blade::component($prefix.'toggle', Toggle::class);
         Blade::component($prefix.'select', Select::class);
         Blade::component($prefix.'checkbox', Checkbox::class);
         Blade::component($prefix.'radio', Radio::class);
