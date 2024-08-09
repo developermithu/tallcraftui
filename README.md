@@ -1,7 +1,6 @@
-# TallCraftUi  
+# [TallCraftUi](https://tallcraftui.developermithu.com)  
 
-TallCraftUI is a versatile and customizable UI package for the TALL stack **(Tailwind CSS, Alpine.js, Laravel, and Livewire)**. It provides a set of components to simplify livewire application development and seamlessly integrate with **TALL stack** projects.
-
+Laravel blade UI component library built on TALL stack ([TailwindCSS](https://tailwindcss.com), [Alpine.js](https://alpinejs.dev), [Laravel](https://laravel.com), [Livewire](https://livewire.laravel.com)).
 
 <p align="center">
  <a href="https://packagist.org/packages/developermithu/tallcraftui"><img src="https://img.shields.io/packagist/v/developermithu/tallcraftui?style=flat-square" alt="Latest Version on Packagist"></a>
@@ -31,7 +30,7 @@ Error will be automatically displayed after submitting the form if it exists. Yo
 
 ```php
 if($errors->any())
-    <x-alert :errors="$errors->all()" danger />
+    <x-alert :errors="$errors->all()" red />
 @endif
 ```
 
@@ -51,11 +50,6 @@ php artisan install:tallcraftui
             colors: {
                 primary: "#6d28d9",
                 secondary: "#a21caf",
-                tertiary: "#00BBC9",
-                danger: "#b91c1c",
-                warning: "#a16207",
-                success: "#15803d",
-                info: "#1d4ed8",
             },
         },
     },
@@ -80,7 +74,7 @@ return [
      *
      * Examples:
      * prefix => ''         // <x-input />
-     * prefix => 'tall-'    // <x-tall-input />
+     * prefix => 'tc-'    // <x-tc-input />
      *
      */
     'prefix' => '',

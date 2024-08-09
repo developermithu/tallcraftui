@@ -17,13 +17,6 @@ class Alert extends Component
         // Alert types
         public bool $primary = true,
         public bool $secondary = false,
-        public bool $tertiary = false,
-        public bool $warning = false,
-        public bool $info = false,
-        public bool $success = false,
-        public bool $danger = false,
-
-        // Tailwind Colors
         public bool $black = false,
         public bool $white = false,
         public bool $slate = false,
@@ -56,9 +49,9 @@ class Alert extends Component
     public function alertIcon(): string
     {
         return $this->icon ?: match (true) {
-            $this->warning => 'exclamation-triangle',
-            $this->info || $this->secondary => 'information-circle',
-            $this->danger => 'x-circle',
+            $this->yellow || $this->orange || $this->amber => 'exclamation-triangle',
+            $this->blue || $this->secondary => 'information-circle',
+            $this->red => 'x-circle',
             default => 'check-circle',
         };
     }
@@ -67,13 +60,6 @@ class Alert extends Component
     {
         return match (true) {
             $this->secondary => 'text-secondary border-secondary/20 bg-secondary/10 dark:bg-secondary/15 dark:border-secondary/50 dark:text-secondary',
-            $this->tertiary => 'text-tertiary border-tertiary/20 bg-tertiary/10 dark:bg-tertiary/15 dark:border-tertiary/50 dark:text-tertiary',
-            $this->warning => 'text-warning border-warning/20 bg-warning/10 dark:bg-warning/15 dark:border-warning/50 dark:text-warning',
-            $this->info => 'text-info border-info/20 bg-info/10 dark:bg-info/15 dark:border-info/50 dark:text-info',
-            $this->danger => 'text-danger border-danger/20 bg-danger/10 dark:bg-danger/15 dark:border-danger/50 dark:text-danger',
-            $this->success => 'text-success border-success/20 bg-success/10 dark:bg-success/15 dark:border-success/50 dark:text-success',
-
-            // Tailwind Colors
             $this->black => 'text-black-800 border-black-200 bg-black-50 dark:bg-black-800/20 dark:border-black-900 dark:text-black-500',
             $this->white => 'text-white-800 border-white-200 bg-white-50 dark:bg-white-800/20 dark:border-white-900 dark:text-white-500',
             $this->slate => 'text-slate-800 border-slate-200 bg-slate-50 dark:bg-slate-800/20 dark:border-slate-900 dark:text-slate-500',
@@ -106,13 +92,6 @@ class Alert extends Component
     {
         return match (true) {
             $this->secondary => 'text-secondary/80 dark:text-secondary/80',
-            $this->tertiary => 'text-tertiary/80 dark:text-tertiary/80',
-            $this->warning => 'text-warning/80 dark:text-warning/80',
-            $this->info => 'text-info/80 dark:text-info/80',
-            $this->danger => 'text-danger/80 dark:text-danger/80',
-            $this->success => 'text-success/80 dark:text-success/80',
-
-            // Tailwind Colors
             $this->black => 'text-black-700 dark:text-black-400',
             $this->white => 'text-white-700 dark:text-white-400',
             $this->slate => 'text-slate-700 dark:text-slate-400',
@@ -137,7 +116,7 @@ class Alert extends Component
             $this->fuchsia => 'text-fuchsia-700 dark:text-fuchsia-400',
             $this->pink => 'text-pink-700 dark:text-pink-400',
             $this->rose => 'text-rose-700 dark:text-rose-400',
-            default => 'text-primary/80 dark:text-primary/80',
+            default => 'text-primary/80 dark:text-primary/80', // primary
         };
     }
 
@@ -160,12 +139,6 @@ class Alert extends Component
     {
         return match (true) {
             $this->secondary => 'text-secondary hover:bg-secondary/10 focus:bg-secondary/15 focus:ring-secondary/70',
-            $this->tertiary => 'text-tertiary hover:bg-tertiary/10 focus:bg-tertiary/15 focus:ring-tertiary/70',
-            $this->warning => 'text-warning hover:bg-warning/10 focus:bg-warning/15 focus:ring-warning/70',
-            $this->info => 'text-info hover:bg-info/10 focus:bg-info/15 focus:ring-info/70',
-            $this->danger => 'text-danger hover:bg-danger/10 focus:bg-danger/15 focus:ring-danger/70',
-            $this->success => 'text-success hover:bg-success/10 focus:bg-success/15 focus:ring-success/70',
-
             $this->black => 'text-black-600 hover:bg-black-500/10 focus:bg-black-500/15 focus:ring-black-500',
             $this->white => 'text-white-600 hover:bg-white-500/10 focus:bg-white-500/15 focus:ring-white-500',
             $this->slate => 'text-slate-600 hover:bg-slate-500/10 focus:bg-slate-500/15 focus:ring-slate-500',
@@ -190,7 +163,7 @@ class Alert extends Component
             $this->fuchsia => 'text-fuchsia-600 hover:bg-fuchsia-500/10 focus:bg-fuchsia-500/15 focus:ring-fuchsia-500',
             $this->pink => 'text-pink-600 hover:bg-pink-500/10 focus:bg-pink-500/15 focus:ring-pink-500',
             $this->rose => 'text-rose-600 hover:bg-rose-500/10 focus:bg-rose-500/15 focus:ring-rose-500',
-            default => 'text-primary hover:bg-primary/10 focus:bg-primary/15 focus:ring-primary/70',
+            default => 'text-primary hover:bg-primary/10 focus:bg-primary/15 focus:ring-primary/70', // primary
         };
     }
 
@@ -215,7 +188,7 @@ class Alert extends Component
                 >
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
-                        <x-tc-icon :name="$alertIcon()" class="{{ $errors ? '!text-danger/80': '' }}" />
+                        <x-tc-icon :name="$alertIcon()" class="{{ $errors ? 'text-red-500': '' }}" />
                     </div>
 
                     <div @class(["ms-2","ms-4" => $description])>

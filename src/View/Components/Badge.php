@@ -14,16 +14,9 @@ class Badge extends Component
         public ?string $iconLeft = null,
         public ?string $iconRight = null,
 
-        // Badge colors
+        // Badge types
         public bool $primary = true,
         public bool $secondary = false,
-        public bool $tertiary = false,
-        public bool $warning = false,
-        public bool $info = false,
-        public bool $success = false,
-        public bool $danger = false,
-
-        // Tailwind Colors
         public bool $black = false,
         public bool $white = false,
         public bool $slate = false,
@@ -57,12 +50,6 @@ class Badge extends Component
     {
         return $this->primary
             && ! $this->secondary
-            && ! $this->tertiary
-            && ! $this->danger
-            && ! $this->warning
-            && ! $this->info
-            && ! $this->success
-
             && ! $this->black
             && ! $this->white
             && ! $this->slate
@@ -96,13 +83,6 @@ class Badge extends Component
         return match (true) {
             $this->isPrimaryWithoutOthers() && $notOtherStyle => 'bg-primary/10 text-primary',
             $this->secondary && $notOtherStyle => 'bg-secondary/10 text-secondary',
-            $this->tertiary && $notOtherStyle => 'bg-tertiary/10 text-tertiary',
-            $this->warning && $notOtherStyle => 'bg-warning/10 text-warning',
-            $this->info && $notOtherStyle => 'bg-info/10 text-info',
-            $this->danger && $notOtherStyle => 'bg-danger/10 text-danger',
-            $this->success && $notOtherStyle => 'bg-success/10 text-success',
-
-            // Tailwind Colors
             $this->black && $notOtherStyle => 'bg-black text-white',
             $this->white && $notOtherStyle => 'bg-gray-50 text-gray-700',
             $this->slate && $notOtherStyle => 'bg-slate-100 dark:bg-slate-800/50 dark:text-slate-400 text-slate-800',
@@ -136,12 +116,6 @@ class Badge extends Component
         return match (true) {
             $this->outline && $this->isPrimaryWithoutOthers() => 'bg-transparent text-primary border border-primary',
             $this->outline && $this->secondary => 'bg-transparent text-secondary border border-secondary',
-            $this->outline && $this->tertiary => 'bg-transparent text-tertiary border border-tertiary',
-            $this->outline && $this->warning => 'bg-transparent text-warning border border-warning',
-            $this->outline && $this->success => 'bg-transparent text-success border border-success',
-            $this->outline && $this->danger => 'bg-transparent text-danger border border-danger',
-            $this->outline && $this->info => 'bg-transparent text-info border border-info',
-
             $this->outline && $this->black => 'bg-transparent text-black border border-black',
             $this->outline && $this->white => 'bg-transparent text-gray-500 border border-gray-200',
             $this->outline && $this->slate => 'bg-transparent text-slate-500 border border-slate-500',

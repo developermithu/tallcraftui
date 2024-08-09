@@ -15,16 +15,9 @@ class Radio extends Component
         public ?string $hint = null,
         public ?bool $textLeft = false,
 
-        // Radio colors
+        // Radio types
         public bool $primary = true,
         public bool $secondary = false,
-        public bool $tertiary = false,
-        public bool $warning = false,
-        public bool $info = false,
-        public bool $success = false,
-        public bool $danger = false,
-
-        // Tailwind Colors
         public bool $black = false,
         public bool $white = false,
         public bool $slate = false,
@@ -57,13 +50,6 @@ class Radio extends Component
     {
         return match (true) {
             $this->secondary => 'text-secondary/90 focus:ring-secondary/90',
-            $this->tertiary => 'text-tertiary/90 focus:ring-tertiary/90',
-            $this->warning => 'text-warning/90 focus:ring-warning/90',
-            $this->success => 'text-success/90 focus:ring-success/90',
-            $this->info => 'text-info/90 focus:ring-info/90',
-            $this->danger => 'text-danger/90 focus:ring-danger/90',
-
-            // Tailwind Colors
             $this->black => 'text-black focus:ring-black',
             $this->white => 'text-white focus:ring-white !border-gray-200',
             $this->slate => 'text-slate-600 focus:ring-slate-600',

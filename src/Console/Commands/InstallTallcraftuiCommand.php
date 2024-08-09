@@ -82,13 +82,13 @@ class InstallTallcraftuiCommand extends Command
                 $path = base_path('config/tallcraftui.php');
                 $config = File::get($path);
 
-                // Replaces existing prefix with 'tall-' in the tallcraftui.php configuration file.
-                $contents = str($config)->replace("'prefix' => ''", "'prefix' => 'tall-'");
+                // Replaces existing prefix with 'tc-' in the tallcraftui.php configuration file.
+                $contents = str($config)->replace("'prefix' => ''", "'prefix' => 'tc-'");
                 File::put($path, $contents);
 
                 $this->info("\n");
-                $this->warn("Added 'tall-' prefix to tallcraftuiUI components to avoid conflicts with `$target` 🚨");
-                $this->warn('* Examples: <x-tall-button />, <x-tall-input />');
+                $this->warn("Added 'tc-' prefix to tallcraftuiUI components to avoid conflicts with `$target` 🚨");
+                $this->warn('* Examples: <x-tc-button />, <x-tc-input />');
                 $this->warn('* See config/tallcraftui.php for details.');
             }
         });

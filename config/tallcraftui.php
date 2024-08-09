@@ -8,8 +8,8 @@ return [
      * using `php artisan view:clear`
      *
      * Examples:
-     * prefix => ''         // <x-input />
-     * prefix => 'tall-'    // <x-tall-input />
+     * prefix => ''        // <x-input />
+     * prefix => 'tc-'    // <x-tc-input />
      */
     'prefix' => '',
 
