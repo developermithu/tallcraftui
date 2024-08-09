@@ -44,6 +44,10 @@ class Select extends Component
                     $error = $errors->has($name) ? $errors->first($name) : null;
                     $uuid = $uuid . $name;
                     $required = $attributes->get('required') ? true : false;
+
+                    $errorClass = $error ? "border-red-500 focus:border-red-500 focus:ring-red-500" : '';
+                    $disabledClass = $attributes->get('disabled') ? "bg-gray-200 opacity-80 cursor-not-allowed" : '';
+                    $readonlyClass = $attributes->get('readonly') ? "bg-gray-200 opacity-80 border-gray-400 border-dashed pointer-events-none" : '';
                 @endphp
             
                 @if($label)
@@ -56,11 +60,11 @@ class Select extends Component
                             id="{{ $uuid }}"
                             {{ 
                                 $attributes
-                                    ->class([
+                                    ->twMerge([
                                         "block w-full border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300",
-                                        "border-red-500 focus:border-red-500 focus:ring-red-500" => $error,
-                                        "bg-gray-200 opacity-80 cursor-not-allowed" => $attributes->get('disabled'),
-                                        "bg-gray-200 opacity-80 border-gray-400 border-dashed pointer-events-none" => $attributes->get('readonly'),
+                                        $errorClass,
+                                        $disabledClass,
+                                        $readonlyClass,
                                         $roundClasses(),
                                     ])
                              }}>

@@ -12,7 +12,8 @@
         }
     ],
     "require": {
-        "blade-ui-kit/blade-heroicons": "^2.1"
+        "blade-ui-kit/blade-heroicons": "^2.1",
+        "gehrisandro/tailwind-merge-laravel": "^1.2"
     },
     "require-dev": {
         "laravel/pint": "^1.16"

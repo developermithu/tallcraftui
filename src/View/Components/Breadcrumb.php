@@ -14,7 +14,7 @@ class Breadcrumb extends Component
     {
         return <<<'HTML'
             <nav class="flex order-2">
-                <ol {{ $attributes->class(["inline-flex items-center space-x-1 text-sm font-medium md:space-x-2"]) }}>                  
+                <ol {{ $attributes->twMerge(["inline-flex items-center space-x-1 text-sm font-medium md:space-x-2"]) }}>                  
                     {{ $slot }}                    
                 </ol>
             </nav>

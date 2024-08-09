@@ -128,7 +128,7 @@ class Modal extends Component
                     {{ 
                         $attributes
                             ->except('wire:model')
-                            ->class([
+                            ->twMerge([
                                 "overflow-hidden transition-all transform bg-white dark:bg-gray-900 shadow-xl",
                                 $sizeClasses(),
                                 $roundClasses(),

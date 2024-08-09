@@ -156,6 +156,44 @@ class Alert extends Component
         };
     }
 
+    public function actionColors(): string
+    {
+        return match (true) {
+            $this->secondary => "text-secondary hover:bg-secondary/10 focus:bg-secondary/15 focus:ring-secondary/70",
+            $this->tertiary => "text-tertiary hover:bg-tertiary/10 focus:bg-tertiary/15 focus:ring-tertiary/70",
+            $this->warning => "text-warning hover:bg-warning/10 focus:bg-warning/15 focus:ring-warning/70",
+            $this->info => "text-info hover:bg-info/10 focus:bg-info/15 focus:ring-info/70",
+            $this->danger => "text-danger hover:bg-danger/10 focus:bg-danger/15 focus:ring-danger/70",
+            $this->success => "text-success hover:bg-success/10 focus:bg-success/15 focus:ring-success/70",
+
+            $this->black => "text-black-600 hover:bg-black-500/10 focus:bg-black-500/15 focus:ring-black-500",
+            $this->white => "text-white-600 hover:bg-white-500/10 focus:bg-white-500/15 focus:ring-white-500",
+            $this->slate => "text-slate-600 hover:bg-slate-500/10 focus:bg-slate-500/15 focus:ring-slate-500",
+            $this->gray => "text-gray-600 hover:bg-gray-500/10 focus:bg-gray-500/15 focus:ring-gray-500",
+            $this->zinc => "text-zinc-600 hover:bg-zinc-500/10 focus:bg-zinc-500/15 focus:ring-zinc-500",
+            $this->neutral => "text-neutral-600 hover:bg-neutral-500/10 focus:bg-neutral-500/15 focus:ring-neutral-500",
+            $this->stone => "text-stone-600 hover:bg-stone-500/10 focus:bg-stone-500/15 focus:ring-stone-500",
+            $this->red => "text-red-600 hover:bg-red-500/10 focus:bg-red-500/15 focus:ring-red-500",
+            $this->orange => "text-orange-600 hover:bg-orange-500/10 focus:bg-orange-500/15 focus:ring-orange-500",
+            $this->amber => "text-amber-600 hover:bg-amber-500/10 focus:bg-amber-500/15 focus:ring-amber-500",
+            $this->yellow => "text-yellow-600 hover:bg-yellow-500/10 focus:bg-yellow-500/15 focus:ring-yellow-500",
+            $this->lime => "text-lime-600 hover:bg-lime-500/10 focus:bg-lime-500/15 focus:ring-lime-500",
+            $this->green => "text-green-600 hover:bg-green-500/10 focus:bg-green-500/15 focus:ring-green-500",
+            $this->emerald => "text-emerald-600 hover:bg-emerald-500/10 focus:bg-emerald-500/15 focus:ring-emerald-500",
+            $this->teal => "text-teal-600 hover:bg-teal-500/10 focus:bg-teal-500/15 focus:ring-teal-500",
+            $this->cyan => "text-cyan-600 hover:bg-cyan-500/10 focus:bg-cyan-500/15 focus:ring-cyan-500",
+            $this->sky => "text-sky-600 hover:bg-sky-500/10 focus:bg-sky-500/15 focus:ring-sky-500",
+            $this->blue => "text-blue-600 hover:bg-blue-500/10 focus:bg-blue-500/15 focus:ring-blue-500",
+            $this->indigo => "text-indigo-600 hover:bg-indigo-500/10 focus:bg-indigo-500/15 focus:ring-indigo-500",
+            $this->violet => "text-violet-600 hover:bg-violet-500/10 focus:bg-violet-500/15 focus:ring-violet-500",
+            $this->purple => "text-purple-600 hover:bg-purple-500/10 focus:bg-purple-500/15 focus:ring-purple-500",
+            $this->fuchsia => "text-fuchsia-600 hover:bg-fuchsia-500/10 focus:bg-fuchsia-500/15 focus:ring-fuchsia-500",
+            $this->pink => "text-pink-600 hover:bg-pink-500/10 focus:bg-pink-500/15 focus:ring-pink-500",
+            $this->rose => "text-rose-600 hover:bg-rose-500/10 focus:bg-rose-500/15 focus:ring-rose-500",
+            default => "text-primary hover:bg-primary/10 focus:bg-primary/15 focus:ring-primary/70",
+        };
+    }
+
     public function render(): View|Closure|string
     {
         return <<<'HTML'
@@ -168,7 +206,13 @@ class Alert extends Component
                 x-show="visible"
                 x-cloak
                 x-transition.duration.500ms.opacity
-                @class(["p-4 text-sm transition duration-300 border", $alertClasses(), $roundClasses()])>
+                    {{ $attributes->withoutTwMergeClasses()->twMerge([
+                            "p-4 text-sm transition duration-300 border", 
+                            $alertClasses(), 
+                            $roundClasses()
+                        ]) 
+                    }}
+                >
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
                         <x-tc-icon :name="$alertIcon()" class="{{ $errors ? '!text-danger/80': '' }}" />
@@ -196,18 +240,20 @@ class Alert extends Component
                     
                     <div class="ps-3 ms-auto">
                         <div class="-mx-1.5 -my-1.5">
-                        @if($dismissible && !$actions)
-                                @if($secondary) <x-tc-button @click="visible = false" icon="x-mark" flat circle sm secondary /> @endif
-                                @if($warning) <x-tc-button @click="visible = false" icon="x-mark" flat circle sm warning /> @endif
-                                @if($info) <x-tc-button @click="visible = false" icon="x-mark" flat circle sm info /> @endif
-                                @if($danger) <x-tc-button @click="visible = false" icon="x-mark" flat circle sm danger /> @endif
-                                @if($success) <x-tc-button @click="visible = false" icon="x-mark" flat circle sm success /> @endif
-                                @if(!$secondary && !$warning && !$info && !$danger && !$success ) 
-                                    <x-tc-button @click="visible = false" icon="x-mark" flat circle sm danger /> 
-                                @endif
-                        @else 
-                            {{ $actions }}    
-                        @endif
+                            @if($dismissible && !$actions)
+                                <button @click="visible = false"
+                                        {{ $attributes->twMergeFor(
+                                                "action",
+                                                "flex items-center justify-center transition duration-200 ease-in-out bg-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-0 size-9",
+                                                $actionColors(),
+                                            )
+                                        }}
+                                    >
+                                        <x-tc-icon name="x-mark" />
+                                </button>
+                            @else 
+                                {{ $actions }}    
+                            @endif
                         </div>
                     </div>
                 </div>

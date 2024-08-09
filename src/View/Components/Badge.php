@@ -214,7 +214,7 @@ class Badge extends Component
     {
         return <<<'HTML'
             <span {{ $attributes->withoutTwMergeClasses()->twMerge([
-                        "inline-flex gap-x-1 w-fit items-center font-semibold",
+                            "inline-flex gap-x-1 w-fit items-center font-semibold",
                             $badgeSize(), 
                             $colorClasses(), 
                             $outlineClasses(),

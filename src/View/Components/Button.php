@@ -14,7 +14,6 @@ class Button extends Component
         public ?string $icon = null,
         public ?string $iconLeft = null,
         public ?string $iconRight = null,
-        public ?string $iconClass = 'size-4',
 
         // Button as link
         public ?string $link = null,
@@ -159,38 +158,38 @@ class Button extends Component
     public function outlineClasses(): string
     {
         return match (true) {
-            $this->outline && $this->isPrimaryWithoutOthers() => '!border-primary/40 dark:!border-primary/90 text-primary/90 hover:bg-primary/10 focus:bg-primary/15 focus:ring-primary/70',
-            $this->outline && $this->secondary => '!border-secondary/40 dark:!border-secondary/90 text-secondary/90 hover:bg-secondary/10 focus:bg-secondary/15 focus:ring-secondary/70',
-            $this->outline && $this->tertiary => '!border-tertiary/40 dark:!border-tertiary/90 text-tertiary/90 hover:bg-tertiary/10 focus:bg-tertiary/15 focus:ring-tertiary/70',
-            $this->outline && $this->warning => '!border-warning/40 dark:!border-warning/90 text-warning/90 hover:bg-warning/10 focus:bg-warning/15 focus:ring-warning/70',
-            $this->outline && $this->success => '!border-success/40 dark:!border-success/90 text-success/90 hover:bg-success/10 focus:bg-success/15 focus:ring-success/70',
-            $this->outline && $this->danger => '!border-danger/40 dark:!border-danger/90 text-danger/90 hover:bg-danger/10 focus:bg-danger/15 focus:ring-danger/70',
-            $this->outline && $this->info => '!border-info/40 dark:!border-info/90 text-info/90 hover:bg-info/10 focus:bg-info/15 focus:ring-info/70',
+            $this->outline && $this->isPrimaryWithoutOthers() => 'bg-transparent focus:border-transparent border-primary/40 dark:border-primary/90 text-primary/90 hover:bg-primary/10 focus:bg-primary/15 focus:ring-primary/70',
+            $this->outline && $this->secondary => 'bg-transparent focus:border-transparent border-secondary/40 dark:border-secondary/90 text-secondary/90 hover:bg-secondary/10 focus:bg-secondary/15 focus:ring-secondary/70',
+            $this->outline && $this->tertiary => 'bg-transparent focus:border-transparent border-tertiary/40 dark:border-tertiary/90 text-tertiary/90 hover:bg-tertiary/10 focus:bg-tertiary/15 focus:ring-tertiary/70',
+            $this->outline && $this->warning => 'bg-transparent focus:border-transparent border-warning/40 dark:border-warning/90 text-warning/90 hover:bg-warning/10 focus:bg-warning/15 focus:ring-warning/70',
+            $this->outline && $this->success => 'bg-transparent focus:border-transparent border-success/40 dark:border-success/90 text-success/90 hover:bg-success/10 focus:bg-success/15 focus:ring-success/70',
+            $this->outline && $this->danger => 'bg-transparent focus:border-transparent border-danger/40 dark:border-danger/90 text-danger/90 hover:bg-danger/10 focus:bg-danger/15 focus:ring-danger/70',
+            $this->outline && $this->info => 'bg-transparent focus:border-transparent border-info/40 dark:border-info/90 text-info/90 hover:bg-info/10 focus:bg-info/15 focus:ring-info/70',
 
-            $this->outline && $this->black => '!border-black/20 dark:!border-black/80 dark:text-white/20 text-black hover:bg-black/10 focus:bg-black/15 focus:ring-black/60',
-            $this->outline && $this->white => '!border-gray-200 dark:!border-white text-black/20 dark:text-white/60 hover:bg-black/5 dark:hover:bg-white/10 focus:bg-black/10 dark:focus:bg-white/15 dark:focus:ring-white/80 focus:ring-black/20',
-            $this->outline && $this->slate => '!border-slate-300 dark:!border-slate-600 text-slate-600 hover:bg-slate-500/10 focus:bg-slate-500/15 focus:ring-slate-500',
-            $this->outline && $this->gray => '!border-gray-300 dark:!border-gray-600 text-gray-600 hover:bg-gray-500/10 focus:bg-gray-500/15 focus:ring-gray-500',
-            $this->outline && $this->zinc => '!border-zinc-300 dark:!border-zinc-600 text-zinc-600 hover:bg-zinc-500/10 focus:bg-zinc-500/15 focus:ring-zinc-500',
-            $this->outline && $this->neutral => '!border-neutral-300 dark:!border-neutral-600 text-neutral-600 hover:bg-neutral-500/10 focus:bg-neutral-500/15 focus:ring-neutral-500',
-            $this->outline && $this->stone => '!border-stone-300 dark:!border-stone-600 text-stone-600 hover:bg-stone-500/10 focus:bg-stone-500/15 focus:ring-stone-500',
-            $this->outline && $this->red => '!border-red-300 dark:!border-red-600 text-red-600 hover:bg-red-500/10 focus:bg-red-500/15 focus:ring-red-500',
-            $this->outline && $this->orange => '!border-orange-300 dark:!border-orange-600 text-orange-600 hover:bg-orange-500/10 focus:bg-orange-500/15 focus:ring-orange-500',
-            $this->outline && $this->amber => '!border-amber-300 dark:!border-amber-600 text-amber-600 hover:bg-amber-500/10 focus:bg-amber-500/15 focus:ring-amber-500',
-            $this->outline && $this->yellow => '!border-yellow-300 dark:!border-yellow-600 text-yellow-600 hover:bg-yellow-500/10 focus:bg-yellow-500/15 focus:ring-yellow-500',
-            $this->outline && $this->lime => '!border-lime-300 dark:!border-lime-600 text-lime-600 hover:bg-lime-500/10 focus:bg-lime-500/15 focus:ring-lime-500',
-            $this->outline && $this->green => '!border-green-300 dark:!border-green-600 text-green-600 hover:bg-green-500/10 focus:bg-green-500/15 focus:ring-green-500',
-            $this->outline && $this->emerald => '!border-emerald-300 dark:!border-emerald-600 text-emerald-600 hover:bg-emerald-500/10 focus:bg-emerald-500/15 focus:ring-emerald-500',
-            $this->outline && $this->teal => '!border-teal-300 dark:!border-teal-600 text-teal-600 hover:bg-teal-500/10 focus:bg-teal-500/15 focus:ring-teal-500',
-            $this->outline && $this->cyan => '!border-cyan-300 dark:!border-cyan-600 text-cyan-600 hover:bg-cyan-500/10 focus:bg-cyan-500/15 focus:ring-cyan-500',
-            $this->outline && $this->sky => '!border-sky-300 dark:!border-sky-600 text-sky-600 hover:bg-sky-500/10 focus:bg-sky-500/15 focus:ring-sky-500',
-            $this->outline && $this->blue => '!border-blue-300 dark:!border-blue-600 text-blue-600 hover:bg-blue-500/10 focus:bg-blue-500/15 focus:ring-blue-500',
-            $this->outline && $this->indigo => '!border-indigo-300 dark:!border-indigo-600 text-indigo-600 hover:bg-indigo-500/10 focus:bg-indigo-500/15 focus:ring-indigo-500',
-            $this->outline && $this->violet => '!border-violet-300 dark:!border-violet-600 text-violet-600 hover:bg-violet-500/10 focus:bg-violet-500/15 focus:ring-violet-500',
-            $this->outline && $this->purple => '!border-purple-300 dark:!border-purple-600 text-purple-600 hover:bg-purple-500/10 focus:bg-purple-500/15 focus:ring-purple-500',
-            $this->outline && $this->fuchsia => '!border-fuchsia-300 dark:!border-fuchsia-600 text-fuchsia-600 hover:bg-fuchsia-500/10 focus:bg-fuchsia-500/15 focus:ring-fuchsia-500',
-            $this->outline && $this->pink => '!border-pink-300 dark:!border-pink-600 text-pink-600 hover:bg-pink-500/10 focus:bg-pink-500/15 focus:ring-pink-500',
-            $this->outline && $this->rose => '!border-rose-300 dark:!border-rose-600 text-rose-600 hover:bg-rose-500/10 focus:bg-rose-500/15 focus:ring-rose-500',
+            $this->outline && $this->black => 'bg-transparent focus:border-transparent border-black/20 dark:border-black/80 dark:text-white/20 text-black hover:bg-black/10 focus:bg-black/15 focus:ring-black/60',
+            $this->outline && $this->white => 'bg-transparent focus:border-transparent border-gray-200 dark:border-white text-black/20 dark:text-white/60 hover:bg-black/5 dark:hover:bg-white/10 focus:bg-black/10 dark:focus:bg-white/15 dark:focus:ring-white/80 focus:ring-black/20',
+            $this->outline && $this->slate => 'bg-transparent focus:border-transparent border-slate-300 dark:border-slate-600 text-slate-600 hover:bg-slate-500/10 focus:bg-slate-500/15 focus:ring-slate-500',
+            $this->outline && $this->gray => 'bg-transparent focus:border-transparent border-gray-300 dark:border-gray-600 text-gray-600 hover:bg-gray-500/10 focus:bg-gray-500/15 focus:ring-gray-500',
+            $this->outline && $this->zinc => 'bg-transparent focus:border-transparent border-zinc-300 dark:border-zinc-600 text-zinc-600 hover:bg-zinc-500/10 focus:bg-zinc-500/15 focus:ring-zinc-500',
+            $this->outline && $this->neutral => 'bg-transparent focus:border-transparent border-neutral-300 dark:border-neutral-600 text-neutral-600 hover:bg-neutral-500/10 focus:bg-neutral-500/15 focus:ring-neutral-500',
+            $this->outline && $this->stone => 'bg-transparent focus:border-transparent border-stone-300 dark:border-stone-600 text-stone-600 hover:bg-stone-500/10 focus:bg-stone-500/15 focus:ring-stone-500',
+            $this->outline && $this->red => 'bg-transparent focus:border-transparent border-red-300 dark:border-red-600 text-red-600 hover:bg-red-500/10 focus:bg-red-500/15 focus:ring-red-500',
+            $this->outline && $this->orange => 'bg-transparent focus:border-transparent border-orange-300 dark:border-orange-600 text-orange-600 hover:bg-orange-500/10 focus:bg-orange-500/15 focus:ring-orange-500',
+            $this->outline && $this->amber => 'bg-transparent focus:border-transparent border-amber-300 dark:border-amber-600 text-amber-600 hover:bg-amber-500/10 focus:bg-amber-500/15 focus:ring-amber-500',
+            $this->outline && $this->yellow => 'bg-transparent focus:border-transparent border-yellow-300 dark:border-yellow-600 text-yellow-600 hover:bg-yellow-500/10 focus:bg-yellow-500/15 focus:ring-yellow-500',
+            $this->outline && $this->lime => 'bg-transparent focus:border-transparent border-lime-300 dark:border-lime-600 text-lime-600 hover:bg-lime-500/10 focus:bg-lime-500/15 focus:ring-lime-500',
+            $this->outline && $this->green => 'bg-transparent focus:border-transparent border-green-300 dark:border-green-600 text-green-600 hover:bg-green-500/10 focus:bg-green-500/15 focus:ring-green-500',
+            $this->outline && $this->emerald => 'bg-transparent focus:border-transparent border-emerald-300 dark:border-emerald-600 text-emerald-600 hover:bg-emerald-500/10 focus:bg-emerald-500/15 focus:ring-emerald-500',
+            $this->outline && $this->teal => 'bg-transparent focus:border-transparent border-teal-300 dark:border-teal-600 text-teal-600 hover:bg-teal-500/10 focus:bg-teal-500/15 focus:ring-teal-500',
+            $this->outline && $this->cyan => 'bg-transparent focus:border-transparent border-cyan-300 dark:border-cyan-600 text-cyan-600 hover:bg-cyan-500/10 focus:bg-cyan-500/15 focus:ring-cyan-500',
+            $this->outline && $this->sky => 'bg-transparent focus:border-transparent border-sky-300 dark:border-sky-600 text-sky-600 hover:bg-sky-500/10 focus:bg-sky-500/15 focus:ring-sky-500',
+            $this->outline && $this->blue => 'bg-transparent focus:border-transparent border-blue-300 dark:border-blue-600 text-blue-600 hover:bg-blue-500/10 focus:bg-blue-500/15 focus:ring-blue-500',
+            $this->outline && $this->indigo => 'bg-transparent focus:border-transparent border-indigo-300 dark:border-indigo-600 text-indigo-600 hover:bg-indigo-500/10 focus:bg-indigo-500/15 focus:ring-indigo-500',
+            $this->outline && $this->violet => 'bg-transparent focus:border-transparent border-violet-300 dark:border-violet-600 text-violet-600 hover:bg-violet-500/10 focus:bg-violet-500/15 focus:ring-violet-500',
+            $this->outline && $this->purple => 'bg-transparent focus:border-transparent border-purple-300 dark:border-purple-600 text-purple-600 hover:bg-purple-500/10 focus:bg-purple-500/15 focus:ring-purple-500',
+            $this->outline && $this->fuchsia => 'bg-transparent focus:border-transparent border-fuchsia-300 dark:border-fuchsia-600 text-fuchsia-600 hover:bg-fuchsia-500/10 focus:bg-fuchsia-500/15 focus:ring-fuchsia-500',
+            $this->outline && $this->pink => 'bg-transparent focus:border-transparent border-pink-300 dark:border-pink-600 text-pink-600 hover:bg-pink-500/10 focus:bg-pink-500/15 focus:ring-pink-500',
+            $this->outline && $this->rose => 'bg-transparent focus:border-transparent border-rose-300 dark:border-rose-600 text-rose-600 hover:bg-rose-500/10 focus:bg-rose-500/15 focus:ring-rose-500',
             default => '',
         };
     }
@@ -198,52 +197,66 @@ class Button extends Component
     public function flatClasses(): string
     {
         return match (true) {
-            $this->flat && $this->isPrimaryWithoutOthers() => 'text-primary hover:bg-primary/10 focus:bg-primary/15 focus:ring-primary/70',
-            $this->flat && $this->secondary => 'text-secondary hover:bg-secondary/10 focus:bg-secondary/15 focus:ring-secondary/70',
-            $this->flat && $this->tertiary => 'text-tertiary hover:bg-tertiary/10 focus:bg-tertiary/15 focus:ring-tertiary/70',
-            $this->flat && $this->warning => 'text-warning hover:bg-warning/10 focus:bg-warning/15 focus:ring-warning/70',
-            $this->flat && $this->success => 'text-success hover:bg-success/10 focus:bg-success/15 focus:ring-success/70',
-            $this->flat && $this->danger => 'text-danger hover:bg-danger/10 focus:bg-danger/15 focus:ring-danger/70',
-            $this->flat && $this->info => 'text-info hover:bg-info/10 focus:bg-info/15 focus:ring-info/70',
+            $this->flat && $this->isPrimaryWithoutOthers() => 'bg-transparent text-primary hover:bg-primary/10 focus:bg-primary/15 focus:ring-primary/70',
+            $this->flat && $this->secondary => 'bg-transparent text-secondary hover:bg-secondary/10 focus:bg-secondary/15 focus:ring-secondary/70',
+            $this->flat && $this->tertiary => 'bg-transparent text-tertiary hover:bg-tertiary/10 focus:bg-tertiary/15 focus:ring-tertiary/70',
+            $this->flat && $this->warning => 'bg-transparent text-warning hover:bg-warning/10 focus:bg-warning/15 focus:ring-warning/70',
+            $this->flat && $this->success => 'bg-transparent text-success hover:bg-success/10 focus:bg-success/15 focus:ring-success/70',
+            $this->flat && $this->danger => 'bg-transparent text-danger hover:bg-danger/10 focus:bg-danger/15 focus:ring-danger/70',
+            $this->flat && $this->info => 'bg-transparent text-info hover:bg-info/10 focus:bg-info/15 focus:ring-info/70',
 
-            $this->flat && $this->black => 'dark:text-white/20 text-black hover:bg-black/10 focus:bg-black/15 focus:ring-black/80',
-            $this->flat && $this->white => 'text-black/20 dark:text-white hover:bg-black/5 dark:hover:bg-white/10 focus:bg-black/10 dark:focus:bg-white/15 focus:ring-black/20 dark:focus:ring-white/80',
-            $this->flat && $this->slate => 'text-slate-600 hover:bg-slate-500/10 focus:bg-slate-500/15 focus:ring-slate-500',
-            $this->flat && $this->gray => 'text-gray-600 hover:bg-gray-500/10 focus:bg-gray-500/15 focus:ring-gray-500',
-            $this->flat && $this->zinc => 'text-zinc-600 hover:bg-zinc-500/10 focus:bg-zinc-500/15 focus:ring-zinc-500',
-            $this->flat && $this->neutral => 'text-neutral-600 hover:bg-neutral-500/10 focus:bg-neutral-500/15 focus:ring-neutral-500',
-            $this->flat && $this->stone => 'text-stone-600 hover:bg-stone-500/10 focus:bg-stone-500/15 focus:ring-stone-500',
-            $this->flat && $this->red => 'text-red-600 hover:bg-red-500/10 focus:bg-red-500/15 focus:ring-red-500',
-            $this->flat && $this->orange => 'text-orange-600 hover:bg-orange-500/10 focus:bg-orange-500/15 focus:ring-orange-500',
-            $this->flat && $this->amber => 'text-amber-600 hover:bg-amber-500/10 focus:bg-amber-500/15 focus:ring-amber-500',
-            $this->flat && $this->yellow => 'text-yellow-600 hover:bg-yellow-500/10 focus:bg-yellow-500/15 focus:ring-yellow-500',
-            $this->flat && $this->lime => 'text-lime-600 hover:bg-lime-500/10 focus:bg-lime-500/15 focus:ring-lime-500',
-            $this->flat && $this->green => 'text-green-600 hover:bg-green-500/10 focus:bg-green-500/15 focus:ring-green-500',
-            $this->flat && $this->emerald => 'text-emerald-600 hover:bg-emerald-500/10 focus:bg-emerald-500/15 focus:ring-emerald-500',
-            $this->flat && $this->teal => 'text-teal-600 hover:bg-teal-500/10 focus:bg-teal-500/15 focus:ring-teal-500',
-            $this->flat && $this->cyan => 'text-cyan-600 hover:bg-cyan-500/10 focus:bg-cyan-500/15 focus:ring-cyan-500',
-            $this->flat && $this->sky => 'text-sky-600 hover:bg-sky-500/10 focus:bg-sky-500/15 focus:ring-sky-500',
-            $this->flat && $this->blue => 'text-blue-600 hover:bg-blue-500/10 focus:bg-blue-500/15 focus:ring-blue-500',
-            $this->flat && $this->indigo => 'text-indigo-600 hover:bg-indigo-500/10 focus:bg-indigo-500/15 focus:ring-indigo-500',
-            $this->flat && $this->violet => 'text-violet-600 hover:bg-violet-500/10 focus:bg-violet-500/15 focus:ring-violet-500',
-            $this->flat && $this->purple => 'text-purple-600 hover:bg-purple-500/10 focus:bg-purple-500/15 focus:ring-purple-500',
-            $this->flat && $this->fuchsia => 'text-fuchsia-600 hover:bg-fuchsia-500/10 focus:bg-fuchsia-500/15 focus:ring-fuchsia-500',
-            $this->flat && $this->pink => 'text-pink-600 hover:bg-pink-500/10 focus:bg-pink-500/15 focus:ring-pink-500',
-            $this->flat && $this->rose => 'text-rose-600 hover:bg-rose-500/10 focus:bg-rose-500/15 focus:ring-rose-500',
+            $this->flat && $this->black => 'bg-transparent dark:text-white/20 text-black hover:bg-black/10 focus:bg-black/15 focus:ring-black/80',
+            $this->flat && $this->white => 'bg-transparent text-black/20 dark:text-white hover:bg-black/5 dark:hover:bg-white/10 focus:bg-black/10 dark:focus:bg-white/15 focus:ring-black/20 dark:focus:ring-white/80',
+            $this->flat && $this->slate => 'bg-transparent text-slate-600 hover:bg-slate-500/10 focus:bg-slate-500/15 focus:ring-slate-500',
+            $this->flat && $this->gray => 'bg-transparent text-gray-600 hover:bg-gray-500/10 focus:bg-gray-500/15 focus:ring-gray-500',
+            $this->flat && $this->zinc => 'bg-transparent text-zinc-600 hover:bg-zinc-500/10 focus:bg-zinc-500/15 focus:ring-zinc-500',
+            $this->flat && $this->neutral => 'bg-transparent text-neutral-600 hover:bg-neutral-500/10 focus:bg-neutral-500/15 focus:ring-neutral-500',
+            $this->flat && $this->stone => 'bg-transparent text-stone-600 hover:bg-stone-500/10 focus:bg-stone-500/15 focus:ring-stone-500',
+            $this->flat && $this->red => 'bg-transparent text-red-600 hover:bg-red-500/10 focus:bg-red-500/15 focus:ring-red-500',
+            $this->flat && $this->orange => 'bg-transparent text-orange-600 hover:bg-orange-500/10 focus:bg-orange-500/15 focus:ring-orange-500',
+            $this->flat && $this->amber => 'bg-transparent text-amber-600 hover:bg-amber-500/10 focus:bg-amber-500/15 focus:ring-amber-500',
+            $this->flat && $this->yellow => 'bg-transparent text-yellow-600 hover:bg-yellow-500/10 focus:bg-yellow-500/15 focus:ring-yellow-500',
+            $this->flat && $this->lime => 'bg-transparent text-lime-600 hover:bg-lime-500/10 focus:bg-lime-500/15 focus:ring-lime-500',
+            $this->flat && $this->green => 'bg-transparent text-green-600 hover:bg-green-500/10 focus:bg-green-500/15 focus:ring-green-500',
+            $this->flat && $this->emerald => 'bg-transparent text-emerald-600 hover:bg-emerald-500/10 focus:bg-emerald-500/15 focus:ring-emerald-500',
+            $this->flat && $this->teal => 'bg-transparent text-teal-600 hover:bg-teal-500/10 focus:bg-teal-500/15 focus:ring-teal-500',
+            $this->flat && $this->cyan => 'bg-transparent text-cyan-600 hover:bg-cyan-500/10 focus:bg-cyan-500/15 focus:ring-cyan-500',
+            $this->flat && $this->sky => 'bg-transparent text-sky-600 hover:bg-sky-500/10 focus:bg-sky-500/15 focus:ring-sky-500',
+            $this->flat && $this->blue => 'bg-transparent text-blue-600 hover:bg-blue-500/10 focus:bg-blue-500/15 focus:ring-blue-500',
+            $this->flat && $this->indigo => 'bg-transparent text-indigo-600 hover:bg-indigo-500/10 focus:bg-indigo-500/15 focus:ring-indigo-500',
+            $this->flat && $this->violet => 'bg-transparent text-violet-600 hover:bg-violet-500/10 focus:bg-violet-500/15 focus:ring-violet-500',
+            $this->flat && $this->purple => 'bg-transparent text-purple-600 hover:bg-purple-500/10 focus:bg-purple-500/15 focus:ring-purple-500',
+            $this->flat && $this->fuchsia => 'bg-transparent text-fuchsia-600 hover:bg-fuchsia-500/10 focus:bg-fuchsia-500/15 focus:ring-fuchsia-500',
+            $this->flat && $this->pink => 'bg-transparent text-pink-600 hover:bg-pink-500/10 focus:bg-pink-500/15 focus:ring-pink-500',
+            $this->flat && $this->rose => 'bg-transparent text-rose-600 hover:bg-rose-500/10 focus:bg-rose-500/15 focus:ring-rose-500',
             default => '',
         };
     }
 
     public function circleClasses(): string
     {
+        $circleWithoutLabel = $this->circle && !$this->label;
+
+        return match (true) {
+            $circleWithoutLabel && $this->attributes->get('sm') => 'rounded-full w-8 h-8 p-2 justify-center',
+            $circleWithoutLabel && $this->attributes->get('md') => 'rounded-full w-10 h-10 p-2 justify-center',
+            $circleWithoutLabel && $this->attributes->get('lg') => 'rounded-full w-12 h-12 p-2 justify-center',
+            $circleWithoutLabel && $this->attributes->get('xl') => 'rounded-full w-14 h-14 p-2 justify-center',
+            $circleWithoutLabel => 'rounded-full w-10 h-10 p-2 justify-center', // md
+            default => '',
+        };
+    }
+
+    public function circleIconSize(): string
+    {
         $circleWithoutLabel = $this->circle && ! $this->label;
 
         return match (true) {
-            $circleWithoutLabel => 'rounded-full w-10 h-10 justify-center',
-            $circleWithoutLabel && $this->attributes->get('sm') => 'rounded-full w-8 h-8 justify-center',
-            $circleWithoutLabel && $this->attributes->get('lg') => 'rounded-full w-12 h-12 justify-center',
-            $circleWithoutLabel && $this->attributes->get('xl') => 'rounded-full w-14 h-14 justify-center',
-            default => '',
+            $circleWithoutLabel && $this->attributes->get('sm') => 'size-4',
+            $circleWithoutLabel && $this->attributes->get('md') => 'size-5',
+            $circleWithoutLabel && $this->attributes->get('lg') => 'size-6',
+            $circleWithoutLabel && $this->attributes->get('xl') => 'size-7',
+            default => 'size-5',
         };
     }
 
@@ -253,7 +266,7 @@ class Button extends Component
             $this->attributes->get('sm') => 'px-3 py-1.5',
             $this->attributes->get('lg') => 'px-5 py-2.5',
             $this->attributes->get('xl') => 'px-6 py-3',
-            $this->attributes->get('xxl') => 'px-7 py-3.5',
+            $this->attributes->get('2xl') => 'px-7 py-3.5',
             default => 'px-4 py-2',
         };
     }
@@ -276,13 +289,13 @@ class Button extends Component
     public function getSpinner(): string
     {
         return match (true) {
-            $this->spinnerBars => '<svg wire:loading wire:target="'.$this->spinnerTarget().'" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><rect width="6" height="14" x="1" y="4" fill="currentColor"><animate id="svgSpinnersBarsFade0" fill="freeze" attributeName="opacity" begin="0;svgSpinnersBarsFade1.end-0.25s" dur="0.75s" values="1;0.2"/></rect><rect width="6" height="14" x="9" y="4" fill="currentColor" opacity="0.4"><animate fill="freeze" attributeName="opacity" begin="svgSpinnersBarsFade0.begin+0.15s" dur="0.75s" values="1;0.2"/></rect><rect width="6" height="14" x="17" y="4" fill="currentColor" opacity="0.3"><animate id="svgSpinnersBarsFade1" fill="freeze" attributeName="opacity" begin="svgSpinnersBarsFade0.begin+0.3s" dur="0.75s" values="1;0.2"/></rect></svg>',
+            $this->spinnerBars => '<svg wire:loading wire:target="' . $this->spinnerTarget() . '" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><rect width="6" height="14" x="1" y="4" fill="currentColor"><animate id="svgSpinnersBarsFade0" fill="freeze" attributeName="opacity" begin="0;svgSpinnersBarsFade1.end-0.25s" dur="0.75s" values="1;0.2"/></rect><rect width="6" height="14" x="9" y="4" fill="currentColor" opacity="0.4"><animate fill="freeze" attributeName="opacity" begin="svgSpinnersBarsFade0.begin+0.15s" dur="0.75s" values="1;0.2"/></rect><rect width="6" height="14" x="17" y="4" fill="currentColor" opacity="0.3"><animate id="svgSpinnersBarsFade1" fill="freeze" attributeName="opacity" begin="svgSpinnersBarsFade0.begin+0.3s" dur="0.75s" values="1;0.2"/></rect></svg>',
 
-            $this->spinnerRing => '<svg wire:loading wire:target="'.$this->spinnerTarget().'" class="w-4 h-4 text-white/80 animate-spin" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity="0.25"/><path fill="currentColor" d="M10.72,19.9a8,8,0,0,1-6.5-9.79A7.77,7.77,0,0,1,10.4,4.16a8,8,0,0,1,9.49,6.52A1.54,1.54,0,0,0,21.38,12h.13a1.37,1.37,0,0,0,1.38-1.54,11,11,0,1,0-12.7,12.39A1.54,1.54,0,0,0,12,21.34h0A1.47,1.47,0,0,0,10.72,19.9Z" transform="rotate(360 12 12)"/></svg>',
+            $this->spinnerRing => '<svg wire:loading wire:target="' . $this->spinnerTarget() . '" class="w-4 h-4 text-white/80 animate-spin" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity="0.25"/><path fill="currentColor" d="M10.72,19.9a8,8,0,0,1-6.5-9.79A7.77,7.77,0,0,1,10.4,4.16a8,8,0,0,1,9.49,6.52A1.54,1.54,0,0,0,21.38,12h.13a1.37,1.37,0,0,0,1.38-1.54,11,11,0,1,0-12.7,12.39A1.54,1.54,0,0,0,12,21.34h0A1.47,1.47,0,0,0,10.72,19.9Z" transform="rotate(360 12 12)"/></svg>',
 
-            $this->spinnerPulse => '<svg wire:loading wire:target="'.$this->spinnerTarget().'" class="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="0" fill="currentColor"><animate id="svgSpinnersPulse30" fill="freeze" attributeName="r" begin="0;svgSpinnersPulse32.begin+0.4s" calcMode="spline" dur="1.2s" keySplines=".52,.6,.25,.99" values="0;11"/><animate fill="freeze" attributeName="opacity" begin="0;svgSpinnersPulse32.begin+0.4s" calcMode="spline" dur="1.2s" keySplines=".52,.6,.25,.99" values="1;0"/></circle><circle cx="12" cy="12" r="0" fill="currentColor"><animate id="svgSpinnersPulse31" fill="freeze" attributeName="r" begin="svgSpinnersPulse30.begin+0.4s" calcMode="spline" dur="1.2s" keySplines=".52,.6,.25,.99" values="0;11"/><animate fill="freeze" attributeName="opacity" begin="svgSpinnersPulse30.begin+0.4s" calcMode="spline" dur="1.2s" keySplines=".52,.6,.25,.99" values="1;0"/></circle><circle cx="12" cy="12" r="0" fill="currentColor"><animate id="svgSpinnersPulse32" fill="freeze" attributeName="r" begin="svgSpinnersPulse30.begin+0.8s" calcMode="spline" dur="1.2s" keySplines=".52,.6,.25,.99" values="0;11"/><animate fill="freeze" attributeName="opacity" begin="svgSpinnersPulse30.begin+0.8s" calcMode="spline" dur="1.2s" keySplines=".52,.6,.25,.99" values="1;0"/></circle></svg>',
+            $this->spinnerPulse => '<svg wire:loading wire:target="' . $this->spinnerTarget() . '" class="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="0" fill="currentColor"><animate id="svgSpinnersPulse30" fill="freeze" attributeName="r" begin="0;svgSpinnersPulse32.begin+0.4s" calcMode="spline" dur="1.2s" keySplines=".52,.6,.25,.99" values="0;11"/><animate fill="freeze" attributeName="opacity" begin="0;svgSpinnersPulse32.begin+0.4s" calcMode="spline" dur="1.2s" keySplines=".52,.6,.25,.99" values="1;0"/></circle><circle cx="12" cy="12" r="0" fill="currentColor"><animate id="svgSpinnersPulse31" fill="freeze" attributeName="r" begin="svgSpinnersPulse30.begin+0.4s" calcMode="spline" dur="1.2s" keySplines=".52,.6,.25,.99" values="0;11"/><animate fill="freeze" attributeName="opacity" begin="svgSpinnersPulse30.begin+0.4s" calcMode="spline" dur="1.2s" keySplines=".52,.6,.25,.99" values="1;0"/></circle><circle cx="12" cy="12" r="0" fill="currentColor"><animate id="svgSpinnersPulse32" fill="freeze" attributeName="r" begin="svgSpinnersPulse30.begin+0.8s" calcMode="spline" dur="1.2s" keySplines=".52,.6,.25,.99" values="0;11"/><animate fill="freeze" attributeName="opacity" begin="svgSpinnersPulse30.begin+0.8s" calcMode="spline" dur="1.2s" keySplines=".52,.6,.25,.99" values="1;0"/></circle></svg>',
 
-            default => '<svg wire:loading wire:target="'.$this->spinnerTarget().'" class="w-4 h-4 fill-white/80 animate-spin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/></svg>', //  Default dots spinner
+            default => '<svg wire:loading wire:target="' . $this->spinnerTarget() . '" class="w-4 h-4 fill-white/80 animate-spin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/></svg>', //  Default dots spinner
         };
     }
 
@@ -305,25 +318,25 @@ class Button extends Component
                     
                 @if(!$link)
                     wire:loading.attr="disabled" wire:target="{{ $spinnerTarget() }}"
-                    {{ $attributes->merge(['type' => 'submit']) }}
+                    {{ $attributes->whereDoesntStartWith('class')->merge(['type' => 'submit']) }}
                 @endif
                 
-                {{ $attributes->class([
-                        $buttonBaseClasses(), 
-                        $colorClasses(), 
-                        $sizeClasses(), 
-                        $outlineClasses(), 
-                        $flatClasses(), 
-                        $roundClasses(), 
-                        $circleClasses(),
-                        "bg-transparent" => $outline || $flat,
-                        "focus:!border-transparent" => $outline,
-                ]) }}>
+                {{ $attributes->withoutTwMergeClasses()->twMerge([
+                            $buttonBaseClasses(), 
+                            $colorClasses(), 
+                            $sizeClasses(), 
+                            $outlineClasses(), 
+                            $flatClasses(), 
+                            $roundClasses(), 
+                            $circleClasses(),
+                        ]) 
+                    }}
+                >
                 
                 @if($icon)
-                    <x-tc-icon :name="$icon" :class="$iconClass" />
+                    <x-tc-icon :name="$icon" {{ $attributes->twMergeFor('icon', $circleIconSize()) }} />
                 @elseif ($iconLeft)
-                    <x-tc-icon :name="$iconLeft" :class="$iconClass" />
+                    <x-tc-icon :name="$iconLeft" {{ $attributes->twMergeFor('icon', $circleIconSize()) }} />
                 @endif
 
                 {{ $label ? __($label) : '' }}
@@ -331,7 +344,7 @@ class Button extends Component
                 {{ $slot }}
 
                 @if($iconRight && !$spinner)
-                    <x-tc-icon :name="$iconRight" :class="$iconClass" />
+                    <x-tc-icon :name="$iconRight" {{ $attributes->twMergeFor('icon', $circleIconSize()) }} />
                 @endif
 
                 @if($spinner)

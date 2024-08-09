@@ -15,7 +15,6 @@ class Textarea extends Component
         public ?string $icon = null,
         public ?string $iconLeft = null,
         public ?string $iconRight = null,
-        public ?string $iconClass = 'size-4',
         public ?string $hint = null,
         public ?bool $inline = false,
         public ?bool $autoResize = false,
@@ -56,7 +55,7 @@ class Textarea extends Component
                 <div class="relative flex items-center flex-1">
                     @if($icon || $iconLeft)
                         <span class="absolute inset-y-0 grid w-10 start-0 place-content-center">
-                            <x-tc-icon :name="$iconLeft" :class="$iconClass" />
+                            <x-tc-icon :name="$iconLeft" class="size-4" />
                         </span>
                     @endif
                 
@@ -102,7 +101,7 @@ class Textarea extends Component
 
                     @if($iconRight)
                         <span class="absolute inset-y-0 grid w-10 end-0 place-content-center">
-                            <x-tc-icon :name="$iconRight ?? $icon" :class="$iconClass" />
+                            <x-tc-icon :name="$iconRight ?? $icon" class="size-4" />
                         </span>
                     @endif
                 </div>

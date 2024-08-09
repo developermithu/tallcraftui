@@ -16,7 +16,7 @@ class Hint extends Component
     {
         return <<<'HTML'
             <p {{ $attributes
-                    ->class(["mt-1 text-sm text-gray-500 dark:text-gray-400"]) 
+                    ->twMerge(["mt-1 text-sm text-gray-500 dark:text-gray-400"]) 
                 }}
             >{{ $hint }}</p>
         HTML;

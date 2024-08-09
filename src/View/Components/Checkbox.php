@@ -118,6 +118,11 @@ class Checkbox extends Component
         };
     }
 
+    public function disabledAndReadonlyClass(): string
+    {
+        return $this->attributes->get('disabled') || $this->attributes->get('readonly') ? 'text-gray-300 pointer-events-none' : '';
+    }
+
     public function render(): View|Closure|string
     {
         return <<<'HTML'
@@ -126,6 +131,7 @@ class Checkbox extends Component
                 $error = $errors->has($name) ? $errors->first($name) : null;
                 $uuid = $uuid . $name;
                 $required = $attributes->get('required') ? true : false;
+                $errorClass = $error ? 'border-red-300' : '';
             @endphp
                 
             <div class="relative flex gap-x-3">
@@ -148,12 +154,12 @@ class Checkbox extends Component
                 <div class="flex items-center h-6">
                     <input id="{{ $uuid }}" type="checkbox"
                         {{ $attributes
-                            ->class([
+                            ->twMerge([
                                 "border-gray-300",
                                 $sizeClasses(), 
                                 $colorClasses(),       
-                                "!border-red-300" => $error,                                
-                                "!text-gray-300 pointer-events-none" => $attributes->get('disabled') || $attributes->get('readonly'),    
+                                $errorClass,                                
+                                $disabledAndReadonlyClass(),
                                 $roundClasses(),                        
                             ])
                         }}

@@ -23,31 +23,33 @@ class BreadcrumbItem extends Component
             <li>
                 <div class="flex items-center gap-1 md:gap-2">
                     @if($icon)
-                        <x-tc-icon :name="$icon" class="text-gray-400 size-6" />
+                        <x-tc-icon :name="$icon" {{ $attributes->twMergeFor('icon', 'text-gray-400 size-6') }} />
                     @endif
                     
                     @if(!$icon && !$iconNone) 
-                        <x-tc-icon name="chevron-right" class="text-gray-400 size-6" />
+                        <x-tc-icon name="chevron-right" {{ $attributes->twMergeFor('icon', 'text-gray-400 size-6') }} />
                     @endif
 
                     @isset($iconLeft)
-                        <x-tc-icon :name="$iconLeft" class="text-gray-400 size-6" />
+                        <x-tc-icon :name="$iconLeft" {{ $attributes->twMergeFor('icon', 'text-gray-400 size-6') }} />
                     @endisset
                 
                     @isset($href)
                         <a wire:navigate href="{{ $href }}"
-                            {{ $attributes->class(["text-gray-400 capitalize hover:text-gray-500 dark:text-gray-100 dark:hover:text-gray-400"]) }}
+                            {{ $attributes->withoutTwMergeClasses()
+                                ->twMerge(["text-gray-400 capitalize hover:text-gray-500 dark:text-gray-100 dark:hover:text-gray-400"]) 
+                            }}
                         >
                             {{ __($label) }}
                         </a>
                     @else
-                        <span {{ $attributes->class(["text-gray-500 capitalize dark:text-gray-400"]) }}>
+                        <span {{ $attributes->withoutTwMergeClasses()->twMerge(["text-gray-500 capitalize dark:text-gray-400"]) }}>
                             {{ __($label) }}
                         </span>
                     @endisset
 
                     @isset($iconRight)
-                        <x-tc-icon :name="$iconRight" class="text-gray-400 size-6" />
+                        <x-tc-icon :name="$iconRight" {{ $attributes->twMergeFor('icon', 'text-gray-400 size-6') }} />
                     @endisset
                 </div>
             </li>

@@ -30,13 +30,15 @@ class Label extends Component
                 
                 $isRequired = $hasStar || $required;
                 $checkboxOrRadio = $attributes->get('checkbox') || $attributes->get('radio');
+
+                $notInline = !$inline && !$checkboxOrRadio ? "block mb-1.5": "";
             @endphp
                     
             <label for="{{ $for }}"
                 {{ $attributes
-                    ->class([
+                    ->twMerge([
                         "text-sm font-medium text-gray-700 dark:text-gray-100",
-                        "block mb-1.5" => !$inline && !$checkboxOrRadio   
+                        $notInline,  
                     ])
                 }}
             >     

@@ -102,7 +102,7 @@ class Dropdown extends Component
                     @endif
                 >
                     <div 
-                       {{ $attributes->class([
+                       {{ $attributes->twMerge([
                                 "ring-1 ring-black ring-opacity-5 dark:bg-gray-800 dark:text-gray-100",
                                 $roundClasses(),    
                             ]) 
