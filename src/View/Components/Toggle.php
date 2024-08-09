@@ -48,8 +48,7 @@ class Toggle extends Component
         public bool $fuchsia = false,
         public bool $pink = false,
         public bool $rose = false,
-    ) {
-    }
+    ) {}
 
     public function colorClasses(): string
     {

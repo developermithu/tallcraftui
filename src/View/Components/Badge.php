@@ -91,7 +91,7 @@ class Badge extends Component
 
     public function colorClasses(): string
     {
-        $notOtherStyle = !$this->outline;
+        $notOtherStyle = ! $this->outline;
 
         return match (true) {
             $this->isPrimaryWithoutOthers() && $notOtherStyle => 'bg-primary/10 text-primary',

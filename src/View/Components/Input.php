@@ -79,12 +79,12 @@ class Input extends Component
 
     public function iconLeftClass(): string
     {
-        return $this->icon || $this->iconLeft ? "pl-9" : '';
+        return $this->icon || $this->iconLeft ? 'pl-9' : '';
     }
 
     public function iconRightClass(): string
     {
-        return $this->iconRight ? "pe-9" : '';
+        return $this->iconRight ? 'pe-9' : '';
     }
 
     public function inputPrefixPrependClass(): string
@@ -94,32 +94,32 @@ class Input extends Component
 
     public function inputSuffixAppendClass(): string
     {
-        return ($this->suffix || filled($this->append)) ? "!rounded-r-none" : '';
+        return ($this->suffix || filled($this->append)) ? '!rounded-r-none' : '';
     }
 
     public function fileInputClass(): string
     {
-        return $this->attributes->get('type') === 'file' ? "file:border-0 dark:file:text-gray-300 file:bg-transparent file:px-3" : '';
+        return $this->attributes->get('type') === 'file' ? 'file:border-0 dark:file:text-gray-300 file:bg-transparent file:px-3' : '';
     }
 
     public function disableClass(): string
     {
-        return $this->attributes->get('disabled') ? "bg-gray-200 opacity-80 cursor-not-allowed" : '';
+        return $this->attributes->get('disabled') ? 'bg-gray-200 opacity-80 cursor-not-allowed' : '';
     }
 
     public function readonlyClass(): string
     {
-        return $this->attributes->get('readonly') ? "bg-gray-200 opacity-80 border-gray-400 border-dashed pointer-events-none" : '';
+        return $this->attributes->get('readonly') ? 'bg-gray-200 opacity-80 border-gray-400 border-dashed pointer-events-none' : '';
     }
 
     public function prefixPrependClass(): string
     {
-        return  $this->prefix || $this->prepend && $this->prependIsSelect === false ? "px-4 py-2.5 border border-gray-200 dark:border-gray-700" : '';
+        return $this->prefix || $this->prepend && $this->prependIsSelect === false ? 'px-4 py-2.5 border border-gray-200 dark:border-gray-700' : '';
     }
 
     public function suffixAppendClass(): string
     {
-        return  $this->suffix || $this->append && $this->appendIsSelect === false ? "px-4 py-2.5 border border-gray-200 dark:border-gray-700" : '';
+        return $this->suffix || $this->append && $this->appendIsSelect === false ? 'px-4 py-2.5 border border-gray-200 dark:border-gray-700' : '';
     }
 
     public function render(): View|Closure|string
