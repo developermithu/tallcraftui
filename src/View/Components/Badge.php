@@ -3,6 +3,7 @@
 namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
+use Developermithu\Tallcraftui\Helpers\BorderRadiusHelper;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -168,20 +169,9 @@ class Badge extends Component
         };
     }
 
-    public function roundClasses()
+    public function roundedClass(): string
     {
-        return match (true) {
-            $this->attributes->get('rounded-none') => 'rounded-none',
-            $this->attributes->get('rounded') => 'rounded',
-            $this->attributes->get('rounded-sm') => 'rounded-sm',
-            $this->attributes->get('rounded-md') => 'rounded-md',
-            $this->attributes->get('rounded-lg') => 'rounded-lg',
-            $this->attributes->get('rounded-xl') => 'rounded-xl',
-            $this->attributes->get('rounded-2xl') => 'rounded-2xl',
-            $this->attributes->get('rounded-3xl') => 'rounded-3xl',
-            $this->attributes->get('rounded-full') => 'rounded-full',
-            default => 'rounded',
-        };
+        return BorderRadiusHelper::getRoundedClass('badge', $this->attributes);
     }
 
     public function render(): View|Closure|string
@@ -192,7 +182,7 @@ class Badge extends Component
                             $badgeSize(), 
                             $colorClasses(), 
                             $outlineClasses(),
-                            $roundClasses(),
+                            $roundedClass(),
                         ]) 
                     }}
                 >

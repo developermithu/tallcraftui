@@ -3,25 +3,23 @@
 namespace Developermithu\Tallcraftui;
 
 use Developermithu\Tallcraftui\Console\Commands\InstallTallcraftuiCommand;
-use Developermithu\Tallcraftui\View\Components\{
-    Alert,
-    Badge,
-    Breadcrumb,
-    BreadcrumbItem,
-    Button,
-    Checkbox,
-    Dropdown,
-    DropdownItem,
-    Hint,
-    Icon,
-    Input,
-    Label,
-    Modal,
-    Radio,
-    Select,
-    Textarea,
-    Toggle
-};
+use Developermithu\Tallcraftui\View\Components\Alert;
+use Developermithu\Tallcraftui\View\Components\Badge;
+use Developermithu\Tallcraftui\View\Components\Breadcrumb;
+use Developermithu\Tallcraftui\View\Components\BreadcrumbItem;
+use Developermithu\Tallcraftui\View\Components\Button;
+use Developermithu\Tallcraftui\View\Components\Checkbox;
+use Developermithu\Tallcraftui\View\Components\Dropdown;
+use Developermithu\Tallcraftui\View\Components\DropdownItem;
+use Developermithu\Tallcraftui\View\Components\Hint;
+use Developermithu\Tallcraftui\View\Components\Icon;
+use Developermithu\Tallcraftui\View\Components\Input;
+use Developermithu\Tallcraftui\View\Components\Label;
+use Developermithu\Tallcraftui\View\Components\Modal;
+use Developermithu\Tallcraftui\View\Components\Radio;
+use Developermithu\Tallcraftui\View\Components\Select;
+use Developermithu\Tallcraftui\View\Components\Textarea;
+use Developermithu\Tallcraftui\View\Components\Toggle;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -34,7 +32,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
         $this->registerComponents();
 
         $this->publishes([
-            __DIR__ . '/../config/tallcraftui.php' => config_path('tallcraftui.php'),
+            __DIR__.'/../config/tallcraftui.php' => config_path('tallcraftui.php'),
         ], 'tallcraftui-config');
 
         // Register the application's commands.
@@ -68,7 +66,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
         ];
 
         foreach ($components as $name => $class) {
-            Blade::component($prefix . $name, $class);
+            Blade::component($prefix.$name, $class);
         }
 
         // TallCraftUI internal components

@@ -3,6 +3,7 @@
 namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
+use Developermithu\Tallcraftui\Helpers\BorderRadiusHelper;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -120,19 +121,9 @@ class Alert extends Component
         };
     }
 
-    public function roundClasses()
+    public function roundedClass(): string
     {
-        return match (true) {
-            $this->attributes->get('rounded-none') => 'rounded-none',
-            $this->attributes->get('rounded-sm') => 'rounded-sm',
-            $this->attributes->get('rounded-md') => 'rounded-md',
-            $this->attributes->get('rounded-lg') => 'rounded-lg',
-            $this->attributes->get('rounded-xl') => 'rounded-xl',
-            $this->attributes->get('rounded-2xl') => 'rounded-2xl',
-            $this->attributes->get('rounded-3xl') => 'rounded-3xl',
-            $this->attributes->get('rounded-full') => 'rounded-full',
-            default => 'rounded',
-        };
+        return BorderRadiusHelper::getRoundedClass('alert', $this->attributes);
     }
 
     public function actionColors(): string
@@ -182,7 +173,7 @@ class Alert extends Component
                     {{ $attributes->withoutTwMergeClasses()->twMerge([
                             "p-4 text-sm transition duration-300 border", 
                             $alertClasses(), 
-                            $roundClasses()
+                            $roundedClass()
                         ]) 
                     }}
                 >

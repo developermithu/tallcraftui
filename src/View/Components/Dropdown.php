@@ -3,6 +3,7 @@
 namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
+use Developermithu\Tallcraftui\Helpers\BorderRadiusHelper;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -30,33 +31,33 @@ class Dropdown extends Component
             $this->attributes->get('w-72') => 'w-72',
             $this->attributes->get('w-80') => 'w-80',
             $this->attributes->get('w-96') => 'w-96',
-            default => 'w-48',
+            $this->attributes->get('w-full') => 'w-full',
+            default => config('tallcraftui.dropdown.size', 'w-48'),
         };
     }
 
     public function dropdownPosition()
     {
+        $defaultPosition = config('tallcraftui.dropdown.position');
+
         return match (true) {
             $this->attributes->get('top') => 'origin-top',
             $this->attributes->get('bottom') => 'origin-bottom',
             $this->attributes->get('left') => 'origin-top-left left-0',
             $this->attributes->get('right') => 'origin-top-right right-0',
-            default => 'origin-top', // top
+
+            default => match ($defaultPosition) {
+                'bottom' => 'origin-bottom',
+                'left' => 'origin-top-left left-0',
+                'right' => 'origin-top-right right-0',
+                default => 'origin-top',
+            },
         };
     }
 
-    public function roundClasses()
+    public function roundedClass(): string
     {
-        return match (true) {
-            $this->attributes->get('rounded-none') => 'rounded-none',
-            $this->attributes->get('rounded-sm') => 'rounded-sm',
-            $this->attributes->get('rounded-lg') => 'rounded-lg',
-            $this->attributes->get('rounded-xl') => 'rounded-xl',
-            $this->attributes->get('rounded-2xl') => 'rounded-2xl',
-            $this->attributes->get('rounded-3xl') => 'rounded-3xl',
-            $this->attributes->get('rounded-full') => 'rounded-full',
-            default => 'rounded-md',
-        };
+        return BorderRadiusHelper::getRoundedClass('dropdown', $this->attributes);
     }
 
     public function render(): View|Closure|string
@@ -91,7 +92,7 @@ class Dropdown extends Component
                     @class([
                         "absolute bg-white dark:bg-gray-800 z-50 mt-3 shadow-lg",
                         $sizeClasses(),   
-                        $roundClasses(), 
+                        $roundedClass(), 
                         $dropdownPosition(), 
                     ])
                     
@@ -104,7 +105,7 @@ class Dropdown extends Component
                     <div 
                        {{ $attributes->twMerge([
                                 "ring-1 ring-black ring-opacity-5 dark:bg-gray-800 dark:text-gray-100",
-                                $roundClasses(),    
+                                $roundedClass(),    
                             ]) 
                         }}
                     >

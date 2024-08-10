@@ -3,6 +3,7 @@
 namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
+use Developermithu\Tallcraftui\Helpers\BorderRadiusHelper;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -15,24 +16,35 @@ class Modal extends Component
 
     public function sizeClasses()
     {
-        return match (true) {
-            $this->attributes->get('sm') => 'w-full sm:max-w-sm',
-            $this->attributes->get('md') => 'w-full sm:max-w-md',
-            $this->attributes->get('lg') => 'w-full sm:max-w-lg',
-            $this->attributes->get('xl') => 'w-full sm:max-w-xl',
-            $this->attributes->get('2xl') => 'w-full sm:max-w-2xl',
-            $this->attributes->get('3xl') => 'w-full sm:mx-6 md:mx-8 lg:mx-0 sm:max-w-3xl',
-            $this->attributes->get('4xl') => 'w-full sm:mx-6 md:mx-8 lg:mx-0 sm:max-w-4xl',
-            $this->attributes->get('5xl') => 'w-full sm:mx-6 md:mx-8 lg:mx-0 sm:max-w-5xl',
-            $this->attributes->get('6xl') => 'w-full sm:mx-6 md:mx-8 xl:mx-0 sm:max-w-6xl',
-            $this->attributes->get('7xl') => 'w-full sm:mx-6 md:mx-8 2xl:mx-0 sm:max-w-7xl',
-            $this->attributes->get('full') => 'w-full mx-4 sm:mx-6 md:mx-8 lg:mx-14 xl:mx-20 sm:max-w-full',
-            default => 'w-full sm:max-w-lg', // default lg
-        };
+        $sizes = [
+            'sm' => 'w-full sm:max-w-sm',
+            'md' => 'w-full sm:max-w-md',
+            'lg' => 'w-full sm:max-w-lg',
+            'xl' => 'w-full sm:max-w-xl',
+            '2xl' => 'w-full sm:max-w-2xl',
+            '3xl' => 'w-full sm:mx-6 md:mx-8 lg:mx-0 sm:max-w-3xl',
+            '4xl' => 'w-full sm:mx-6 md:mx-8 lg:mx-0 sm:max-w-4xl',
+            '5xl' => 'w-full sm:mx-6 md:mx-8 lg:mx-0 sm:max-w-5xl',
+            '6xl' => 'w-full sm:mx-6 md:mx-8 xl:mx-0 sm:max-w-6xl',
+            '7xl' => 'w-full sm:mx-6 md:mx-8 2xl:mx-0 sm:max-w-7xl',
+            'full' => 'w-full mx-4 sm:mx-6 md:mx-8 lg:mx-14 xl:mx-20 sm:max-w-full',
+        ];
+
+        foreach ($sizes as $key => $class) {
+            if ($this->attributes->has($key)) {
+                return $class;
+            }
+        }
+
+        $defaultSize = config('tallcraftui.modal.size', 'lg');
+
+        return $sizes[$defaultSize] ?? $sizes['lg'];
     }
 
     public function bgBlurClasses()
     {
+        $isDefaultBlur = config('tallcraftui.modal.blur', false);
+
         return match (true) {
             $this->attributes->get('blur') => 'backdrop-blur',
             $this->attributes->get('blur-sm') => 'backdrop-blur-sm',
@@ -41,33 +53,38 @@ class Modal extends Component
             $this->attributes->get('blur-xl') => 'backdrop-blur-xl',
             $this->attributes->get('blur-2xl') => 'backdrop-blur-2xl',
             $this->attributes->get('blur-3xl') => 'backdrop-blur-3xl',
-            default => '',
+
+            default => match ($isDefaultBlur) {
+                true => 'backdrop-blur-sm',
+                default => '',
+            },
         };
     }
 
     public function modalPosition()
     {
-        return match (true) {
-            $this->attributes->get('center') => 'flex items-center h-screen justify-center',
-            $this->attributes->get('bottom') => 'flex items-end h-screen justify-center',
-            $this->attributes->get('left') => 'flex items-center w-screen h-screen justify-start !pl-10',
-            $this->attributes->get('right') => 'flex items-center w-screen h-screen justify-end !pr-10',
-            default => 'flex items-start h-screen justify-center', // default top
-        };
+        $positions = [
+            'top' => 'flex items-start justify-center h-screen',
+            'bottom' => 'flex items-end justify-center h-screen',
+            'left' => 'flex items-center justify-start w-screen h-screen !pl-10',
+            'right' => 'flex items-center justify-end w-screen h-screen !pr-10',
+            'center' => 'flex items-center justify-center w-screen h-screen',
+        ];
+
+        foreach ($positions as $key => $class) {
+            if ($this->attributes->has($key)) {
+                return $class;
+            }
+        }
+
+        $defaultPosition = config('tallcraftui.modal.position', 'top');
+
+        return $positions[$defaultPosition] ?? $positions['top'];
     }
 
-    public function roundClasses()
+    public function roundedClass(): string
     {
-        return match (true) {
-            $this->attributes->get('rounded-none') => 'rounded-none',
-            $this->attributes->get('rounded-sm') => 'rounded-sm',
-            $this->attributes->get('rounded-md') => 'rounded-md',
-            $this->attributes->get('rounded-xl') => 'rounded-xl',
-            $this->attributes->get('rounded-2xl') => 'rounded-2xl',
-            $this->attributes->get('rounded-3xl') => 'rounded-3xl',
-            $this->attributes->get('rounded-full') => 'rounded-full',
-            default => 'rounded-lg',
-        };
+        return BorderRadiusHelper::getRoundedClass('modal', $this->attributes);
     }
 
     public function render(): View|Closure|string
@@ -131,7 +148,7 @@ class Modal extends Component
                             ->twMerge([
                                 "overflow-hidden transition-all transform bg-white dark:bg-gray-900 shadow-xl",
                                 $sizeClasses(),
-                                $roundClasses(),
+                                $roundedClass(),
                             ]) 
                     }}
                 >

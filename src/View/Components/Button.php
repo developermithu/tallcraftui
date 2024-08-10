@@ -3,6 +3,7 @@
 namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
+use Developermithu\Tallcraftui\Helpers\BorderRadiusHelper;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -231,28 +232,28 @@ class Button extends Component
 
     public function sizeClasses(): string
     {
-        return match (true) {
-            $this->attributes->get('sm') => 'px-3 py-1.5',
-            $this->attributes->get('lg') => 'px-5 py-2.5',
-            $this->attributes->get('xl') => 'px-6 py-3',
-            $this->attributes->get('2xl') => 'px-7 py-3.5',
-            default => 'px-4 py-2',
-        };
+        $sizes = [
+            'sm' => 'px-3 py-1.5',
+            'md' => 'px-4 py-2',
+            'lg' => 'px-5 py-2.5',
+            'xl' => 'px-6 py-3',
+            '2xl' => 'px-7 py-3.5',
+        ];
+
+        foreach ($sizes as $key => $class) {
+            if ($this->attributes->has($key)) {
+                return $class;
+            }
+        }
+
+        $defaultSize = config('tallcraftui.button.size', 'md');
+
+        return $sizes[$defaultSize] ?? $sizes['md'];
     }
 
-    public function roundClasses()
+    public function roundedClass(): string
     {
-        return match (true) {
-            $this->attributes->get('rounded-none') => 'rounded-none',
-            $this->attributes->get('rounded-sm') => 'rounded-sm',
-            $this->attributes->get('rounded-md') => 'rounded-md',
-            $this->attributes->get('rounded-lg') => 'rounded-lg',
-            $this->attributes->get('rounded-xl') => 'rounded-xl',
-            $this->attributes->get('rounded-2xl') => 'rounded-2xl',
-            $this->attributes->get('rounded-3xl') => 'rounded-3xl',
-            $this->attributes->get('rounded-full') => 'rounded-full',
-            default => 'rounded',
-        };
+        return BorderRadiusHelper::getRoundedClass('button', $this->attributes);
     }
 
     public function getSpinner(): string
@@ -296,7 +297,7 @@ class Button extends Component
                             $sizeClasses(), 
                             $outlineClasses(), 
                             $flatClasses(), 
-                            $roundClasses(), 
+                            $roundedClass(), 
                             $circleClasses(),
                         ]) 
                     }}
