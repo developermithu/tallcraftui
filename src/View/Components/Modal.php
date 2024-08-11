@@ -106,7 +106,7 @@ class Modal extends Component
                 id="{{ $id }}"
 
                 @class([
-                    "fixed inset-0 z-50 px-4 py-14 overflow-y-auto jetstream-modal sm:px-0", $modalPosition()
+                    "fixed inset-0 z-[999999] px-4 py-14 overflow-y-auto jetstream-modal sm:px-0", $modalPosition()
                 ])
                 
                 style="display: none;"

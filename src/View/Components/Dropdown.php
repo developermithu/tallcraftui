@@ -90,7 +90,7 @@ class Dropdown extends Component
                     x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
 
                     @class([
-                        "absolute bg-white dark:bg-gray-800 z-50 mt-3 shadow-lg",
+                        "absolute bg-white dark:bg-gray-800 z-[999] mt-3 shadow-lg",
                         $sizeClasses(),   
                         $roundedClass(), 
                         $dropdownPosition(), 

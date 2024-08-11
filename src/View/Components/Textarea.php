@@ -70,7 +70,7 @@ class Textarea extends Component
                                 $attributes
                                     ->merge(['rows' => '3'])
                                     ->class([
-                                        "block w-full min-h-[80px] border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-white",
+                                        "block w-full min-h-[80px] border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-white",
                                         "pl-9" => $iconLeft, 
                                         "pe-9" => $icon || $iconRight,
                                         "border-red-500 dark:border-red-500 focus:border-red-500 focus:ring-red-500" => $error,

@@ -105,12 +105,12 @@ class Input extends Component
 
     public function prefixPrependClass(): string
     {
-        return $this->prefix || $this->prepend && $this->prependIsSelect === false ? 'px-4 py-2.5 border border-gray-200 dark:border-gray-700' : '';
+        return $this->prefix || $this->prepend && $this->prependIsSelect === false ? 'px-2.5 xs:px-3 sm:px-4 py-2.5 border border-gray-200 dark:border-gray-700' : '';
     }
 
     public function suffixAppendClass(): string
     {
-        return $this->suffix || $this->append && $this->appendIsSelect === false ? 'px-4 py-2.5 border border-gray-200 dark:border-gray-700' : '';
+        return $this->suffix || $this->append && $this->appendIsSelect === false ? 'px-2.5 xs:px-3 sm:px-4 py-2.5 border border-gray-200 dark:border-gray-700' : '';
     }
 
     public function render(): View|Closure|string
@@ -159,7 +159,7 @@ class Input extends Component
                                     ->merge(['type' => 'text'])
                                     ->withoutTwMergeClasses()
                                     ->twMerge([
-                                        "block w-full border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
+                                        "block w-full border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
                                         $iconLeftClass(),
                                         $iconRightClass(),
                                         $inputPrefixPrependClass(),
