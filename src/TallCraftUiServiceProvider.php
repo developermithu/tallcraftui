@@ -18,6 +18,7 @@ use Developermithu\Tallcraftui\View\Components\Label;
 use Developermithu\Tallcraftui\View\Components\Modal;
 use Developermithu\Tallcraftui\View\Components\Radio;
 use Developermithu\Tallcraftui\View\Components\Select;
+use Developermithu\Tallcraftui\View\Components\Stat;
 use Developermithu\Tallcraftui\View\Components\Textarea;
 use Developermithu\Tallcraftui\View\Components\Toggle;
 use Illuminate\Support\Facades\Blade;
@@ -63,6 +64,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'modal' => Modal::class,
             'dropdown' => Dropdown::class,
             'dropdown-item' => DropdownItem::class,
+            'stat' => Stat::class,
         ];
 
         foreach ($components as $name => $class) {

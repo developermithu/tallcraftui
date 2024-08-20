@@ -2,7 +2,6 @@
 
 return [
     /**
-     * 
      * ==================================
      * Default prefix for all components
      * ==================================
@@ -14,15 +13,12 @@ return [
      *
      * prefix => ''       // <x-input />
      * prefix => 'tc-'   // <x-tc-input />
-     *
      */
     'prefix' => '',
 
     /**
-     * 
      * type => Allowed: heroicons
      * style => Allowed: outline, solid
-     *
      */
     'icons' => [
         'type' => 'heroicons',
@@ -30,9 +26,7 @@ return [
     ],
 
     /**
-     * 
      * border-radius => Allowed: rounded, rounded-sm, rounded-md, rounded-lg, rounded-xl, rounded-2xl, rounded-3xl, rounded-full, rounded-none
-     *
      */
     'alert' => [
         'border-radius' => 'rounded',
@@ -47,9 +41,7 @@ return [
     ],
 
     /**
-     * 
      * size => Allowed: sm, md, lg, xl, 2xl
-     *
      */
     'button' => [
         'border-radius' => 'rounded',
@@ -57,9 +49,7 @@ return [
     ],
 
     /**
-     * 
      * size => Allowed: sm, md, lg, xl, 2xl
-     *
      */
     'checkbox' => [
         'border-radius' => 'rounded',
@@ -67,10 +57,8 @@ return [
     ],
 
     /**
-     * 
      * position => Allowed: top, bottom, left, right
      * size => Allowed: w-20, w-24, w-28, w-32, w-36, w-40, w-44, w-48, w-52, w-56, w-60, w-64, w-72, w-80, w-96, w-full
-     *
      */
     'dropdown' => [
         'border-radius' => 'rounded',
@@ -83,11 +71,9 @@ return [
     ],
 
     /**
-     * 
      * size => Allowed: sm, md, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl, 7xl, full
      * blur => Allowed: true, false
      * position => Allowed: top, bottom, left, right, center
-     *
      */
     'modal' => [
         'border-radius' => 'rounded-lg',
@@ -97,9 +83,7 @@ return [
     ],
 
     /**
-     * 
      * size => Allowed: sm, md, lg, xl, 2xl
-     *
      */
     'radio' => [
         'size' => 'md',
@@ -115,5 +99,9 @@ return [
 
     'toggle' => [
         'border-radius' => 'rounded',
+    ],
+
+    'stat' => [
+        'border-radius' => 'rounded-lg',
     ],
 ];
