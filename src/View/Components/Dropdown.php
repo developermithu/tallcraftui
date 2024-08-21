@@ -4,6 +4,8 @@ namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
 use Developermithu\Tallcraftui\Helpers\BorderRadiusHelper;
+use Developermithu\Tallcraftui\Helpers\ShadowHelper;
+use Developermithu\Tallcraftui\Helpers\SizeHelper;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -13,27 +15,9 @@ class Dropdown extends Component
         public bool $persistent = false,
     ) {}
 
-    public function sizeClasses()
+    public function sizeClass(): string
     {
-        return match (true) {
-            $this->attributes->get('w-20') => 'w-20',
-            $this->attributes->get('w-24') => 'w-24',
-            $this->attributes->get('w-28') => 'w-28',
-            $this->attributes->get('w-32') => 'w-32',
-            $this->attributes->get('w-36') => 'w-36',
-            $this->attributes->get('w-40') => 'w-40',
-            $this->attributes->get('w-44') => 'w-44',
-            $this->attributes->get('w-48') => 'w-48',
-            $this->attributes->get('w-52') => 'w-52',
-            $this->attributes->get('w-56') => 'w-56',
-            $this->attributes->get('w-60') => 'w-60',
-            $this->attributes->get('w-64') => 'w-64',
-            $this->attributes->get('w-72') => 'w-72',
-            $this->attributes->get('w-80') => 'w-80',
-            $this->attributes->get('w-96') => 'w-96',
-            $this->attributes->get('w-full') => 'w-full',
-            default => config('tallcraftui.dropdown.size', 'w-48'),
-        };
+        return SizeHelper::getSizeClass('dropdown', $this->attributes);
     }
 
     public function dropdownPosition()
@@ -58,6 +42,11 @@ class Dropdown extends Component
     public function roundedClass(): string
     {
         return BorderRadiusHelper::getRoundedClass('dropdown', $this->attributes);
+    }
+
+    public function shadowClass(): string
+    {
+        return ShadowHelper::getShadowClass('dropdown', $this->attributes);
     }
 
     public function render(): View|Closure|string
@@ -90,9 +79,10 @@ class Dropdown extends Component
                     x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
 
                     @class([
-                        "absolute bg-white dark:bg-gray-800 z-[999] mt-3 shadow-lg",
-                        $sizeClasses(),   
+                        "absolute bg-white dark:bg-gray-800 z-[999] mt-3",
+                        $sizeClass(),   
                         $roundedClass(), 
+                        $shadowClass(), 
                         $dropdownPosition(), 
                     ])
                     
@@ -102,15 +92,15 @@ class Dropdown extends Component
                         @click="open = false" 
                     @endif
                 >
-                    <div 
+                    <ul 
                        {{ $attributes->twMerge([
-                                "ring-1 ring-black ring-opacity-5 dark:bg-gray-800 dark:text-gray-100",
+                                "ring-1 ring-black dark:ring-gray-700 ring-opacity-5 dark:bg-gray-800 dark:text-gray-100",
                                 $roundedClass(),    
                             ]) 
                         }}
                     >
                         {{ $content ?? $slot }}
-                    </div>
+                    </ul>
                 </div>
             </div>
         HTML;

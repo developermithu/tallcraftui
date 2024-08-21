@@ -15,9 +15,12 @@ use Developermithu\Tallcraftui\View\Components\Hint;
 use Developermithu\Tallcraftui\View\Components\Icon;
 use Developermithu\Tallcraftui\View\Components\Input;
 use Developermithu\Tallcraftui\View\Components\Label;
+use Developermithu\Tallcraftui\View\Components\Menu;
+use Developermithu\Tallcraftui\View\Components\MenuItem;
 use Developermithu\Tallcraftui\View\Components\Modal;
 use Developermithu\Tallcraftui\View\Components\Radio;
 use Developermithu\Tallcraftui\View\Components\Select;
+use Developermithu\Tallcraftui\View\Components\Separator;
 use Developermithu\Tallcraftui\View\Components\Stat;
 use Developermithu\Tallcraftui\View\Components\Textarea;
 use Developermithu\Tallcraftui\View\Components\Toggle;
@@ -65,6 +68,9 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'dropdown' => Dropdown::class,
             'dropdown-item' => DropdownItem::class,
             'stat' => Stat::class,
+            'menu' => Menu::class,
+            'menu-item' => MenuItem::class,
+            'separator' => Separator::class,
         ];
 
         foreach ($components as $name => $class) {
@@ -76,5 +82,6 @@ class TallCraftUiServiceProvider extends ServiceProvider
         Blade::component('tc-button', Button::class);
         Blade::component('tc-label', Label::class);
         Blade::component('tc-hint', Hint::class);
+        Blade::component('tc-badge', Badge::class);
     }
 }

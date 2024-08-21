@@ -116,10 +116,7 @@ class Stat extends Component
 
     public function iconRightClass()
     {
-        return match (true) {
-            $this->iconRight != null => 'order-2',
-            default => '',
-        };
+        return $this->iconRight != null ? 'order-2' : '';
     }
 
     public function roundedClass(): string

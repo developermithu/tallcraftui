@@ -15,7 +15,7 @@ return [
      * prefix => 'tc-'   // <x-tc-input />
      */
     'prefix' => '',
-
+ 
     /**
      * type => Allowed: heroicons
      * style => Allowed: outline, solid
@@ -58,12 +58,14 @@ return [
 
     /**
      * position => Allowed: top, bottom, left, right
-     * size => Allowed: w-20, w-24, w-28, w-32, w-36, w-40, w-44, w-48, w-52, w-56, w-60, w-64, w-72, w-80, w-96, w-full
+     * width => Allowed: w-20, w-24, w-28, w-32, w-36, w-40, w-44, w-48, w-52, w-56, w-60, w-64, w-72, w-80, w-96, w-full
+     * shadow => Allowed: shadow, shadow-sm, shadow-md, shadow-lg, shadow-xl, shadow-2xl, shadow-none
      */
     'dropdown' => [
         'border-radius' => 'rounded',
         'position' => 'top',
-        'size' => 'w-48',
+        'width' => 'w-48',
+        'shadow' => 'shadow',
     ],
 
     'input' => [
@@ -103,5 +105,15 @@ return [
 
     'stat' => [
         'border-radius' => 'rounded-lg',
+    ],
+
+    /**
+     * shadow => Allowed: shadow, shadow-sm, shadow-md, shadow-lg, shadow-xl, shadow-2xl, shadow-none
+     * width => Allowed: w-20, w-24, w-28, w-32, w-36, w-40, w-44, w-48, w-52, w-56, w-60, w-64, w-72, w-80, w-96, w-full
+     */
+    'menu' => [
+        'border-radius' => 'rounded-md',
+        'shadow' => 'shadow',
+        'width' => 'w-56',
     ],
 ];
