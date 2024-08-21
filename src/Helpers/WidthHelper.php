@@ -4,9 +4,9 @@ namespace Developermithu\Tallcraftui\Helpers;
 
 use Illuminate\View\ComponentAttributeBag;
 
-class SizeHelper
+class WidthHelper
 {
-    public static function getSizeClass(string $componentName, ComponentAttributeBag $attributes): string
+    public static function getWidthClass(string $componentName, ComponentAttributeBag $attributes): string
     {
         return match (true) {
             $attributes->get('w-20') => 'w-20',

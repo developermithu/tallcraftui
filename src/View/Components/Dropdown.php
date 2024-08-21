@@ -5,7 +5,7 @@ namespace Developermithu\Tallcraftui\View\Components;
 use Closure;
 use Developermithu\Tallcraftui\Helpers\BorderRadiusHelper;
 use Developermithu\Tallcraftui\Helpers\ShadowHelper;
-use Developermithu\Tallcraftui\Helpers\SizeHelper;
+use Developermithu\Tallcraftui\Helpers\WidthHelper;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -16,9 +16,9 @@ class Dropdown extends Component
         public bool $noTransition = false,
     ) {}
 
-    public function sizeClass(): string
+    public function widthClass(): string
     {
-        return SizeHelper::getSizeClass('dropdown', $this->attributes);
+        return WidthHelper::getWidthClass('dropdown', $this->attributes);
     }
 
     public function dropdownPosition()
@@ -86,7 +86,7 @@ class Dropdown extends Component
 
                     @class([
                         "absolute bg-white dark:bg-gray-800 z-[999] mt-3",
-                        $sizeClass(),   
+                        $widthClass(),   
                         $roundedClass(), 
                         $shadowClass(), 
                         $dropdownPosition(), 

@@ -1,24 +1,40 @@
 <?php
 
+use Developermithu\Tallcraftui\Enums\BorderRadius;
+use Developermithu\Tallcraftui\Enums\Position;
+use Developermithu\Tallcraftui\Enums\Shadow;
+use Developermithu\Tallcraftui\Enums\Size;
+use Developermithu\Tallcraftui\Enums\Width;
+
 return [
+
     /**
-     * ==================================
-     * Default prefix for all components
-     * ==================================
+     * --------------------------------------------------------------------------
+     * Default Component Prefix
+     * --------------------------------------------------------------------------
      *
-     * Note: After changing the prefix, clear the view cache
-     * using `php artisan view:clear`
+     * The prefix applied to all components. After changing this value, be sure
+     * to clear the view cache using `php artisan view:clear`.
      *
      * Examples:
      *
-     * prefix => ''       // <x-input />
-     * prefix => 'tc-'   // <x-tc-input />
+     * 'prefix' => ''       // <x-input />
+     * 'prefix' => 'tc-'    // <x-tc-input />
+     * 
      */
     'prefix' => '',
- 
+
     /**
+     * --------------------------------------------------------------------------
+     * Icon Configuration
+     * --------------------------------------------------------------------------
+     *
+     * The default icon settings for the components. You can specify the type
+     * and style of icons that should be used.
+     *
      * type => Allowed: heroicons
      * style => Allowed: outline, solid
+     * 
      */
     'icons' => [
         'type' => 'heroicons',
@@ -26,94 +42,82 @@ return [
     ],
 
     /**
-     * border-radius => Allowed: rounded, rounded-sm, rounded-md, rounded-lg, rounded-xl, rounded-2xl, rounded-3xl, rounded-full, rounded-none
+     * --------------------------------------------------------------------------
+     * UI Components
+     * --------------------------------------------------------------------------
+     *
+     * Configure the appearance and behavior of ui components.
      */
     'alert' => [
-        'border-radius' => 'rounded',
+        'border-radius' => BorderRadius::Rounded->value,
     ],
 
     'badge' => [
-        'border-radius' => 'rounded',
+        'border-radius' => BorderRadius::Rounded->value,
     ],
 
     'breadcrumb' => [
-        'border-radius' => 'rounded',
+        'border-radius' => BorderRadius::Rounded->value,
     ],
 
-    /**
-     * size => Allowed: sm, md, lg, xl, 2xl
-     */
     'button' => [
-        'border-radius' => 'rounded',
-        'size' => 'md',
+        'size' => Size::MD->value,
+        'border-radius' => BorderRadius::Rounded->value,
     ],
 
-    /**
-     * size => Allowed: sm, md, lg, xl, 2xl
-     */
-    'checkbox' => [
-        'border-radius' => 'rounded',
-        'size' => 'md',
-    ],
-
-    /**
-     * position => Allowed: top, bottom, left, right
-     * width => Allowed: w-20, w-24, w-28, w-32, w-36, w-40, w-44, w-48, w-52, w-56, w-60, w-64, w-72, w-80, w-96, w-full
-     * shadow => Allowed: shadow, shadow-sm, shadow-md, shadow-lg, shadow-xl, shadow-2xl, shadow-none
-     */
     'dropdown' => [
-        'border-radius' => 'rounded',
-        'position' => 'top',
-        'width' => 'w-48',
-        'shadow' => 'shadow',
+        'width' => Width::W48->value,
+        'shadow' => Shadow::Shadow->value,
+        'position' => Position::TOP->value,
+        'border-radius' => BorderRadius::Rounded->value,
     ],
 
-    'input' => [
-        'border-radius' => 'rounded',
-    ],
-
-    /**
-     * size => Allowed: sm, md, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl, 7xl, full
-     * blur => Allowed: true, false
-     * position => Allowed: top, bottom, left, right, center
-     */
     'modal' => [
-        'border-radius' => 'rounded-lg',
-        'size' => 'lg',
-        'blur' => false,
-        'position' => 'top',
-    ],
-
-    /**
-     * size => Allowed: sm, md, lg, xl, 2xl
-     */
-    'radio' => [
-        'size' => 'md',
-    ],
-
-    'select' => [
-        'border-radius' => 'rounded',
-    ],
-
-    'textarea' => [
-        'border-radius' => 'rounded',
-    ],
-
-    'toggle' => [
-        'border-radius' => 'rounded',
+        'size' => Size::LG->value,
+        'blur' => false, // Allowed: true, false
+        'position' => Position::TOP->value,
+        'border-radius' => BorderRadius::RoundedLg->value,
     ],
 
     'stat' => [
-        'border-radius' => 'rounded-lg',
+        'border-radius' => BorderRadius::RoundedLg->value,
+    ],
+
+    'menu' => [
+        'width' => Width::W56->value,
+        'shadow' => Shadow::Shadow->value,
+        'border-radius' => BorderRadius::RoundedMd->value,
     ],
 
     /**
-     * shadow => Allowed: shadow, shadow-sm, shadow-md, shadow-lg, shadow-xl, shadow-2xl, shadow-none
-     * width => Allowed: w-20, w-24, w-28, w-32, w-36, w-40, w-44, w-48, w-52, w-56, w-60, w-64, w-72, w-80, w-96, w-full
+     * --------------------------------------------------------------------------
+     * Form Components
+     * --------------------------------------------------------------------------
+     *
+     * Configure the appearance and behavior of form components.
      */
-    'menu' => [
-        'border-radius' => 'rounded-md',
-        'shadow' => 'shadow',
-        'width' => 'w-56',
+    'checkbox' => [
+        'size' => Size::MD->value,
+        'border-radius' => BorderRadius::Rounded->value,
+    ],
+
+    'input' => [
+        'border-radius' => BorderRadius::Rounded->value,
+    ],
+
+    'radio' => [
+        'size' => Size::MD->value,
+    ],
+
+    'select' => [
+        'border-radius' => BorderRadius::Rounded->value,
+    ],
+
+    'textarea' => [
+        'border-radius' => BorderRadius::Rounded->value,
+    ],
+
+    'toggle' => [
+        'border-radius' => BorderRadius::Rounded->value,
     ],
 ];

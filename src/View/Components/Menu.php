@@ -5,7 +5,7 @@ namespace Developermithu\Tallcraftui\View\Components;
 use Closure;
 use Developermithu\Tallcraftui\Helpers\BorderRadiusHelper;
 use Developermithu\Tallcraftui\Helpers\ShadowHelper;
-use Developermithu\Tallcraftui\Helpers\SizeHelper;
+use Developermithu\Tallcraftui\Helpers\WidthHelper;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -16,9 +16,9 @@ class Menu extends Component
         public ?string $icon = null,
     ) {}
 
-    public function sizeClass(): string
+    public function widthClass(): string
     {
-        return SizeHelper::getSizeClass('menu', $this->attributes);
+        return WidthHelper::getWidthClass('menu', $this->attributes);
     }
 
     public function roundedClass(): string
@@ -36,7 +36,7 @@ class Menu extends Component
         return <<<'HTML'
             <ul {{ $attributes->withoutTwMergeClasses()->twMerge([
                         "z-10 py-1 mt-2 bg-white dark:bg-gray-800 ring-1 ring-black dark:ring-gray-700 ring-opacity-5 focus:outline-none",
-                        $sizeClass(),
+                        $widthClass(),
                         $roundedClass(),    
                         $shadowClass(),    
                     ]) 
