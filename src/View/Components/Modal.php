@@ -12,6 +12,7 @@ class Modal extends Component
     public function __construct(
         public ?string $id = null,
         public bool $persistent = false,
+        public bool $noTransition = false,
     ) {}
 
     public function sizeClasses()
@@ -118,30 +119,32 @@ class Modal extends Component
                     @if(!$persistent)
                         x-on:click="show = false"
                     @endif
-                
-                    x-transition:enter="ease-out duration-300"
-                    x-transition:enter-start="opacity-0"
-                    x-transition:enter-end="opacity-100"
-                    x-transition:leave="ease-in duration-200"
-                    x-transition:leave-start="opacity-100"
-                    x-transition:leave-end="opacity-0">
-                    <div 
-                        @class([
-                            "absolute inset-0 bg-gray-700/80",
-                            $bgBlurClasses(),
-                        ])
-                    ></div>
+                    
+                    @if(!$noTransition)
+                        x-transition:enter="ease-out duration-300"
+                        x-transition:enter-start="opacity-0"
+                        x-transition:enter-end="opacity-100"
+                        x-transition:leave="ease-in duration-200"
+                        x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0"
+                    @endif 
+                >
+                    <div @class(["absolute inset-0 bg-gray-700/80", $bgBlurClasses()])></div>
                 </div>
 
                 <div 
                     x-show="show" 
                     x-trap.inert.noscroll="show"
-                    x-transition:enter="ease-out duration-300"
-                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                    x-transition:leave="ease-in duration-200"
-                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    
+                    @if(!$noTransition)
+                        x-transition:enter="ease-out duration-300"
+                        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                        x-transition:leave="ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    @endif 
+                    
                     {{ 
                         $attributes
                             ->except('wire:model')
