@@ -8,13 +8,17 @@ Laravel blade UI component library built on TALL stack ([TailwindCSS](https://ta
  <a href="https://github.com/developermithu/tallcraftui?tab=MIT-1-ov-file"><img src="https://img.shields.io/github/license/developermithu/tallcraftui?style=flat-square" alt="GitHub license"></a>
 </p>
 
+## Documentation
+
+Please refer to the [TallCraftUI official website](https://tallcraftui.developermithu.com) for complete documentation. 🚀
+
 
 ## Basic Usage
 
 
 ```php
 @php
- $countries = App\Models\Country::pluck('name', 'id');
+    $countries = App\Models\Country::pluck('name', 'id');
 @endphp
 
 <form wire:submit="create">
@@ -29,7 +33,7 @@ Laravel blade UI component library built on TALL stack ([TailwindCSS](https://ta
 Error will be automatically displayed after submitting the form if it exists. You can also display all errors in this way:
 
 ```php
-if($errors->any())
+@if($errors->any())
     <x-alert :errors="$errors->all()" red />
 @endif
 ```
