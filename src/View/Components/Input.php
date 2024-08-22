@@ -123,7 +123,7 @@ class Input extends Component
                     $uuid = $uuid . $name;
                     $required = $attributes->get('required') ? true : false;
 
-                    $errorClass = $error ? 'border-red-500 dark:border-red-500 focus:border-red-500 focus:ring-red-500': '';
+                    $errorClass = $error ? 'border-red-500 dark:border-red-500 focus:border-red-500 dark:focus:border-red-500 focus:ring-red-500': '';
                 @endphp
             
                 @if($label)
@@ -159,7 +159,7 @@ class Input extends Component
                                     ->merge(['type' => 'text'])
                                     ->withoutTwMergeClasses()
                                     ->twMerge([
-                                        "block w-full border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
+                                        "block w-full border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
                                         $iconLeftClass(),
                                         $iconRightClass(),
                                         $inputPrefixPrependClass(),

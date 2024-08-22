@@ -84,8 +84,8 @@ class Stat extends Component
     public function iconBgColor(): string
     {
         return match (true) {
-            $this->primary => 'bg-primary/20 dark:bg-primary/20 dark:text-gray-200',
-            $this->secondary => 'bg-secondary-500/20 dark:bg-secondary-500/50 dark:text-gray-200',
+            $this->primary => 'bg-primary/20 dark:bg-primary/50 dark:text-gray-200',
+            $this->secondary => 'bg-secondary/20 dark:bg-secondary/50 dark:text-gray-200',
             $this->black => 'bg-black-500/20 dark:bg-black-500/50 dark:text-gray-200',
             $this->white => 'bg-white-500/20 dark:bg-white-500/50 dark:text-gray-200',
             $this->slate => 'bg-slate-500/20 dark:bg-slate-500/50 dark:text-gray-200',
@@ -127,7 +127,7 @@ class Stat extends Component
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-            <div {{ $attributes->twMerge([
+            <div {{ $attributes->withoutTwMergeClasses()->twMerge([
                             "flex flex-col bg-white border shadow-sm dark:bg-gray-800",
                             $statColorClasses(),
                             $roundedClass(),
@@ -144,7 +144,7 @@ class Stat extends Component
                                 $roundedClass(),
                             ) 
                         }}>
-                            <x-tc-icon :name="$icon ?? $iconRight" class=" size-5 shrink-0" />
+                            <x-tc-icon :name="$icon ?? $iconRight" class="size-5 shrink-0" />
                         </div>
                     @endif
 
