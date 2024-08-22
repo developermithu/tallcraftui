@@ -13,6 +13,7 @@ class Modal extends Component
         public ?string $id = null,
         public bool $persistent = false,
         public bool $noTransition = false,
+        public bool $dismissible = false,
     ) {}
 
     public function sizeClasses()
@@ -28,7 +29,7 @@ class Modal extends Component
             '5xl' => 'w-full sm:mx-6 md:mx-8 lg:mx-0 sm:max-w-5xl',
             '6xl' => 'w-full sm:mx-6 md:mx-8 xl:mx-0 sm:max-w-6xl',
             '7xl' => 'w-full sm:mx-6 md:mx-8 2xl:mx-0 sm:max-w-7xl',
-            'full' => 'w-full mx-4 sm:mx-6 md:mx-8 lg:mx-14 xl:mx-20 sm:max-w-full',
+            'full' => 'fixed inset-0 w-screen h-screen',
         ];
 
         foreach ($sizes as $key => $class) {
@@ -108,7 +109,8 @@ class Modal extends Component
                 id="{{ $id }}"
 
                 @class([
-                    "fixed inset-0 z-[999999] px-4 py-14 overflow-y-auto jetstream-modal sm:px-0", $modalPosition()
+                    "fixed inset-0 z-[999999] px-4 py-14 overflow-y-auto jetstream-modal sm:px-0", 
+                    $modalPosition(),
                 ])
                 
                 style="display: none;"
@@ -150,13 +152,19 @@ class Modal extends Component
                         $attributes
                             ->except('wire:model')
                             ->twMerge([
-                                "overflow-hidden transition-all transform bg-white dark:bg-gray-900 shadow-xl",
+                                "overflow-hidden transition-all transform p-4 md:p-5 bg-white dark:bg-gray-900 shadow-xl",
                                 $sizeClasses(),
                                 $roundedClass(),
                             ]) 
                     }}
                 >
                     {{ $slot }}
+
+                    @if($dismissible)
+                        <div class="absolute top-2.5 right-3">
+                            <x-tc-button x-on:click="$dispatch('close')" icon="x-mark" red flat circle />
+                        </div>
+                    @endif
                 </div>
             </div>
         HTML;
