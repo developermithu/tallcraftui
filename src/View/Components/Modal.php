@@ -54,6 +54,7 @@ class Modal extends Component
             $this->attributes->get('blur-xl') => 'backdrop-blur-xl',
             $this->attributes->get('blur-2xl') => 'backdrop-blur-2xl',
             $this->attributes->get('blur-3xl') => 'backdrop-blur-3xl',
+            $this->attributes->get('blur-none') => 'backdrop-blur-none',
 
             default => match ($isDefaultBlur) {
                 true => 'backdrop-blur-sm',
