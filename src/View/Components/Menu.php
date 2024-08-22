@@ -14,6 +14,7 @@ class Menu extends Component
     public function __construct(
         public ?string $title = null,
         public ?string $icon = null,
+        public bool $iconOutline = false,
     ) {}
 
     public function widthClass(): string
@@ -45,7 +46,11 @@ class Menu extends Component
                 @if($title)
                     <li {{ $attributes->twMergeFor("title", "flex items-center px-4 pt-1 pb-2 text-xs font-medium text-gray-400 dark:text-gray-500 uppercase gap-x-2") }}>
                         @if($icon)
-                            <x-tc-icon :name="$icon" {{ $attributes->twMergeFor('icon', 'size-4') }} />
+                            <x-tc-icon 
+                                :name="$icon" 
+                                :solid="$iconOutline ? false : true" 
+                                {{ $attributes->twMergeFor('icon', 'size-4') }} 
+                            />
                         @endif
 
                         {{ __($title)}}

@@ -11,6 +11,7 @@ class MenuItem extends Component
     public function __construct(
         public ?string $label = null,
         public ?string $icon = null,
+        public bool $iconOutline = false,
         public ?string $badge = null,
         public bool $badgeEnd = false,
 
@@ -42,7 +43,11 @@ class MenuItem extends Component
                     @endif
                 >
                     @if($icon)
-                        <x-tc-icon :name="$icon" solid {{ $attributes->twMergeFor('icon', 'text-gray-400 transition ease-in-out group-hover:text-gray-500 dark:group-hover:text-gray-300') }} />
+                        <x-tc-icon 
+                            :name="$icon" 
+                            :solid="$iconOutline ? false : true"
+                            {{ $attributes->twMergeFor('icon', 'text-gray-400 transition ease-in-out group-hover:text-gray-500 dark:group-hover:text-gray-300') }}                    
+                        />
                     @endif
 
                     {{ $label ? __($label) : '' }}

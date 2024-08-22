@@ -13,6 +13,9 @@ class Dropdown extends Component
 {
     public function __construct(
         public bool $persistent = false,
+        public ?string $title = null,
+        public ?string $icon = null,
+        public bool $iconOutline = false,
         public bool $noTransition = false,
     ) {}
 
@@ -101,10 +104,25 @@ class Dropdown extends Component
                     <ul 
                        {{ $attributes->twMerge([
                                 "ring-1 ring-black dark:ring-gray-700 ring-opacity-5 dark:bg-gray-800 dark:text-gray-100",
-                                $roundedClass(),    
+                                $roundedClass(),  
+                                $title ? 'py-1' : '',
                             ]) 
                         }}
                     >
+                        @if($title)
+                            <li {{ $attributes->twMergeFor("title", "flex items-center px-4 pt-1 pb-2 text-xs font-medium text-gray-400 dark:text-gray-500 uppercase gap-x-2") }}>
+                                @if($icon)
+                                    <x-tc-icon 
+                                        :name="$icon" 
+                                        :solid="$iconOutline ? false : true" 
+                                        {{ $attributes->twMergeFor('icon', 'size-4') }} 
+                                    />
+                                @endif
+
+                                {{ __($title)}}
+                            </li>
+                        @endif
+                    
                         {{ $content ?? $slot }}
                     </ul>
                 </div>

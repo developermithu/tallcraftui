@@ -15,7 +15,7 @@ class Icon extends Component
 
     public function name()
     {
-        $configStyle = config('tallcraftui.icons.style');
+        $configStyle = config('tallcraftui.icons.style', 'outline');
         $defaultStyle = $configStyle === 'solid' ? 's' : 'o';
 
         $iconFormat = $this->solid ? 's' : $defaultStyle;
