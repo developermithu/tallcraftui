@@ -1,35 +1,52 @@
 {
-    "name": "developermithu/tallcraftui",
-    "description": "TallCraftUI is a versatile and customizable UI package designed for the TALL stack.",
-    "type": "library",
-    "license": "MIT",
-    "keywords": ["laravel", "livewire", "tallcraftui", "tallstack", "tallstack ui components", "laravel livewire ui components", "Blade ui components"],
-    "authors": [
-        {
-            "name": "developermithu",
-            "email": "developermithu@gmail.com",
-            "homepage": "https://developermithu.com"
-        }
-    ],
-    "require": {
-        "blade-ui-kit/blade-heroicons": "^2.1",
-        "gehrisandro/tailwind-merge-laravel": "^1.2"
-    },
-    "require-dev": {
-        "laravel/pint": "^1.16"
-    },
-    "autoload": {
-        "psr-4": {
-            "Developermithu\\Tallcraftui\\": "src/"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Developermithu\\Tallcraftui\\TallCraftUiServiceProvider"
-            ]
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+  "name": "developermithu/tallcraftui",
+  "description": "TallCraftUI is a Laravel blade UI components library built on TALL stack",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "tallcraftui",
+    "laravel",
+    "livewire",
+    "livewire 3",
+    "tailwindcss",
+    "alpinejs",
+    "tallstackui",
+    "tallstack ui components",
+    "blade components",
+    "blade ui components",
+    "laravel blade ui components",
+    "livewire ui components",
+    "livewire packages",
+    "livewire ui library",
+    "laravel ui library",
+    "ui components"
+  ],
+  "authors": [
+    {
+      "name": "developermithu",
+      "email": "developermithu@gmail.com",
+      "homepage": "https://developermithu.com"
+    }
+  ],
+  "require": {
+    "blade-ui-kit/blade-heroicons": "^2.1",
+    "gehrisandro/tailwind-merge-laravel": "^1.2"
+  },
+  "require-dev": {
+    "laravel/pint": "^1.16"
+  },
+  "autoload": {
+    "psr-4": {
+      "Developermithu\\Tallcraftui\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Developermithu\\Tallcraftui\\TallCraftUiServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
