@@ -30,43 +30,45 @@ class InstallTallcraftuiCommand extends Command
         $this->info('🌟  Give it a star: https://github.com/developermithu/tallcraftui');
     }
 
+    /**
+     * Setup Tailwind contents
+     */
     private function setupTailwindConfig()
     {
-        /**
-         * Setup Tailwind contents
-         */
         $tailwindJsPath = base_path('tailwind.config.js');
         $tailwindJs = File::get($tailwindJsPath);
 
-        $originalContents = str($tailwindJs)
-            ->after('contents')
-            ->after('[')
-            ->before(']');
+        $configContent = str($tailwindJs);
 
-        if ($originalContents->contains('developermithu/tallcraftui')) {
-            return $this->warn('TallCraftUI already installed.');
+        // Check if the path is already in the 'content' array to avoid duplicates
+        if ($configContent->contains('developermithu/tallcraftui')) {
+            return $this->warn('TallCraftUI is already installed.');
         }
 
-        $this->info("\n".'Installing TallCraftUI...');
+        $this->info("\n" . 'Installing TallCraftUI...');
 
-        $contents = $originalContents
-            ->squish()
+        // Locate the content array
+        $contentArrayStart = $configContent->after('content:')->after('[');
+        $contentArrayEnd = $contentArrayStart->before(']');
+
+        // Trim the content array
+        $newContentArray = $contentArrayEnd
             ->trim()
-            ->remove(' ')
             ->explode(',')
-            ->add('"./vendor/developermithu/tallcraftui/src/View/Components/**/*.php",')
             ->filter()
-            ->implode(', ');
+            ->map(fn($item) => trim($item))
+            ->push('"./vendor/developermithu/tallcraftui/src/View/Components/**/*.php",') // Add the new path as the last item
+            ->implode(",\n\t\t");
 
-        $contents = str($contents)
-            ->prepend("\n\t\t")
-            ->replace(',', ",\n\t\t")
-            ->append("\r\n\t");
+        // Format the content array with correct syntax and indentation
+        $formattedContentArray = str("\n\t\t" . $newContentArray . "\n\t");
 
-        $contents = str($tailwindJs)->replace($originalContents, $contents);
+        // Replace the original content array with the updated one
+        $updatedConfigContent = $configContent->replace($contentArrayEnd, $formattedContentArray);
 
-        File::put($tailwindJsPath, $contents);
-
+        // Write the updated Tailwind config back to the file
+        File::put($tailwindJsPath, $updatedConfigContent);
+        
         $this->info('TallCraftUI installed successfully.');
     }
 
