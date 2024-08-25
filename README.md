@@ -1,4 +1,6 @@
-# [TallCraftUi](https://tallcraftui.developermithu.com)  
+# [TallCraftUI](https://tallcraftui.developermithu.com)  
+
+![Screenshot](/stubs/img/screenshot.png "Official Documentation Site")
 
 <!-- <p align="center"> -->
  <a href="https://packagist.org/packages/developermithu/tallcraftui"><img src="https://img.shields.io/packagist/v/developermithu/tallcraftui?style=flat-square" alt="Latest Version on Packagist"></a>
@@ -16,27 +18,8 @@
 
 For complete documentation, please visit the official [TallCraftUI](https://tallcraftui.developermithu.com) website.
 
-
-## 💻 Basic Usage
-
-```blade
-@php
-    $countries = App\Models\Country::pluck('name', 'id');
-@endphp
-
-@if($errors->any())
-    <x-alert :errors="$errors->all()" red />
-@endif
-
-<form wire:submit="create">
-    <x-input label="Name *" wire:model="name" />
-    <x-input label="Email *" wire:model="email" />
-    <x-select label="Country" wire:model="country_id" :options="$countries" />
-    
-    <x-button label="Submit" spinner="create" />
-</form>
-```
-
+## 🔧 Contributing
+We appreciate your willingness to contribute to **TallCraftUI**. You can find the contribution guidelines in the [documentation site](https://tallcraftui.developermithu.com/docs/how-to-contribute).
 
 ## 📝 License
 
