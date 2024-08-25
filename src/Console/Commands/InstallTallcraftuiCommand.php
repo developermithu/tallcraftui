@@ -10,7 +10,7 @@ class InstallTallcraftuiCommand extends Command
 {
     protected $signature = 'install:tallcraftui';
 
-    protected $description = 'Install and Setup TallcraftUI';
+    protected $description = 'Install and Setup TallCraftUI';
 
     /**
      * Execute the console command.
@@ -44,10 +44,10 @@ class InstallTallcraftuiCommand extends Command
             ->before(']');
 
         if ($originalContents->contains('developermithu/tallcraftui')) {
-            return $this->warn('TallcraftUI already installed.');
+            return $this->warn('TallCraftUI already installed.');
         }
 
-        $this->info("\n".'Installing TallcraftUI...');
+        $this->info("\n".'Installing TallCraftUI...');
 
         $contents = $originalContents
             ->squish()
@@ -67,7 +67,7 @@ class InstallTallcraftuiCommand extends Command
 
         File::put($tailwindJsPath, $contents);
 
-        $this->info('TallcraftUI installed successfully.');
+        $this->info('TallCraftUI installed successfully.');
     }
 
     public function renameComponentPrefix()
@@ -77,18 +77,19 @@ class InstallTallcraftuiCommand extends Command
         collect(['jetstream', 'breeze'])->each(function (string $target) use ($composerJson) {
             if (str($composerJson)->contains($target)) {
 
-                Artisan::call('vendor:publish --force --tag tallcraftui-config');
+                Artisan::call('vendor:publish --tag=tallcraftui-config --force');
 
                 $path = base_path('config/tallcraftui.php');
                 $config = File::get($path);
 
                 // Replaces existing prefix with 'tc-' in the tallcraftui.php configuration file.
-                $contents = str($config)->replace("'prefix' => ''", "'prefix' => 'tc-'");
+                $contents = str($config)->replace("'prefix' => env('TALLCRAFTUI_PREFIX', '')", "'prefix' => env('TALLCRAFTUI_PREFIX', 'tc-')");
+
                 File::put($path, $contents);
 
                 $this->info("\n");
-                $this->warn("Added 'tc-' prefix to tallcraftuiUI components to avoid conflicts with `$target` 🚨");
-                $this->warn('* Examples: <x-tc-button />, <x-tc-input />');
+                $this->warn("Added 'tc-' prefix to TallCraftUI components to avoid conflicts with `$target` 🚨");
+                $this->warn('* Usage Examples: <x-tc-button />');
                 $this->warn('* See config/tallcraftui.php for details.');
             }
         });
