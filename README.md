@@ -1,17 +1,15 @@
-# [TallCraftUI](https://tallcraftui.developermithu.com)  
+[![Screenshot](https://tallcraftui.developermithu.com/assets/img/tallcraftui-website.png "Official Documentation Site")](https://tallcraftui.developermithu.com)
 
-[![Screenshot](/stubs/img/screenshot.png "Official Documentation Site")](https://tallcraftui.developermithu.com)
-
-<!-- <p align="center"> -->
+<p align="center">
  <a href="https://packagist.org/packages/developermithu/tallcraftui"><img src="https://img.shields.io/packagist/v/developermithu/tallcraftui?style=flat-square" alt="Latest Version on Packagist"></a>
  <a href="https://packagist.org/packages/developermithu/tallcraftui"><img src="https://img.shields.io/packagist/dt/developermithu/tallcraftui?style=flat-square" alt="Total Downloads"></a>
  <a href="https://github.com/developermithu/tallcraftui?tab=MIT-1-ov-file"><img src="https://img.shields.io/github/license/developermithu/tallcraftui?style=flat-square" alt="GitHub license"></a>
-<!-- </p> -->
+</p>
 
 
 ## 🚀 Introduction 
 
-**TallCraftUI** is a Laravel blade UI components library built on the **TALL stack**, providing **pre-built**, **customizable components** that seamlessly integrate with **Livewire** to create modern, responsive applications with **minimal effort**.
+[TallCraftUI](https://tallcraftui.developermithu.com) is a Laravel blade UI components library built on the [TALL Stack](https://tallstack.dev), providing **pre-built**, **customizable components** that seamlessly integrate with [Livewire](https://livewire.laravel.com) to create modern, responsive applications with **minimal effort**.
 
 
 ## 📚 Documentation
