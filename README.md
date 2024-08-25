@@ -1,6 +1,6 @@
 # [TallCraftUI](https://tallcraftui.developermithu.com)  
 
-![Screenshot](/stubs/img/screenshot.png "Official Documentation Site")
+[![Screenshot](/stubs/img/screenshot.png "Official Documentation Site")](https://tallcraftui.developermithu.com)
 
 <!-- <p align="center"> -->
  <a href="https://packagist.org/packages/developermithu/tallcraftui"><img src="https://img.shields.io/packagist/v/developermithu/tallcraftui?style=flat-square" alt="Latest Version on Packagist"></a>
