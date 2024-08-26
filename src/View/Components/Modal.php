@@ -14,6 +14,7 @@ class Modal extends Component
         public bool $persistent = false,
         public bool $noTransition = false,
         public bool $dismissible = false,
+        public bool $withoutTrapFocus = false,
     ) {}
 
     public function sizeClasses()
@@ -137,7 +138,10 @@ class Modal extends Component
 
                 <div 
                     x-show="show" 
-                    x-trap.inert.noscroll="show"
+                    
+                    @if(config('tallcraftui.modal.trap-focus', false) && !$withoutTrapFocus)
+                        x-trap.inert.noscroll="show"
+                    @endif
                     
                     @if(!$noTransition)
                         x-transition:enter="ease-out duration-300"
