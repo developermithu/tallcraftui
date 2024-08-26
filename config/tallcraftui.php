@@ -1,6 +1,8 @@
 <?php
 
 use Developermithu\Tallcraftui\Enums\BorderRadius;
+use Developermithu\Tallcraftui\Enums\DropdownAnimation;
+use Developermithu\Tallcraftui\Enums\DropdownPosition;
 use Developermithu\Tallcraftui\Enums\Position;
 use Developermithu\Tallcraftui\Enums\Shadow;
 use Developermithu\Tallcraftui\Enums\Size;
@@ -68,7 +70,8 @@ return [
     'dropdown' => [
         'width' => Width::W48->value,
         'shadow' => Shadow::Shadow->value,
-        'position' => Position::TOP->value,
+        'position' => DropdownPosition::BOTTOM->value,
+        'animation' => DropdownAnimation::FADE->value,
         'border-radius' => BorderRadius::Rounded->value,
     ],
 
