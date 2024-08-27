@@ -100,10 +100,12 @@ class Modal extends Component
 
             <div
                 x-data="{ show: @entangle($attributes->wire('model')) }"
-                x-on:close.stop="show = false"
+                @close.stop="show = false"
+                @close.window="show = false"
+                @close-modal.window="show = false"
                 
                 @if(!$persistent)
-                    x-on:keydown.escape.window="show = false"
+                    @keydown.escape.window="show = false"
                 @endif
 
                 x-show="show"
@@ -121,7 +123,7 @@ class Modal extends Component
                     class="fixed inset-0 transition-all transform"
                     
                     @if(!$persistent)
-                        x-on:click="show = false"
+                        @click="show = false"
                     @endif
                     
                     @if(!$noTransition)
@@ -166,7 +168,7 @@ class Modal extends Component
 
                     @if($dismissible)
                         <div class="absolute top-2.5 right-3">
-                            <x-tc-button x-on:click="$dispatch('close')" icon="x-mark" red flat circle />
+                            <x-tc-button @click="$dispatch('close')" icon="x-mark" red flat circle />
                         </div>
                     @endif
                 </div>
