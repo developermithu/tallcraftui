@@ -45,7 +45,7 @@ class InstallTallcraftuiCommand extends Command
             return $this->warn('TallCraftUI is already installed.');
         }
 
-        $this->info("\n" . 'Installing TallCraftUI...');
+        $this->info("\n".'Installing TallCraftUI...');
 
         // Locate the content array
         $contentArrayStart = $configContent->after('content:')->after('[');
@@ -56,19 +56,19 @@ class InstallTallcraftuiCommand extends Command
             ->trim()
             ->explode(',')
             ->filter()
-            ->map(fn($item) => trim($item))
+            ->map(fn ($item) => trim($item))
             ->push('"./vendor/developermithu/tallcraftui/src/View/Components/**/*.php",') // Add the new path as the last item
             ->implode(",\n\t\t");
 
         // Format the content array with correct syntax and indentation
-        $formattedContentArray = str("\n\t\t" . $newContentArray . "\n\t");
+        $formattedContentArray = str("\n\t\t".$newContentArray."\n\t");
 
         // Replace the original content array with the updated one
         $updatedConfigContent = $configContent->replace($contentArrayEnd, $formattedContentArray);
 
         // Write the updated Tailwind config back to the file
         File::put($tailwindJsPath, $updatedConfigContent);
-        
+
         $this->info('TallCraftUI installed successfully.');
     }
 

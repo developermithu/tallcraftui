@@ -9,6 +9,7 @@ use Developermithu\Tallcraftui\View\Components\Breadcrumb;
 use Developermithu\Tallcraftui\View\Components\BreadcrumbItem;
 use Developermithu\Tallcraftui\View\Components\Button;
 use Developermithu\Tallcraftui\View\Components\Checkbox;
+use Developermithu\Tallcraftui\View\Components\Drawer;
 use Developermithu\Tallcraftui\View\Components\Dropdown;
 use Developermithu\Tallcraftui\View\Components\DropdownItem;
 use Developermithu\Tallcraftui\View\Components\Hint;
@@ -65,6 +66,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'breadcrumb' => Breadcrumb::class,
             'breadcrumb-item' => BreadcrumbItem::class,
             'modal' => Modal::class,
+            'drawer' => Drawer::class,
             'dropdown' => Dropdown::class,
             'dropdown-item' => DropdownItem::class,
             'stat' => Stat::class,

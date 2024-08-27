@@ -22,7 +22,6 @@ return [
      *
      * 'prefix' => ''       // <x-input />
      * 'prefix' => 'tc-'    // <x-tc-input />
-     * 
      */
     'prefix' => env('TALLCRAFTUI_PREFIX', ''),
 
@@ -36,7 +35,6 @@ return [
      *
      * type => Allowed: heroicons
      * style => Allowed: outline, solid
-     * 
      */
     'icons' => [
         'type' => 'heroicons',
@@ -73,6 +71,12 @@ return [
         'position' => DropdownPosition::BOTTOM->value,
         'animation' => DropdownAnimation::FADE->value,
         'border-radius' => BorderRadius::Rounded->value,
+    ],
+
+    'drawer' => [
+        'width' => 'lg', // Allowed: sm, md, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl, 7xl, full
+        'blur' => false,
+        'trap-focus' => true,
     ],
 
     'modal' => [
