@@ -89,10 +89,10 @@ class Alert extends Component
         };
     }
 
-    public function descriptionClasses(): string
+    public function textColor(): string
     {
         return match (true) {
-            $this->secondary => 'text-secondary/80 dark:text-secondary/80',
+            $this->secondary => 'text-secondary dark:text-secondary',
             $this->black => 'text-black-700 dark:text-black-400',
             $this->white => 'text-white-700 dark:text-white-400',
             $this->slate => 'text-slate-700 dark:text-slate-400',
@@ -117,7 +117,7 @@ class Alert extends Component
             $this->fuchsia => 'text-fuchsia-700 dark:text-fuchsia-400',
             $this->pink => 'text-pink-700 dark:text-pink-400',
             $this->rose => 'text-rose-700 dark:text-rose-400',
-            default => 'text-primary/80 dark:text-primary/80', // primary
+            default => 'text-primary dark:text-primary', // primary
         };
     }
 
@@ -179,22 +179,22 @@ class Alert extends Component
                 >
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
-                        <x-tc-icon :name="$alertIcon()" class="{{ $errors ? 'text-red-500': '' }}" />
+                        <x-tc-icon :name="$alertIcon()" class="size-6 opacity-80 {{ $errors ? 'text-red-500': '' }}" />
                     </div>
 
-                    <div @class(["ms-2","ms-4" => $description])>
-                        <h3 class="text-sm font-medium">
+                    <div @class(["ms-2","sm:ms-4" => $description])>
+                        <h3 @class(["text-base font-medium", $textColor()])>
                             {{ $alertTitle }}
                         </h3>
                         
                         @if($description)
-                            <div @class(["mt-1 text-sm", $descriptionClasses()])>
+                            <div @class(["mt-1 text-sm", $textColor()])>
                                 {{ $description }}
                             </div>
                         @endif
                         
                         @if($errors)
-                            <ul @class(["mt-2 text-sm list-disc space-y-1 ps-5", $descriptionClasses()])>
+                            <ul @class(["mt-2 text-sm list-disc space-y-1 ps-5", $textColor()])>
                                 @foreach($errors as $error)
                                     <li> {{ $error }} </li>
                                 @endforeach
