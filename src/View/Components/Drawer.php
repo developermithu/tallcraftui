@@ -18,7 +18,7 @@ class Drawer extends Component
         public bool $top = false,
         public bool $bottom = false,
 
-        public bool $separator = true,
+        public bool $noSeparator = false,
         public bool $persistent = false,
         public bool $withoutDismissible = false,
         public bool $withoutTrapFocus = false,
@@ -92,7 +92,6 @@ class Drawer extends Component
                 id="{{ $id }}"
                 class="relative z-50 w-auto h-auto"
             >
-
                 <template x-teleport="body">
                     <div 
                         x-show="open" 
@@ -171,16 +170,15 @@ class Drawer extends Component
                                         @class(['w-screen', $widthClass() => !$top && !$bottom])
                                     >
                                         <div @class([
-                                                "flex flex-col py-5 h-full overflow-y-auto bg-white border-l shadow-lg border-neutral-100/70", 
+                                                "flex flex-col py-5 h-full overflow-y-auto bg-white dark:bg-gray-800 border-l shadow-lg border-neutral-100/70 dark:border-gray-700", 
                                                 $heightClass() => $top || $bottom 
                                             ])                                           
-                                        >
-                                            
+                                        > 
                                             @if($title || !$withoutDismissible)
                                                 <div class="px-4 mb-4 sm:px-5">                                                
                                                     <div @class(["flex items-center justify-between gap-1.5 pb-1", '!justify-end' => !$title])>
                                                         @if($title)
-                                                            <h2 class="text-xl font-semibold leading-6 text-gray-900">Drawer Title Lorem </h2>
+                                                            <h2 class="text-xl font-semibold leading-6 text-gray-900 dark:text-white">{{ $title }}</h2>
                                                         @endif
                                                             
                                                         @if(!$withoutDismissible)
@@ -190,7 +188,7 @@ class Drawer extends Component
                                                 </div>
                                             @endif
 
-                                            @if($separator)
+                                            @if(!$noSeparator)
                                                 <x-separator class="mb-4" />
                                             @endif
 

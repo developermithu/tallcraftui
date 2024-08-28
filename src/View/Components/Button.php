@@ -99,7 +99,7 @@ class Button extends Component
 
     public function buttonBaseClasses(): string
     {
-        return 'inline-flex gap-x-1.5 items-center border border-transparent w-fit font-semibold text-xs uppercase tracking-widest disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-200 dark:focus:ring-offset-0';
+        return 'inline-flex gap-x-1.5 items-center border border-transparent w-fit justify-center font-semibold text-xs uppercase tracking-widest disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-200 dark:focus:ring-offset-0';
     }
 
     public function colorClasses(): string
@@ -272,62 +272,60 @@ class Button extends Component
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-            <div>
-                @if($link)
-                    <a href="{{ $link }}"
-                @else
-                    <button 
+            @if($link)
+                <a href="{{ $link }}"
+            @else
+                <button 
+            @endif
+
+                @if($link && $external)
+                    target="_blank"
                 @endif
 
-                    @if($link && $external)
-                        target="_blank"
-                    @endif
-
-                    @if($link && !$external && !$noWireNavigate)
-                        wire:navigate
-                    @endif
-                        
-                    @if(!$link)
-                        wire:loading.attr="disabled" wire:target="{{ $spinnerTarget() }}"
-                        {{ $attributes->whereDoesntStartWith('class')->merge(['type' => 'submit']) }}
-                    @endif
-                    
-                    {{ $attributes->withoutTwMergeClasses()->twMerge([
-                                $buttonBaseClasses(), 
-                                $colorClasses(), 
-                                $sizeClasses(), 
-                                $outlineClasses(), 
-                                $flatClasses(), 
-                                $roundedClass(), 
-                                $circleClasses(),
-                            ]) 
-                        }}
-                    >
-                    
-                    @if($icon)
-                        <x-tc-icon :name="$icon" {{ $attributes->twMergeFor('icon', $circleIconSize()) }} />
-                    @elseif ($iconLeft)
-                        <x-tc-icon :name="$iconLeft" {{ $attributes->twMergeFor('icon', $circleIconSize()) }} />
-                    @endif
-
-                    {{ $label ? __($label) : '' }}
-
-                    {{ $slot }}
-
-                    @if($iconRight && !$spinner)
-                        <x-tc-icon :name="$iconRight" {{ $attributes->twMergeFor('icon', $circleIconSize()) }} />
-                    @endif
-
-                    @if($spinner)
-                        {!! $getSpinner() !!}
-                    @endif
-
-                @if($link)
-                    </a>
-                @else
-                    </button>
+                @if($link && !$external && !$noWireNavigate)
+                    wire:navigate
                 @endif
-            </div>
+                    
+                @if(!$link)
+                    wire:loading.attr="disabled" wire:target="{{ $spinnerTarget() }}"
+                    {{ $attributes->whereDoesntStartWith('class')->merge(['type' => 'submit']) }}
+                @endif
+                
+                {{ $attributes->withoutTwMergeClasses()->twMerge([
+                            $buttonBaseClasses(), 
+                            $colorClasses(), 
+                            $sizeClasses(), 
+                            $outlineClasses(), 
+                            $flatClasses(), 
+                            $roundedClass(), 
+                            $circleClasses(),
+                        ]) 
+                    }}
+                >
+                
+                @if($icon)
+                    <x-tc-icon :name="$icon" {{ $attributes->twMergeFor('icon', $circleIconSize()) }} />
+                @elseif ($iconLeft)
+                    <x-tc-icon :name="$iconLeft" {{ $attributes->twMergeFor('icon', $circleIconSize()) }} />
+                @endif
+
+                {{ $label ? __($label) : '' }}
+
+                {{ $slot }}
+
+                @if($iconRight && !$spinner)
+                    <x-tc-icon :name="$iconRight" {{ $attributes->twMergeFor('icon', $circleIconSize()) }} />
+                @endif
+
+                @if($spinner)
+                    {!! $getSpinner() !!}
+                @endif
+
+            @if($link)
+                </a>
+            @else
+                </button>
+            @endif
         HTML;
     }
 }

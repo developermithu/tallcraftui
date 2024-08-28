@@ -177,29 +177,27 @@ class Badge extends Component
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-            <div>
-                <span {{ $attributes->withoutTwMergeClasses()->twMerge([
-                                "inline-flex gap-x-1 w-fit items-center font-semibold",
-                                $badgeSize(), 
-                                $colorClasses(), 
-                                $outlineClasses(),
-                                $roundedClass(),
-                            ]) 
-                        }}
-                    >
-                    @if($icon)
-                        <x-tc-icon :name="$icon" {{ $attributes->twMergeFor('icon', $iconSize()) }} />
-                    @elseif ($iconLeft)
-                        <x-tc-icon :name="$iconLeft" {{ $attributes->twMergeFor('icon', $iconSize()) }} />
-                    @endif
+            <span {{ $attributes->withoutTwMergeClasses()->twMerge([
+                            "inline-flex gap-x-1 w-fit items-center justify-center font-semibold",
+                            $badgeSize(), 
+                            $colorClasses(), 
+                            $outlineClasses(),
+                            $roundedClass(),
+                        ]) 
+                    }}
+                >
+                @if($icon)
+                    <x-tc-icon :name="$icon" {{ $attributes->twMergeFor('icon', $iconSize()) }} />
+                @elseif ($iconLeft)
+                    <x-tc-icon :name="$iconLeft" {{ $attributes->twMergeFor('icon', $iconSize()) }} />
+                @endif
 
-                    {{ __($label) }}
+                {{ __($label) }}
 
-                    @if($iconRight)
-                        <x-tc-icon :name="$iconRight" {{ $attributes->twMergeFor('icon', $iconSize()) }} />
-                    @endif
-                </span>
-            </div>
+                @if($iconRight)
+                    <x-tc-icon :name="$iconRight" {{ $attributes->twMergeFor('icon', $iconSize()) }} />
+                @endif
+            </span>
         HTML;
     }
 }
