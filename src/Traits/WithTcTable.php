@@ -41,7 +41,7 @@ trait WithTcTable
     public function sortBy(string $column)
     {
         if ($this->sortCol === $column) {
-            $this->sortAsc = !$this->sortAsc;
+            $this->sortAsc = ! $this->sortAsc;
         } else {
             $this->sortCol = $column;
             $this->sortAsc = false;

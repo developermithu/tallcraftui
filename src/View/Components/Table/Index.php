@@ -24,7 +24,7 @@ class Index extends Component
         if ($this->perPage) {
             if (is_bool($this->perPage)) {
                 return [10, 20, 30, 50, 100];
-            } else if (is_array($this->perPage)) {
+            } elseif (is_array($this->perPage)) {
                 return $this->perPage;
             }
         }
