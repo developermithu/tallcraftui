@@ -23,6 +23,11 @@ use Developermithu\Tallcraftui\View\Components\Radio;
 use Developermithu\Tallcraftui\View\Components\Select;
 use Developermithu\Tallcraftui\View\Components\Separator;
 use Developermithu\Tallcraftui\View\Components\Stat;
+use Developermithu\Tallcraftui\View\Components\Table\Index;
+use Developermithu\Tallcraftui\View\Components\Table\NotFound;
+use Developermithu\Tallcraftui\View\Components\Table\Td;
+use Developermithu\Tallcraftui\View\Components\Table\Th;
+use Developermithu\Tallcraftui\View\Components\Table\Tr;
 use Developermithu\Tallcraftui\View\Components\Textarea;
 use Developermithu\Tallcraftui\View\Components\Toggle;
 use Illuminate\Support\Facades\Blade;
@@ -39,6 +44,10 @@ class TallCraftUiServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/tallcraftui.php' => config_path('tallcraftui.php'),
         ], 'tallcraftui-config');
+
+        $this->publishes([
+            __DIR__.'/../src/resources/css/tallcraftui.css' => resource_path('css/tallcraftui.css'),
+        ], 'tallcraftui-css');
 
         // Register the application's commands.
         if ($this->app->runningInConsole()) {
@@ -73,6 +82,13 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'menu' => Menu::class,
             'menu-item' => MenuItem::class,
             'separator' => Separator::class,
+
+            // Table Components
+            'table' => Index::class,
+            'th' => Th::class,
+            'td' => Td::class,
+            'tr' => Tr::class,
+            'not-found' => NotFound::class,
         ];
 
         foreach ($components as $name => $class) {
@@ -85,5 +101,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
         Blade::component('tc-label', Label::class);
         Blade::component('tc-hint', Hint::class);
         Blade::component('tc-badge', Badge::class);
+        Blade::component('tc-select', Select::class);
+        Blade::component('tc-input', Input::class);
     }
 }

@@ -17,6 +17,7 @@ class InstallTallcraftuiCommand extends Command
      */
     public function handle()
     {
+        $this->publishAndImportTallcraftuiCSS();
         $this->setupTailwindConfig();
 
         // Rename component prefix if Jetstream or Breeze are detected
@@ -45,7 +46,7 @@ class InstallTallcraftuiCommand extends Command
             return $this->warn('TallCraftUI is already installed.');
         }
 
-        $this->info("\n".'Installing TallCraftUI...');
+        $this->info("\n" . 'Installing TallCraftUI...');
 
         // Locate the content array
         $contentArrayStart = $configContent->after('content:')->after('[');
@@ -56,12 +57,12 @@ class InstallTallcraftuiCommand extends Command
             ->trim()
             ->explode(',')
             ->filter()
-            ->map(fn ($item) => trim($item))
+            ->map(fn($item) => trim($item))
             ->push('"./vendor/developermithu/tallcraftui/src/View/Components/**/*.php",') // Add the new path as the last item
             ->implode(",\n\t\t");
 
         // Format the content array with correct syntax and indentation
-        $formattedContentArray = str("\n\t\t".$newContentArray."\n\t");
+        $formattedContentArray = str("\n\t\t" . $newContentArray . "\n\t");
 
         // Replace the original content array with the updated one
         $updatedConfigContent = $configContent->replace($contentArrayEnd, $formattedContentArray);
@@ -95,5 +96,31 @@ class InstallTallcraftuiCommand extends Command
                 $this->warn('* See config/tallcraftui.php for details.');
             }
         });
+    }
+
+    protected function publishAndImportTallcraftuiCSS()
+    {
+        Artisan::call('vendor:publish --tag=tallcraftui-css --force');
+
+        $appCssPath = resource_path('css/app.css');
+        $importStatement = '@import "./tallcraftui.css";' . PHP_EOL . PHP_EOL;
+
+        if (File::exists($appCssPath)) {
+            // Read the current content of the app.css file
+            $appCssContent = File::get($appCssPath);
+
+            // Check if the tallcraftui.css is already present
+            if (strpos($appCssContent, 'tallcraftui.css') === false) {
+                $updatedContent = $importStatement . $appCssContent;
+
+                File::put($appCssPath, $updatedContent);
+
+                $this->info('Imported `tallcraftui.css` to the top of `app.css`');
+            } else {
+                $this->info('tallcraftui.css already exists in app.css');
+            }
+        } else {
+            $this->error('app.css file not found.');
+        }
     }
 }

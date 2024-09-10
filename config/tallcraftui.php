@@ -68,7 +68,7 @@ return [
     'dropdown' => [
         'width' => Width::W48->value,
         'shadow' => Shadow::Shadow->value,
-        'position' => DropdownPosition::BOTTOM->value,
+        'position' => DropdownPosition::BOTTOM_END->value,
         'animation' => DropdownAnimation::FADE->value,
         'border-radius' => BorderRadius::Rounded->value,
     ],
@@ -88,6 +88,11 @@ return [
     ],
 
     'stat' => [
+        'border-radius' => BorderRadius::RoundedLg->value,
+    ],
+
+    'table' => [
+        'shadow' => Shadow::ShadowNone->value,
         'border-radius' => BorderRadius::RoundedLg->value,
     ],
 
