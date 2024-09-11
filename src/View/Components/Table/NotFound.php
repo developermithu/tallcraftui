@@ -20,9 +20,9 @@ class NotFound extends Component
                 <td colspan="100%">
                     <div class="flex items-center justify-center py-10">
                         <div class="text-center">
-                            <x-tc-icon :name="$icon ?? 'x-mark'" class="p-3 mx-auto mb-1 text-gray-500 bg-gray-100 rounded-full dark:text-gray-400 dark:bg-gray-700 w-11 h-11" />
+                            <x-tc-icon :name="$icon ?? 'x-mark'" {{ $attributes->twMergeFor('icon', 'p-3 mx-auto mb-1 text-gray-500 bg-gray-100 rounded-full dark:text-gray-400 dark:bg-gray-700 w-11 h-11') }} />
                              
-                            <div class="text-xl font-bold text-gray-500 lg:text-2xl dark:text-gray-400">
+                            <div {{ $attributes->withoutTwMergeClasses()->twMerge(["text-xl font-bold text-gray-500 lg:text-2xl dark:text-gray-400"]) }}>
                                 {{ $label ? __($label) : __('No records found') }}
                             </div>
                         </div>

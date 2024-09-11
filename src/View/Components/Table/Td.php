@@ -15,7 +15,7 @@ class Td extends Component
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-            <td {{ $attributes->twMerge(['p-4 text-sm text-gray-500 capitalize whitespace-nowrap dark:text-gray-400']) }}>
+            <td {{ $attributes->twMerge(['p-4 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400']) }}>
                 {{ $label ? __($label) : $slot }}
             </td>
         HTML;

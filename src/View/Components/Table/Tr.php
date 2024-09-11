@@ -14,7 +14,6 @@ class Tr extends Component
             <tr {{ $attributes
                     ->except(['href'])
                     ->twMerge([
-                        "hover:bg-gray-50 dark:hover:bg-gray-700",
                         $attributes->get('href') ? "cursor-pointer" : "",
                     ]) 
                 }} 

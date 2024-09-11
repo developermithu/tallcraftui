@@ -77,10 +77,11 @@ class Index extends Component
                 <div @class(["flex flex-col", 'divide-y divide-gray-200 dark:divide-gray-700' => !$attributes->get('borderless')])>
                     <div class="relative overflow-x-auto tc-table">
                         <div class="inline-block min-w-full align-middle">
-                            <div class="overflow-hidden ">
+                            <div class="overflow-hidden">
                                 <table wire:loading.class="opacity-40" @class([
                                         'min-w-full table-fixed',
                                         'table-striped' => $attributes->get('striped'),
+                                        'hoverable' => $attributes->get('hoverable'),
                                         'divide-y divide-gray-200 dark:divide-gray-700' => !$attributes->get('borderless'),
                                     ])>
                                         @isset($heading)
@@ -123,7 +124,7 @@ class Index extends Component
                             </div>
                         
                             <div class="tc-pagination">
-                                {{ $paginate->links() }}
+                                {{ $paginate->links(data: ['scrollTo' => false]) }}
                             </div>
                         </div>
                     @endif
