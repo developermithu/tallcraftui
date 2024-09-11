@@ -22,6 +22,7 @@ use Developermithu\Tallcraftui\View\Components\Modal;
 use Developermithu\Tallcraftui\View\Components\Radio;
 use Developermithu\Tallcraftui\View\Components\Select;
 use Developermithu\Tallcraftui\View\Components\Separator;
+use Developermithu\Tallcraftui\View\Components\Spinner;
 use Developermithu\Tallcraftui\View\Components\Stat;
 use Developermithu\Tallcraftui\View\Components\Table\Index;
 use Developermithu\Tallcraftui\View\Components\Table\NotFound;
@@ -82,6 +83,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'menu' => Menu::class,
             'menu-item' => MenuItem::class,
             'separator' => Separator::class,
+            'spinner' => Spinner::class,
 
             // Table Components
             'table' => Index::class,
@@ -103,5 +105,6 @@ class TallCraftUiServiceProvider extends ServiceProvider
         Blade::component('tc-badge', Badge::class);
         Blade::component('tc-select', Select::class);
         Blade::component('tc-input', Input::class);
+        Blade::component('tc-spinner', Spinner::class);
     }
 }
