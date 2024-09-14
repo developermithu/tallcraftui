@@ -23,10 +23,20 @@ class Icon extends Component
         return "heroicon-$iconFormat-$this->name";
     }
 
+    public function iconColor(): string
+    {
+        $configStyle = config('tallcraftui.icons.style', 'outline');
+
+        return match (true) {
+            $this->solid || $configStyle === 'solid' => 'text-gray-400 dark:text-gray-400',
+            default => '',
+        };
+    }
+
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-            <x-dynamic-component :component="$name()" {{ $attributes->twMerge(['w-5 h-5']) }} />
+            <x-dynamic-component :component="$name()" {{ $attributes->twMerge(['w-5 h-5', $iconColor()]) }} />
         HTML;
     }
 }
