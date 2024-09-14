@@ -19,6 +19,7 @@ use Developermithu\Tallcraftui\View\Components\Label;
 use Developermithu\Tallcraftui\View\Components\Menu;
 use Developermithu\Tallcraftui\View\Components\MenuItem;
 use Developermithu\Tallcraftui\View\Components\Modal;
+use Developermithu\Tallcraftui\View\Components\Password;
 use Developermithu\Tallcraftui\View\Components\Radio;
 use Developermithu\Tallcraftui\View\Components\Select;
 use Developermithu\Tallcraftui\View\Components\Separator;
@@ -84,6 +85,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'menu-item' => MenuItem::class,
             'separator' => Separator::class,
             'spinner' => Spinner::class,
+            'password' => Password::class,
 
             // Table Components
             'table' => Index::class,
