@@ -25,6 +25,9 @@ use Developermithu\Tallcraftui\View\Components\Select;
 use Developermithu\Tallcraftui\View\Components\Separator;
 use Developermithu\Tallcraftui\View\Components\Spinner;
 use Developermithu\Tallcraftui\View\Components\Stat;
+use Developermithu\Tallcraftui\View\Components\Tab\Tab;
+use Developermithu\Tallcraftui\View\Components\Tab\TabContent;
+use Developermithu\Tallcraftui\View\Components\Tab\TabItem;
 use Developermithu\Tallcraftui\View\Components\Table\Index;
 use Developermithu\Tallcraftui\View\Components\Table\NotFound;
 use Developermithu\Tallcraftui\View\Components\Table\Td;
@@ -86,6 +89,10 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'separator' => Separator::class,
             'spinner' => Spinner::class,
             'password' => Password::class,
+
+            'tab' => Tab::class,
+            'tab-item' => TabItem::class,
+            'tab-content' => TabContent::class,
 
             // Table Components
             'table' => Index::class,
