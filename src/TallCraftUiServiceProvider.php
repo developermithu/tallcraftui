@@ -11,6 +11,7 @@ use Developermithu\Tallcraftui\View\Components\Breadcrumb;
 use Developermithu\Tallcraftui\View\Components\BreadcrumbItem;
 use Developermithu\Tallcraftui\View\Components\Button;
 use Developermithu\Tallcraftui\View\Components\Checkbox;
+use Developermithu\Tallcraftui\View\Components\ColorPicker;
 use Developermithu\Tallcraftui\View\Components\Drawer;
 use Developermithu\Tallcraftui\View\Components\Dropdown;
 use Developermithu\Tallcraftui\View\Components\DropdownItem;
@@ -98,6 +99,8 @@ class TallCraftUiServiceProvider extends ServiceProvider
 
             'accordion' => Accordion::class,
             'accordion-item' => AccordionItem::class,
+
+            'color-picker' => ColorPicker::class,
 
             // Table Components
             'table' => Index::class,
