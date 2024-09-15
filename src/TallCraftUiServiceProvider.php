@@ -3,6 +3,8 @@
 namespace Developermithu\Tallcraftui;
 
 use Developermithu\Tallcraftui\Console\Commands\InstallTallcraftuiCommand;
+use Developermithu\Tallcraftui\View\Components\Accordion\Accordion;
+use Developermithu\Tallcraftui\View\Components\Accordion\AccordionItem;
 use Developermithu\Tallcraftui\View\Components\Alert;
 use Developermithu\Tallcraftui\View\Components\Badge;
 use Developermithu\Tallcraftui\View\Components\Breadcrumb;
@@ -93,6 +95,9 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'tab' => Tab::class,
             'tab-item' => TabItem::class,
             'tab-content' => TabContent::class,
+
+            'accordion' => Accordion::class,
+            'accordion-item' => AccordionItem::class,
 
             // Table Components
             'table' => Index::class,
