@@ -10,6 +10,11 @@ use Developermithu\Tallcraftui\View\Components\Badge;
 use Developermithu\Tallcraftui\View\Components\Breadcrumb;
 use Developermithu\Tallcraftui\View\Components\BreadcrumbItem;
 use Developermithu\Tallcraftui\View\Components\Button;
+use Developermithu\Tallcraftui\View\Components\Card\Card;
+use Developermithu\Tallcraftui\View\Components\Card\CardContent;
+use Developermithu\Tallcraftui\View\Components\Card\CardFigure;
+use Developermithu\Tallcraftui\View\Components\Card\CardFooter;
+use Developermithu\Tallcraftui\View\Components\Card\CardHeader;
 use Developermithu\Tallcraftui\View\Components\Checkbox;
 use Developermithu\Tallcraftui\View\Components\ColorPicker;
 use Developermithu\Tallcraftui\View\Components\Drawer;
@@ -101,6 +106,12 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'accordion-item' => AccordionItem::class,
 
             'color-picker' => ColorPicker::class,
+
+            'card' => Card::class,
+            'card-figure' => CardFigure::class,
+            'card-header' => CardHeader::class,
+            'card-content' => CardContent::class,
+            'card-footer' => CardFooter::class,
 
             // Table Components
             'table' => Index::class,

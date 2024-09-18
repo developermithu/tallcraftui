@@ -65,6 +65,11 @@ return [
         'border-radius' => BorderRadius::Rounded->value,
     ],
 
+    'card' => [
+        'shadow' => Shadow::ShadowSm->value,
+        'border-radius' => BorderRadius::RoundedLg->value,
+    ],
+
     'dropdown' => [
         'width' => Width::W48->value,
         'shadow' => Shadow::Shadow->value,
