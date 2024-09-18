@@ -18,7 +18,7 @@ class CardFigure extends Component
 
     public function roundedClass(): string
     {
-        $default = config("tallcraftui.card.border-radius", 'rounded-lg');
+        $default = config('tallcraftui.card.border-radius', 'rounded-lg');
 
         return match (true) {
             $default === 'rounded' => 'rounded',
