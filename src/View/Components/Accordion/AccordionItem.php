@@ -36,7 +36,6 @@ class AccordionItem extends Component
                     {{ $attributes->twMergeFor(
                             'title',
                             'flex items-center justify-between w-full p-4 text-left select-none',
-                            !$activeBorder ? 'group-hover:underline' : '',
                         ) 
                     }}
                 >
