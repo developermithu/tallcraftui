@@ -29,6 +29,7 @@ use Developermithu\Tallcraftui\View\Components\MenuItem;
 use Developermithu\Tallcraftui\View\Components\Modal;
 use Developermithu\Tallcraftui\View\Components\Password;
 use Developermithu\Tallcraftui\View\Components\Radio;
+use Developermithu\Tallcraftui\View\Components\Range;
 use Developermithu\Tallcraftui\View\Components\Select;
 use Developermithu\Tallcraftui\View\Components\Separator;
 use Developermithu\Tallcraftui\View\Components\Spinner;
@@ -122,6 +123,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'not-found' => NotFound::class,
 
             'tooltip' => Tooltip::class,
+            'range' => Range::class,
         ];
 
         foreach ($components as $name => $class) {
