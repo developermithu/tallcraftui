@@ -101,6 +101,13 @@ return [
         'border-radius' => BorderRadius::RoundedLg->value,
     ],
 
+    'tooltip' => [
+        'position' => Position::TOP->value,
+        'gradient' => false,
+        'noArrow' => false,
+        'noTransition' => false,
+    ],
+
     'menu' => [
         'width' => Width::W56->value,
         'shadow' => Shadow::Shadow->value,

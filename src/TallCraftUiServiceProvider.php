@@ -43,6 +43,7 @@ use Developermithu\Tallcraftui\View\Components\Table\Th;
 use Developermithu\Tallcraftui\View\Components\Table\Tr;
 use Developermithu\Tallcraftui\View\Components\Textarea;
 use Developermithu\Tallcraftui\View\Components\Toggle;
+use Developermithu\Tallcraftui\View\Components\Tooltip;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -119,6 +120,8 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'td' => Td::class,
             'tr' => Tr::class,
             'not-found' => NotFound::class,
+
+            'tooltip' => Tooltip::class,
         ];
 
         foreach ($components as $name => $class) {
