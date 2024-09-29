@@ -10,6 +10,7 @@ class Tooltip extends Component
 {
     public function __construct(
         public string $text,
+        public ?string $icon = null,
         public ?bool $gradient = null,
         public ?bool $noArrow = null,
         public ?bool $noTransition = null
@@ -74,6 +75,7 @@ class Tooltip extends Component
                     >
                         <p x-text="tooltipText" 
                             {{ $attributes
+                                ->withoutTwMergeClasses()
                                 ->except(['top', 'bottom', 'left', 'right'])
                                 ->twMerge(['flex-shrink-0 block text-xs whitespace-nowrap'])
                             }}
@@ -103,8 +105,12 @@ class Tooltip extends Component
                     </div>
                 </div>
                 
-                <div x-ref="content">
-                    {{ $slot }}
+                <div x-ref="content" {{ $attributes->twMergeFor('content') }}>
+                    @if ($slot->isEmpty())
+                        <x-tc-icon :name="$icon ?? 'question-mark-circle'" class="text-gray-500 dark:text-gray-400" />
+                    @else
+                        {{ $slot }}
+                    @endif
                 </div>
             </div>
         HTML;
