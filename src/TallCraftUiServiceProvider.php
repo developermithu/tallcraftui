@@ -16,6 +16,7 @@ use Developermithu\Tallcraftui\View\Components\Card\CardFigure;
 use Developermithu\Tallcraftui\View\Components\Card\CardFooter;
 use Developermithu\Tallcraftui\View\Components\Card\CardHeader;
 use Developermithu\Tallcraftui\View\Components\Checkbox;
+use Developermithu\Tallcraftui\View\Components\Clipboard;
 use Developermithu\Tallcraftui\View\Components\ColorPicker;
 use Developermithu\Tallcraftui\View\Components\Drawer;
 use Developermithu\Tallcraftui\View\Components\Dropdown;
@@ -124,6 +125,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
 
             'tooltip' => Tooltip::class,
             'range' => Range::class,
+            'clipboard' => Clipboard::class,
         ];
 
         foreach ($components as $name => $class) {
