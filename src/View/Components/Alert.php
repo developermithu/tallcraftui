@@ -171,7 +171,7 @@ class Alert extends Component
                 x-cloak
                 x-transition.duration.500ms.opacity
                     {{ $attributes->withoutTwMergeClasses()->twMerge([
-                            "p-4 text-sm transition duration-300 border", 
+                            "p-3 text-sm transition duration-300 border", 
                             $alertClasses(), 
                             $roundedClass()
                         ]) 
@@ -179,16 +179,16 @@ class Alert extends Component
                 >
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
-                        <x-tc-icon :name="$alertIcon()" class="size-6 opacity-80 {{ $errors ? 'text-red-500': '' }}" />
+                        <x-tc-icon :name="$alertIcon()" class="size-5 opacity-80 {{ $errors ? 'text-red-500': '' }}" />
                     </div>
 
                     <div @class(["ms-2","sm:ms-4" => $description])>
-                        <h3 @class(["text-base font-medium", $textColor()])>
+                        <h3 @class(["text-sm font-medium", $textColor()])>
                             {{ $alertTitle }}
                         </h3>
                         
                         @if($description)
-                            <div @class(["mt-1 text-sm", $textColor()])>
+                            <div @class(["mt-1 text-sm opacity-90", $textColor()])>
                                 {{ $description }}
                             </div>
                         @endif
@@ -208,7 +208,7 @@ class Alert extends Component
                                 <button @click="visible = false"
                                         {{ $attributes->twMergeFor(
                                                 "action",
-                                                "flex items-center justify-center transition duration-200 ease-in-out bg-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-0 size-9",
+                                                "flex items-center justify-center transition duration-200 ease-in-out bg-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-0 size-8",
                                                 $actionColors(),
                                             )
                                         }}
