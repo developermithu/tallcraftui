@@ -48,6 +48,10 @@ return [
      *
      * Configure the appearance and behavior of ui components.
      */
+    'avatar' => [
+        'border-radius' => BorderRadius::RoundedFull->value,
+    ],
+
     'alert' => [
         'border-radius' => BorderRadius::Rounded->value,
     ],

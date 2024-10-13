@@ -6,6 +6,8 @@ use Developermithu\Tallcraftui\Console\Commands\InstallTallcraftuiCommand;
 use Developermithu\Tallcraftui\View\Components\Accordion\Accordion;
 use Developermithu\Tallcraftui\View\Components\Accordion\AccordionItem;
 use Developermithu\Tallcraftui\View\Components\Alert;
+use Developermithu\Tallcraftui\View\Components\Avatar;
+use Developermithu\Tallcraftui\View\Components\Avatars;
 use Developermithu\Tallcraftui\View\Components\Badge;
 use Developermithu\Tallcraftui\View\Components\Breadcrumb;
 use Developermithu\Tallcraftui\View\Components\BreadcrumbItem;
@@ -126,6 +128,8 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'tooltip' => Tooltip::class,
             'range' => Range::class,
             'clipboard' => Clipboard::class,
+            'avatar' => Avatar::class,
+            'avatars' => Avatars::class,
         ];
 
         foreach ($components as $name => $class) {
