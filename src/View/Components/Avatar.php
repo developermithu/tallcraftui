@@ -10,7 +10,7 @@ use Illuminate\View\Component;
 class Avatar extends Component
 {
     public function __construct(
-        public ?string $src = null,
+        public ?string $image = null,
         public ?string $alt = null,
         public ?string $text = null,
         public bool $badge = false,
@@ -148,8 +148,8 @@ class Avatar extends Component
     {
         return <<<'HTML'
             <div class="relative inline-block w-fit">
-                @if($src)
-                    <img src="{{ $src }}" alt="{{ $alt }}" 
+                @if($image)
+                    <img src="{{ $image }}" alt="{{ $alt }}" 
                         {{ $attributes->withoutTwMergeClasses()
                             ->twMerge([
                                 'inline-block object-cover',
