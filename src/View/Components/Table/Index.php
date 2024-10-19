@@ -78,7 +78,12 @@ class Index extends Component
                     <div class="relative overflow-x-auto tc-table">
                         <div class="inline-block min-w-full align-middle">
                             <div class="overflow-hidden">
-                                <table wire:loading.class="opacity-40" @class([
+                                <table 
+                                    @if(!$noLoading)
+                                        wire:loading.delay.class="opacity-40" 
+                                    @endif
+                                    
+                                    @class([
                                         'min-w-full table-fixed',
                                         'table-striped' => $attributes->get('striped'),
                                         'hoverable' => $attributes->get('hoverable'),
@@ -103,7 +108,7 @@ class Index extends Component
                         </div>
 
                          @if(!$noLoading)
-                            <div wire:loading class="absolute -translate-y-1/2 top-1/2 left-1/2">
+                            <div wire:loading.delay class="absolute -translate-y-1/2 top-1/2 left-1/2">
                                 <x-tc-spinner class="size-9" />
                             </div>
                          @endif
