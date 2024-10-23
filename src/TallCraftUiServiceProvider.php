@@ -46,6 +46,7 @@ use Developermithu\Tallcraftui\View\Components\Table\Td;
 use Developermithu\Tallcraftui\View\Components\Table\Th;
 use Developermithu\Tallcraftui\View\Components\Table\Tr;
 use Developermithu\Tallcraftui\View\Components\Textarea;
+use Developermithu\Tallcraftui\View\Components\Toast;
 use Developermithu\Tallcraftui\View\Components\Toggle;
 use Developermithu\Tallcraftui\View\Components\Tooltip;
 use Illuminate\Support\Facades\Blade;
@@ -130,6 +131,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'clipboard' => Clipboard::class,
             'avatar' => Avatar::class,
             'avatars' => Avatars::class,
+            'toast' => Toast::class,
         ];
 
         foreach ($components as $name => $class) {

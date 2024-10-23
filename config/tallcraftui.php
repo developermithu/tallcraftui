@@ -6,6 +6,7 @@ use Developermithu\Tallcraftui\Enums\DropdownPosition;
 use Developermithu\Tallcraftui\Enums\Position;
 use Developermithu\Tallcraftui\Enums\Shadow;
 use Developermithu\Tallcraftui\Enums\Size;
+use Developermithu\Tallcraftui\Enums\ToastPosition;
 use Developermithu\Tallcraftui\Enums\Width;
 
 return [
@@ -110,6 +111,13 @@ return [
         'gradient' => false,
         'noArrow' => false,
         'noTransition' => false,
+    ],
+
+    'toast' => [
+        'position' => ToastPosition::BOTTOM_RIGHT->value,
+        'showCloseIcon' => false,
+        'timeout' => 3000,
+        'class' => ''
     ],
 
     'menu' => [
