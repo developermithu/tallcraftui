@@ -27,8 +27,8 @@ class InstallTallcraftuiCommand extends Command
         Artisan::call('view:clear');
 
         $this->info("\n");
-        $this->info('✅  Run `npm run dev` or `yarn dev`');
-        $this->info('🌟  Give it a star: https://github.com/developermithu/tallcraftui');
+        $this->info('✅  Run `npm run dev` or `bun dev`');
+        $this->info('🌟  Love TallCraftUI? give it a star: https://github.com/developermithu/tallcraftui');
     }
 
     /**
@@ -114,13 +114,14 @@ class InstallTallcraftuiCommand extends Command
                 $updatedContent = $importStatement.$appCssContent;
 
                 File::put($appCssPath, $updatedContent);
-
-                $this->info('Imported `tallcraftui.css` to the top of `app.css`');
+                
+                // $this->info('Imported `tallcraftui.css` to the top of `app.css`');
             } else {
-                $this->info('tallcraftui.css already exists in app.css');
+                // $this->info('tallcraftui.css already exists in app.css');
+                return;
             }
         } else {
-            $this->error('app.css file not found.');
+            $this->error('`app.css` file not found.');
         }
     }
 }
