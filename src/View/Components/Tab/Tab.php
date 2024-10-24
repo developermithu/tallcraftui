@@ -13,6 +13,11 @@ class Tab extends Component
         public ?bool $noSeparator = false,
     ) {}
 
+    public function itemSwitchClass(): string
+    {
+        return $this->as === 'switch' ? 'space-x-0 justify-between' : '';
+    }
+
     public function render(): View|Closure|string
     {
         return <<<'HTML'
@@ -21,14 +26,26 @@ class Tab extends Component
                     activeTab: @entangle($attributes->wire('model')),
                     items: []
                 }"
-                {{ $attributes->whereDoesntStartWith('wire:model')->twMerge(['w-full']) }}
+                class="w-full"
             >
-                <div @class(['border-b border-gray-200 dark:border-gray-700' => ($as != 'switch') && !$noSeparator, 'bg-gray-100 dark:bg-gray-800 px-1 rounded' => $as === 'switch'])>
-                    <nav @class(["flex -mb-px space-x-8", '!space-x-0 justify-between' => $as === 'switch']) aria-label="items">
+                <div                         
+                    {{ $attributes->whereDoesntStartWith('wire:model')
+                        ->withoutTwMergeClasses()
+                        ->twMerge([
+                                $as === 'switch' ? 'bg-gray-100 dark:bg-gray-800 px-1 rounded' : '',
+                                ($as != 'switch') && !$noSeparator ? 'border-b border-gray-200 dark:border-gray-700' : '',
+                            ]) 
+                    }}
+                >
+                    <nav                         
+                        {{ $attributes->twMergeFor('items', 'flex -mb-px space-x-8', $itemSwitchClass()) }}
+                        aria-label="items"
+                    >
                         {{ $items }}
                     </nav>
                 </div>
-                <div class="mt-4">
+                
+                <div {{ $attributes->twMergeFor('content', 'mt-4') }}>
                     {{ $slot }}
                 </div>
             </div>

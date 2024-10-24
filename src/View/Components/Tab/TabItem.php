@@ -15,6 +15,7 @@ class TabItem extends Component
         public ?string $iconRight = null,
         public ?bool $active = false,
         public ?string $as = null,
+        public ?string $activeClass = '',
     ) {}
 
     public function render(): View|Closure|string
@@ -32,25 +33,35 @@ class TabItem extends Component
                 @click="activeTab = id"
             
                 @if($as === 'switch')
-                    :class="{ 'bg-white dark:bg-gray-700 dark:text-gray-100 text-gray-700': activeTab === id, 'bg-transparent dark:text-gray-400 text-gray-500': activeTab !== id }"
+                    :class="{ 
+                        '{{ $activeClass }}' : activeTab === id, 
+                        'bg-white dark:bg-gray-700 dark:text-gray-100 text-gray-700': activeTab === id, 
+                        'bg-transparent dark:text-gray-400 text-gray-500': activeTab !== id 
+                    }"
+                    
                 @else 
-                    :class="{ 'border-primary text-primary': activeTab === id, 'border-transparent text-gray-500 dark:text-gray-300 dark:hover:text-gray-200 hover:text-gray-700 hover:border-gray-300 dark:hover:border-gray-400': activeTab !== id }"
+                    :class="{ 
+                        '{{ $activeClass }}' : activeTab === id, 
+                        'border-primary text-primary': activeTab === id, 
+                        'border-transparent text-gray-500 dark:text-gray-300 dark:hover:text-gray-200 hover:text-gray-700 hover:border-gray-300 dark:hover:border-gray-400': activeTab !== id 
+                    }"
                 @endif
-                
-                @class([
-                    'text-sm px-1 inline-flex items-center justify-center font-semibold whitespace-nowrap transition ease-in-out',
-                    'py-4 border-b-2 gap-x-1.5' => $as != 'switch',
-                    'py-2 my-1 rounded w-full gap-x-2' => $as === 'switch',
-                ])
+
+                {{ $attributes->withoutTwMergeClasses()->twMerge([
+                        'text-sm px-1 inline-flex items-center justify-center font-semibold whitespace-nowrap transition ease-in-out',
+                        $as != 'switch' ? 'py-4 border-b-2 gap-x-1.5' : '',
+                        $as === 'switch' ? 'py-2 my-1 rounded w-full gap-x-2' : '',
+                    ])
+                }}
             >
                 @if($icon)
-                    <x-tc-icon :name="$icon" class="size-[18px]" />
+                    <x-tc-icon :name="$icon" {{ $attributes->twMergeFor('icon', 'size-[18px]') }} />
                 @endif
 
                 {{ __($label) }}
 
                 @if($iconRight)
-                    <x-tc-icon :name="$iconRight" class="size-[18px]" />
+                    <x-tc-icon :name="$iconRight" {{ $attributes->twMergeFor('icon', 'size-[18px]') }} />
                 @endif
             </button>
         HTML;
