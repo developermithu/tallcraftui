@@ -236,7 +236,7 @@ class ColorPicker extends Component
                 @class(['flex items-center gap-3' => $inline])
             >
                 @if($label)
-                    <x-tc-label :for="$uuid" :label="$label" :required="$required" :inline="$inline" />
+                    <x-tc-label :for="$uuid" :label="$label" :required="$required" :inline="$inline" {{ $attributes->twMergeFor('label') }} />
                  @endif
 
                 <div class="relative flex items-center flex-1">

@@ -89,7 +89,9 @@ class Range extends Component
                 @endphp
             
                 @if($label)
-                    <x-tc-label :for="$uuid" :label="$label" :required="$required" :inline="$inline" @class(["mb-3" => !$inline]) />
+                    <x-tc-label :for="$uuid" :label="$label" :required="$required" :inline="$inline" 
+                        {{ $attributes->twMergeFor('label', !$inline ? 'mb-3' : '') }}
+                    />
                 @endif
 
                 <div class="relative flex items-center flex-1">
@@ -100,11 +102,13 @@ class Range extends Component
                         max="{{ $max }}"
                         step="{{ $step }}"
                         {{ 
-                            $attributes->twMerge([
-                                "block w-full h-2 appearance-none cursor-pointer bg-transparent z-30",
-                                "[&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-0 [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-ms-thumb]:w-5 [&::-ms-thumb]:h-5 [&::-ms-thumb]:appearance-none [&::-ms-thumb]:rounded-full [&::-ms-thumb]:border-0 [&::-webkit-slider-runnable-track]:rounded-full [&::-webkit-slider-runnable-track]:overflow-hidden [&::-moz-range-track]:rounded-full [&::-ms-track]:rounded-full [&::-moz-range-progress]:rounded-full [&::-ms-fill-lower]:rounded-full [&::-webkit-slider-runnable-track]:bg-gray-200 [&::-moz-range-track]:bg-gray-200 [&::-ms-track]:bg-gray-200 dark:[&::-webkit-slider-runnable-track]:bg-gray-800 dark:[&::-moz-range-track]:bg-gray-800 dark:[&::-ms-track]:bg-gray-800",
-                                $rangeColor(),
-                            ])
+                            $attributes
+                                ->withoutTwMergeClasses()
+                                ->twMerge([
+                                    "block w-full h-2 appearance-none cursor-pointer bg-transparent z-30",
+                                    "[&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-0 [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-ms-thumb]:w-5 [&::-ms-thumb]:h-5 [&::-ms-thumb]:appearance-none [&::-ms-thumb]:rounded-full [&::-ms-thumb]:border-0 [&::-webkit-slider-runnable-track]:rounded-full [&::-webkit-slider-runnable-track]:overflow-hidden [&::-moz-range-track]:rounded-full [&::-ms-track]:rounded-full [&::-moz-range-progress]:rounded-full [&::-ms-fill-lower]:rounded-full [&::-webkit-slider-runnable-track]:bg-gray-200 [&::-moz-range-track]:bg-gray-200 [&::-ms-track]:bg-gray-200 dark:[&::-webkit-slider-runnable-track]:bg-gray-800 dark:[&::-moz-range-track]:bg-gray-800 dark:[&::-ms-track]:bg-gray-800",
+                                    $rangeColor(),
+                                ])
                         }}
                     />
                 </div>

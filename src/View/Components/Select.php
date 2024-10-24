@@ -42,7 +42,7 @@ class Select extends Component
                 @endphp
             
                 @if($label)
-                    <x-tc-label :for="$uuid" :label="$label" :required="$required" />
+                    <x-tc-label :for="$uuid" :label="$label" :required="$required" {{ $attributes->twMergeFor('label') }} />
                  @endif
 
                 <div class="relative flex items-center flex-1">
@@ -51,6 +51,7 @@ class Select extends Component
                             id="{{ $uuid }}"
                             {{ 
                                 $attributes
+                                    ->withoutTwMergeClasses()
                                     ->twMerge([
                                         "block w-full border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300",
                                         $errorClass,

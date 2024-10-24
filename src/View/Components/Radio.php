@@ -62,7 +62,9 @@ class Radio extends Component
                 @if($textLeft)
                     <div class="leading-6">
                         @if($label)
-                            <x-tc-label :for="$uuid" :label="$label" :required="$required" radio />
+                            <x-tc-label :for="$uuid" :label="$label" :required="$required" radio 
+                                {{ $attributes->twMergeFor('label', $error ? 'text-red-500' : '') }} 
+                            />
                         @endif
                         
                         @if($hint)
@@ -79,6 +81,7 @@ class Radio extends Component
                     <input id="{{ $uuid }}" type="radio"
                         {{ $attributes
                             ->except($colorAttributes)
+                            ->withoutTwMergeClasses()
                             ->twMerge([
                                 "border-gray-300",
                                 $sizeClasses(), 
@@ -95,9 +98,7 @@ class Radio extends Component
                     <div class="leading-6">
                         @if($label)
                             <x-tc-label :for="$uuid" :label="$label" :required="$required" radio 
-                                @class([
-                                    "text-red-500" => $error,
-                                ]) 
+                                {{ $attributes->twMergeFor('label', $error ? 'text-red-500' : '') }} 
                             />
                         @endif
                         

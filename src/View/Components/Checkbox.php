@@ -68,7 +68,9 @@ class Checkbox extends Component
                 @if($textLeft)
                     <div class="leading-6">
                         @if($label)
-                            <x-tc-label :for="$uuid" :label="$label" :required="$required" checkbox />
+                            <x-tc-label :for="$uuid" :label="$label" :required="$required" checkbox 
+                                {{ $attributes->twMergeFor('label', $error ? 'text-red-500' : '') }}
+                            />
                         @endif
                         
                         @if($hint)
@@ -85,6 +87,7 @@ class Checkbox extends Component
                     <input id="{{ $uuid }}" type="checkbox"
                         {{ $attributes
                             ->except($colorAttributes)
+                            ->withoutTwMergeClasses()
                             ->twMerge([
                                 "border-gray-300",
                                 $sizeClasses(), 
@@ -102,9 +105,7 @@ class Checkbox extends Component
                     <div class="leading-6">
                         @if($label)
                             <x-tc-label :for="$uuid" :label="$label" :required="$required" checkbox 
-                                @class([
-                                    "text-red-500" => $error,
-                                ]) 
+                                {{ $attributes->twMergeFor('label', $error ? 'text-red-500' : '') }}
                             />
                         @endif
                         

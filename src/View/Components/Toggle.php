@@ -112,7 +112,7 @@ class Toggle extends Component
                 
                 @if($textLeft)
                     @if($label)
-                        <span @class(["text-sm font-medium text-gray-700 dark:text-gray-100", "!text-red-500" => $error])>
+                        <span {{ $attributes->twMergeFor('label', 'text-sm font-medium text-gray-700 dark:text-gray-100', $error ? 'text-red-500' : '') }}>
                             {{ Str::ucfirst(__($labelWithoutStar)) }}
 
                             @if ($isRequired)
@@ -125,6 +125,7 @@ class Toggle extends Component
                 <div {{ $attributes
                     ->whereStartsWith('class')
                     ->except(['wire:model'])
+                    ->withoutTwMergeClasses()
                     ->twMerge([
                         "relative bg-gray-200 rounded-full peer peer-focus:ring-2 ring-offset-2 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5  after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 duration-200",
                         $error ? 'bg-red-500' : '',
@@ -135,7 +136,8 @@ class Toggle extends Component
                 
                 @if(!$textLeft)
                     @if($label)
-                        <span @class(["text-sm font-medium text-gray-700 dark:text-gray-100", "!text-red-500" => $error])>
+                        <span {{ $attributes->twMergeFor('label', 'text-sm font-medium text-gray-700 dark:text-gray-100', $error ? 'text-red-500' : '') }}
+                        >
                             {{ Str::ucfirst(__($labelWithoutStar)) }}
 
                             @if ($isRequired)

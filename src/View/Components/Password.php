@@ -71,7 +71,7 @@ class Password extends Component
                 @endphp
             
                 @if($label)
-                    <x-tc-label :for="$uuid" :label="$label" :required="$required" :inline="$inline" />
+                    <x-tc-label :for="$uuid" :label="$label" :required="$required" :inline="$inline" {{ $attributes->twMergeFor('label') }} />
                  @endif
 
                 <div class="relative flex items-center flex-1">
