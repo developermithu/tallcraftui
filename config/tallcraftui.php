@@ -116,8 +116,8 @@ return [
     'toast' => [
         'position' => ToastPosition::BOTTOM_RIGHT->value,
         'showCloseIcon' => false,
+        'showProgress' => false,
         'timeout' => 3000,
-        'class' => ''
     ],
 
     'menu' => [

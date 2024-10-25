@@ -34,24 +34,41 @@ class Toast extends Component
                             x-transition:leave-start="opacity-100"
                             x-transition:leave-end="opacity-0"
                             :class="[ 
-                                'fixed z-50 bg-white dark:bg-gray-800 dark:border-gray-700 flex items-center p-4 mb-4 rounded-lg shadow border border-gray-200', 
-                                toast?.class, 
                                 getPositionClasses(toast?.position),
-                                getAnimationClasses(toast?.position)
+                                getAnimationClasses(toast?.position),
                             ]"
                             :style="getPositionStyle(toast?.position)"
+                            
+                            {{ $attributes
+                                ->withoutTwMergeClasses()
+                                ->twMerge([
+                                    'fixed z-50 bg-white max-w-md dark:bg-gray-800 dark:border-gray-700 flex items-center p-4 mb-4 rounded-lg shadow border border-gray-200',
+                                ]) 
+                            }}
                         >
+                            <!-- Progress Bar -->
+                            <template x-if="toast?.showProgress">
+                                <div
+                                    x-show="toast?.timeout > 0"
+                                    class="absolute bottom-0 left-0 h-1 transition-transform origin-left rounded-lg"
+                                    :class="getProgressBarColor(toast?.type)"
+                                    :style="getProgressBarStyle(toast?.timeout)"
+                                ></div>
+                            </template>
+
                             <div class="flex items-center justify-between w-full" :class="{ '!items-start' : toast?.description }">
                                 <div class="flex items-center" :class="{ '!items-start' : toast?.description }">
                                     <div x-html="toast?.icon" class="mr-2"></div>
                                     <div>
-                                        <h3 class="font-medium text-gray-900 dark:text-white" x-text="toast?.title"></h3>
-                                        <p class="text-sm text-gray-500 dark:text-gray-400" x-text="toast?.description"></p>
+                                        <h3 x-text="toast?.title" 
+                                            {{ $attributes->twMergeFor('title', 'text-base font-medium text-gray-900 dark:text-white') }}></h3>
+                                        <p x-text="toast?.description" 
+                                            {{ $attributes->twMergeFor('description', 'text-sm text-gray-500 dark:text-gray-400') }}></p>
                                     </div>
                                 </div>
                                 
                                 <template x-if="toast?.showCloseIcon">
-                                    <button @click="show = false" class="ml-4 text-current opacity-50 hover:opacity-100">
+                                    <button @click="show = false" {{ $attributes->twMergeFor('close-icon', 'ml-4 text-current opacity-50 hover:opacity-100') }}>
                                         <x-tc-icon name="x-mark" class="size-5" />
                                     </button>
                                 </template>
@@ -86,6 +103,26 @@ class Toast extends Component
                                 : 'animate-slide-in-top';
                         }
 
+                        function getProgressBarColor(type) {
+                            const colors = {
+                                'success': 'bg-green-500',
+                                'error': 'bg-red-500',
+                                'warning': 'bg-yellow-500',
+                                'info': 'bg-blue-500'
+                            };
+                            return colors[type] || 'bg-green-500';
+                        }
+
+                        
+                        function getProgressBarStyle(timeout) {
+                            if (!timeout) return '';
+                            return {
+                                width: '100%',
+                                transform: 'scaleX(1)',
+                                animation: `progress ${timeout}ms linear forwards`
+                            };
+                        }
+                        
                         window.toast = function(payload) {
                             window.dispatchEvent(new CustomEvent('tallcraftui-toast', {detail: payload}));
                         }
@@ -117,6 +154,10 @@ class Toast extends Component
                         @keyframes slideInBottom {
                             from { transform: translateY(100%); }
                             to { transform: translateY(0); }
+                        }
+                        @keyframes progress {
+                            from { transform: scaleX(1); }
+                            to { transform: scaleX(0); }
                         }
                         .animate-slide-in-top { animation: slideInTop 0.3s ease-out; }
                         .animate-slide-in-bottom { animation: slideInBottom 0.3s ease-out; }
