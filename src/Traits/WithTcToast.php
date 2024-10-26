@@ -18,8 +18,8 @@ trait WithTcToast
     }
 
     public function toast(
-        string $type,
-        string $title,
+        string $typeOrMessage,
+        string $title = null,
         string $description = null,
         string $position = null,
         string $icon = null,
@@ -28,8 +28,14 @@ trait WithTcToast
         int $timeout = null,
         string $redirectTo = null
     ) {
+        $validTypes = ['success', 'info', 'warning', 'error'];
+    
+        // Determine if the first argument is a valid type or a message
+        $type = in_array($typeOrMessage, $validTypes) ? $typeOrMessage : 'success';
+        $title = $title ?? ($type === $typeOrMessage ? 'Default message' : $typeOrMessage);
+    
         $iconColor = $this->iconColorByType($type);
-
+    
         $iconName = $icon ?? match ($type) {
             'success' => 'check-circle',
             'warning' => 'exclamation-triangle',
@@ -37,7 +43,8 @@ trait WithTcToast
             'info' => 'information-circle',
             default => 'check-circle',
         };
-
+    
+        // Prepare the toast array
         $toast = [
             'type' => $type,
             'title' => $title,
@@ -48,14 +55,15 @@ trait WithTcToast
             'showProgress' => $showProgress ?? config('tallcraftui.toast.showProgress', false),
             'timeout' => $timeout ?? ($redirectTo ? 6000 : config('tallcraftui.toast.timeout', 3000)),
         ];
-
+    
+        // Trigger the JavaScript function to show the toast
         $this->js('toast(' . json_encode(['toast' => $toast]) . ')');
-
+    
         if ($redirectTo) {
             return $this->redirect($redirectTo, navigate: true);
         }
     }
-
+  
     public function success(
         string $title,
         string $description = null,
