@@ -33,6 +33,7 @@ use Developermithu\Tallcraftui\View\Components\Modal;
 use Developermithu\Tallcraftui\View\Components\Password;
 use Developermithu\Tallcraftui\View\Components\Radio;
 use Developermithu\Tallcraftui\View\Components\Range;
+use Developermithu\Tallcraftui\View\Components\Rating;
 use Developermithu\Tallcraftui\View\Components\Select;
 use Developermithu\Tallcraftui\View\Components\Separator;
 use Developermithu\Tallcraftui\View\Components\Spinner;
@@ -132,6 +133,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'avatar' => Avatar::class,
             'avatars' => Avatars::class,
             'toast' => Toast::class,
+            'rating' => Rating::class,
         ];
 
         foreach ($components as $name => $class) {

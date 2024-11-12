@@ -146,6 +146,10 @@ return [
         'size' => Size::MD->value,
     ],
 
+    'rating' => [
+        'size' => Size::MD->value,
+    ],
+
     'select' => [
         'border-radius' => BorderRadius::Rounded->value,
     ],
