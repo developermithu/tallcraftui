@@ -128,7 +128,7 @@ class Avatar extends Component
     {
         $words = explode(' ', $this->text);
         if (count($words) >= 2) {
-            return strtoupper(substr($words[0], 0, 1) . substr($words[1], 0, 1));
+            return strtoupper(substr($words[0], 0, 1).substr($words[1], 0, 1));
         } else {
             return strtoupper(substr($this->text, 0, 2));
         }
@@ -136,7 +136,7 @@ class Avatar extends Component
 
     public function placeholderClasses()
     {
-        return $this->baseClasses() . ' flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-200 font-semibold';
+        return $this->baseClasses().' flex items-center justify-center bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-200 font-semibold';
     }
 
     public function roundedClass(): string

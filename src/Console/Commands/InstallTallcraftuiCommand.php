@@ -114,7 +114,7 @@ class InstallTallcraftuiCommand extends Command
                 $updatedContent = $importStatement.$appCssContent;
 
                 File::put($appCssPath, $updatedContent);
-                
+
                 // $this->info('Imported `tallcraftui.css` to the top of `app.css`');
             } else {
                 // $this->info('tallcraftui.css already exists in app.css');

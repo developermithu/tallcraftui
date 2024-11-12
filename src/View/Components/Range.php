@@ -49,7 +49,7 @@ class Range extends Component
     {
         return match (true) {
             $this->black => '[&::-webkit-slider-thumb]:bg-gray-50 [&::-moz-range-thumb]:bg-gray-50 [&::-ms-thumb]:bg-gray-50 dark:[&::-webkit-slider-thumb]:bg-gray-300 dark:[&::-moz-range-thumb]:bg-gray-300 dark:[&::-ms-thumb]:bg-gray-300 [&::-moz-range-progress]:bg-gray-400 [&::-ms-fill-lower]:bg-gray-400 [&::-webkit-slider-thumb]:shadow-[-999px_0px_0px_990px_#000000]',
-            
+
             $this->slate => '[&::-webkit-slider-thumb]:bg-slate-600 [&::-moz-range-thumb]:bg-slate-600 [&::-ms-thumb]:bg-slate-600 [&::-moz-range-progress]:bg-slate-400 [&::-ms-fill-lower]:bg-slate-400 [&::-webkit-slider-thumb]:shadow-[-999px_0px_0px_990px_#94A3B8]',
             $this->gray => '[&::-webkit-slider-thumb]:bg-gray-600 [&::-moz-range-thumb]:bg-gray-600 [&::-ms-thumb]:bg-gray-600 [&::-moz-range-progress]:bg-gray-400 [&::-ms-fill-lower]:bg-gray-400 [&::-webkit-slider-thumb]:shadow-[-999px_0px_0px_990px_#9CA3AF]',
             $this->zinc => '[&::-webkit-slider-thumb]:bg-zinc-600 [&::-moz-range-thumb]:bg-zinc-600 [&::-ms-thumb]:bg-zinc-600 [&::-moz-range-progress]:bg-zinc-400 [&::-ms-fill-lower]:bg-zinc-400 [&::-webkit-slider-thumb]:shadow-[-999px_0px_0px_990px_#A1A1AA]',
@@ -72,8 +72,8 @@ class Range extends Component
             $this->fuchsia => '[&::-webkit-slider-thumb]:bg-fuchsia-600 [&::-moz-range-thumb]:bg-fuchsia-600 [&::-ms-thumb]:bg-fuchsia-600 [&::-moz-range-progress]:bg-fuchsia-400 [&::-ms-fill-lower]:bg-fuchsia-400 [&::-webkit-slider-thumb]:shadow-[-999px_0px_0px_990px_#E879F9]',
             $this->pink => '[&::-webkit-slider-thumb]:bg-pink-600 [&::-moz-range-thumb]:bg-pink-600 [&::-ms-thumb]:bg-pink-600 [&::-moz-range-progress]:bg-pink-400 [&::-ms-fill-lower]:bg-pink-400 [&::-webkit-slider-thumb]:shadow-[-999px_0px_0px_990px_#F472B6]',
             $this->rose => '[&::-webkit-slider-thumb]:bg-rose-600 [&::-moz-range-thumb]:bg-rose-600 [&::-ms-thumb]:bg-rose-600 [&::-moz-range-progress]:bg-rose-400 [&::-ms-fill-lower]:bg-rose-400 [&::-webkit-slider-thumb]:shadow-[-999px_0px_0px_990px_#FB7185]',
-            
-            default => '[&::-webkit-slider-thumb]:bg-blue-600 [&::-moz-range-thumb]:bg-blue-600 [&::-ms-thumb]:bg-blue-600 [&::-moz-range-progress]:bg-blue-400 [&::-ms-fill-lower]:bg-blue-400 [&::-webkit-slider-thumb]:shadow-[-999px_0px_0px_990px_#60A5FA]', 
+
+            default => '[&::-webkit-slider-thumb]:bg-blue-600 [&::-moz-range-thumb]:bg-blue-600 [&::-ms-thumb]:bg-blue-600 [&::-moz-range-progress]:bg-blue-400 [&::-ms-fill-lower]:bg-blue-400 [&::-webkit-slider-thumb]:shadow-[-999px_0px_0px_990px_#60A5FA]',
         };
     }
 

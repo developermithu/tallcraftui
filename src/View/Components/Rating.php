@@ -37,6 +37,7 @@ class Rating extends Component
         }
 
         $defaultSize = config('tallcraftui.rating.size', 'lg');
+
         return $sizes[$defaultSize] ?? $sizes['lg'];
     }
 
