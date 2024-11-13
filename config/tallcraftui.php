@@ -28,6 +28,13 @@ return [
 
     /**
      * --------------------------------------------------------------------------
+     * Route Prefix
+     * --------------------------------------------------------------------------
+     */
+    'route_prefix' => env('TALLCRAFTUI_ROUTE_PREFIX', 'tallcraftui'),
+
+    /**
+     * --------------------------------------------------------------------------
      * Icon Configuration
      * --------------------------------------------------------------------------
      *
@@ -160,5 +167,36 @@ return [
 
     'toggle' => [
         'border-radius' => BorderRadius::Rounded->value,
+    ],
+
+    'markdown' => [
+        'config' => [
+            'spellChecker' => false,
+            'autofocus' => false,
+            'uploadImage' => false, // add drag & drop image upload feature
+            'imageAccept' => 'image/png, image/jpeg, image/gif, image/avif',
+            'minHeight' => '150px',
+            'maxHeight' => '400px',
+            'toolbar' => [
+                'bold',
+                'italic',
+                'heading',
+                '|',
+                'quote',
+                'unordered-list',
+                'ordered-list',
+                '|',
+                'link',
+                // 'image', // display image markdown syntax
+                'upload-image', // open browser file window to upload image
+                'table',
+                '|',
+                'preview',
+                'side-by-side',
+                'fullscreen',
+                '|',
+                'guide',
+            ],
+        ],
     ],
 ];

@@ -27,6 +27,7 @@ use Developermithu\Tallcraftui\View\Components\Hint;
 use Developermithu\Tallcraftui\View\Components\Icon;
 use Developermithu\Tallcraftui\View\Components\Input;
 use Developermithu\Tallcraftui\View\Components\Label;
+use Developermithu\Tallcraftui\View\Components\Markdown;
 use Developermithu\Tallcraftui\View\Components\Menu;
 use Developermithu\Tallcraftui\View\Components\MenuItem;
 use Developermithu\Tallcraftui\View\Components\Modal;
@@ -60,6 +61,8 @@ class TallCraftUiServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerComponents();
+
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
         $this->publishes([
             __DIR__.'/../config/tallcraftui.php' => config_path('tallcraftui.php'),
@@ -134,6 +137,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'avatars' => Avatars::class,
             'toast' => Toast::class,
             'rating' => Rating::class,
+            'markdown' => Markdown::class,
         ];
 
         foreach ($components as $name => $class) {
