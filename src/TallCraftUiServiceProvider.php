@@ -32,6 +32,7 @@ use Developermithu\Tallcraftui\View\Components\Menu;
 use Developermithu\Tallcraftui\View\Components\MenuItem;
 use Developermithu\Tallcraftui\View\Components\Modal;
 use Developermithu\Tallcraftui\View\Components\Password;
+use Developermithu\Tallcraftui\View\Components\Progress;
 use Developermithu\Tallcraftui\View\Components\Radio;
 use Developermithu\Tallcraftui\View\Components\Range;
 use Developermithu\Tallcraftui\View\Components\Rating;
@@ -138,6 +139,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'toast' => Toast::class,
             'rating' => Rating::class,
             'markdown' => Markdown::class,
+            'progress' => Progress::class,
         ];
 
         foreach ($components as $name => $class) {

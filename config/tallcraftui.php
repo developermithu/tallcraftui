@@ -104,6 +104,10 @@ return [
         'border-radius' => BorderRadius::RoundedLg->value,
     ],
 
+    'progress' => [
+        'size' => Size::MD->value,
+    ],
+
     'stat' => [
         'border-radius' => BorderRadius::RoundedLg->value,
     ],
