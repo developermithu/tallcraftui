@@ -44,7 +44,7 @@ class Index extends Component
     {
         return <<<'HTML'
             <div @class([
-                "dark:border-gray-700", 
+                "border-gray-200 dark:border-gray-700", 
                 $shadowClass(), 
                 $roundedClass(),
                 'border divide-y divide-gray-200 dark:divide-gray-700' => !$attributes->get('borderless'),
