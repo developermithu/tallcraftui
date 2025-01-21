@@ -25,9 +25,10 @@
     {
       "name": "developermithu",
       "email": "developermithu@gmail.com",
-      "homepage": "https://developermithu.com"
+      "homepage": "https://github.com/developermithu"
     }
   ],
+  "homepage": "https://tallcraftui.developermithu.com",
   "require": {
     "blade-ui-kit/blade-heroicons": "^2.1",
     "gehrisandro/tailwind-merge-laravel": "^1.2"
