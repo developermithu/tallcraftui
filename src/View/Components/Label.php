@@ -42,7 +42,7 @@ class Label extends Component
                     ])
                 }}
             >     
-                {{ __($labelWithoutStar) }}
+                {{ $labelWithoutStar }}
 
                 @if ($isRequired)
                     <span class="text-red-500">*</span>
