@@ -96,7 +96,7 @@ class Toggle extends Component
                 $error = $errors->has($name) ? $errors->first($name) : null;
                
                 // Remove extra space & make label lowercase
-                $label = trim(Str::lower($label));
+                $label = trim($label);
 
                 // Check if the label contains '*'
                 $hasStar = strpos($label, '*') !== false;
@@ -113,7 +113,7 @@ class Toggle extends Component
                 @if($textLeft)
                     @if($label)
                         <span {{ $attributes->twMergeFor('label', 'text-sm font-medium text-gray-700 dark:text-gray-100', $error ? 'text-red-500' : '') }}>
-                            {{ Str::ucfirst(__($labelWithoutStar)) }}
+                            {{ __($labelWithoutStar) }}
 
                             @if ($isRequired)
                                 <span class="text-red-500">*</span>
@@ -138,7 +138,7 @@ class Toggle extends Component
                     @if($label)
                         <span {{ $attributes->twMergeFor('label', 'text-sm font-medium text-gray-700 dark:text-gray-100', $error ? 'text-red-500' : '') }}
                         >
-                            {{ Str::ucfirst(__($labelWithoutStar)) }}
+                            {{ __($labelWithoutStar) }}
 
                             @if ($isRequired)
                                 <span class="text-red-500">*</span>
