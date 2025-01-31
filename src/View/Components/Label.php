@@ -20,7 +20,7 @@ class Label extends Component
         return <<<'HTML'
             @php
                 // Remove extra space & make label lowercase
-                $label = trim(Str::lower($label));
+                $label = trim($label);
 
                 // Check if the label contains '*'
                 $hasStar = strpos($label, '*') !== false;
@@ -42,7 +42,7 @@ class Label extends Component
                     ])
                 }}
             >     
-                {{ Str::ucfirst(__($labelWithoutStar)) }}
+                {{ __($labelWithoutStar) }}
 
                 @if ($isRequired)
                     <span class="text-red-500">*</span>
