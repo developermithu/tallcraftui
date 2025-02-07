@@ -51,6 +51,15 @@ trait WithTcTable
     public function tcApplySorting($query)
     {
         return $query->when($this->sortCol, function ($query) {
+            // Handle Relationships Sorting
+            if (str_contains($this->sortCol, '.')) {
+                [$relation, $column] = explode('.', $this->sortCol);
+
+                return $query->withAggregate($relation, $column)
+                    ->orderBy("{$relation}_{$column}", $this->sortAsc ? 'asc' : 'desc');
+            }
+
+            // Default column sorting
             return $query->orderBy($this->sortCol, $this->sortAsc ? 'asc' : 'desc');
         });
     }
