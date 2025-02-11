@@ -44,12 +44,14 @@ class Index extends Component
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-            <div @class([
-                "border-gray-200 dark:border-gray-700", 
-                $shadowClass(), 
-                $roundedClass(),
-                'border divide-y divide-gray-200 dark:divide-gray-700' => !$attributes->get('borderless'),
-            ])>
+            <div {{ $attributes->twMerge([
+                        'border-gray-200 dark:border-gray-700',
+                        $shadowClass(), 
+                        $roundedClass(),
+                        $attributes->get('borderless') ? '' : 'border divide-y divide-gray-200 dark:divide-gray-700'
+                    ]) 
+                }}
+            >
                 @if(isset($bulkActions) || $searchable || isset($filters))
                     <div class="items-center justify-between block px-4 py-3 space-y-2 sm:flex sm:space-y-0">
                         <div class="flex items-center gap-3">
