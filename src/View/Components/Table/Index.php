@@ -59,7 +59,7 @@ class Index extends Component
 
                         <div class="flex items-center gap-3">
                             @if($searchable)
-                                <form action="#" method="GET">
+                                <form onsubmit="event.preventDefault();" action="#" method="GET">
                                     <label for="categories-search" class="sr-only">Search</label>
                                     <div class="relative w-48 mt-1 sm:w-64 xl:w-96">
                                         <x-tc-input type="search" wire:model.live.debounce.250ms="tcSearch" placeholder="{{ __('Search') }}.." icon="magnifying-glass" class:icon="text-gray-500 size-[18px]" />
