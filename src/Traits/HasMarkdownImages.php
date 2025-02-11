@@ -34,7 +34,9 @@ trait HasMarkdownImages
 
     protected function deleteMarkdownImages(?string $content): void
     {
-        if (empty($content)) return;
+        if (empty($content)) {
+            return;
+        }
         $this->deleteMarkdownImageUrls(self::extractImageUrls($content));
     }
 
@@ -53,8 +55,11 @@ trait HasMarkdownImages
 
     protected static function extractImageUrls(?string $content): array
     {
-        if (empty($content)) return [];
+        if (empty($content)) {
+            return [];
+        }
         preg_match_all('/!\[.*?\]\((.*?)\)/', $content, $matches);
+
         return $matches[1] ?? [];
     }
 }
