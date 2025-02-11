@@ -81,6 +81,7 @@ class Index extends Component
                                 <table 
                                     @if(!$noLoading)
                                         wire:loading.delay.class="opacity-40" 
+                                        wire:target="tcSearch,tcPerPage,gotoPage,previousPage,nextPage,sortBy,destroy"
                                     @endif
                                     
                                     @class([
@@ -108,7 +109,8 @@ class Index extends Component
                         </div>
 
                          @if(!$noLoading)
-                            <div wire:loading.delay class="absolute -translate-y-1/2 top-1/2 left-1/2">
+                            <div wire:loading.delay class="absolute -translate-y-1/2 top-1/2 left-1/2"
+                                wire:target="tcSearch,tcPerPage,gotoPage,previousPage,nextPage,sortBy,destroy">
                                 <x-tc-spinner class="size-9" />
                             </div>
                          @endif
