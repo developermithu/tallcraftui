@@ -16,6 +16,7 @@ class Index extends Component
         public bool|array $perPage = false,
         public ?bool $searchable = false,
         public ?bool $noLoading = false,
+        public ?bool $noSpinner = false,
         public LengthAwarePaginator|Paginator|null $paginate = null,
     ) {}
 
@@ -80,7 +81,7 @@ class Index extends Component
                             <div class="overflow-hidden">
                                 <table 
                                     @if(!$noLoading)
-                                        wire:loading.delay.class="opacity-40" 
+                                        wire:loading.delay.class="opacity-60" 
                                         wire:target="tcSearch,tcPerPage,gotoPage,previousPage,nextPage,sortBy,destroy"
                                     @endif
                                     
@@ -108,10 +109,10 @@ class Index extends Component
                             </div>
                         </div>
 
-                         @if(!$noLoading)
+                         @if(!$noLoading && !$noSpinner)
                             <div wire:loading.delay class="absolute -translate-y-1/2 top-1/2 left-1/2"
                                 wire:target="tcSearch,tcPerPage,gotoPage,previousPage,nextPage,sortBy,destroy">
-                                <x-tc-spinner class="size-9" />
+                                <x-tc-spinner class="size-6 md:size-8" />
                             </div>
                          @endif
                     </div>
