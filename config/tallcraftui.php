@@ -146,6 +146,7 @@ return [
     ],
 
     'input' => [
+        'size' => Size::MD->value,
         'border-radius' => BorderRadius::Rounded->value,
     ],
 
