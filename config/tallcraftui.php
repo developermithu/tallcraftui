@@ -150,16 +150,17 @@ return [
         'border-radius' => BorderRadius::Rounded->value,
     ],
 
+    'select' => [
+        'size' => Size::MD->value,
+        'border-radius' => BorderRadius::Rounded->value,
+    ],
+
     'radio' => [
         'size' => Size::MD->value,
     ],
 
     'rating' => [
         'size' => Size::MD->value,
-    ],
-
-    'select' => [
-        'border-radius' => BorderRadius::Rounded->value,
     ],
 
     'textarea' => [
