@@ -26,6 +26,28 @@ class Select extends Component
         return BorderRadiusHelper::getRoundedClass('select', $this->attributes);
     }
 
+    public function sizeClasses(): string
+    {
+        $sizes = [
+            'xs' => 'py-1 text-xs',
+            'sm' => 'py-1.5 text-xs',
+            'md' => 'py-2 text-sm',
+            'lg' => 'py-2.5 text-base',
+            'xl' => 'py-3 text-lg',
+            '2xl' => 'py-3.5 text-xl',
+        ];
+
+        foreach ($sizes as $key => $class) {
+            if ($this->attributes->has($key)) {
+                return $class;
+            }
+        }
+
+        $defaultSize = config('tallcraftui.select.size', 'md');
+
+        return $sizes[$defaultSize] ?? $sizes['md'];
+    }
+
     public function render(): View|Closure|string
     {
         return <<<'HTML'
@@ -53,7 +75,8 @@ class Select extends Component
                                 $attributes
                                     ->withoutTwMergeClasses()
                                     ->twMerge([
-                                        "block w-full border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300",
+                                        "block w-full border-gray-200 shadow-sm outline-none focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300",
+                                        $sizeClasses(),
                                         $errorClass,
                                         $disabledClass,
                                         $readonlyClass,
