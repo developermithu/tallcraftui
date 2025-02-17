@@ -33,6 +33,7 @@ use Developermithu\Tallcraftui\View\Components\MenuItem;
 use Developermithu\Tallcraftui\View\Components\Modal;
 use Developermithu\Tallcraftui\View\Components\Password;
 use Developermithu\Tallcraftui\View\Components\Progress;
+use Developermithu\Tallcraftui\View\Components\ProgressRadial;
 use Developermithu\Tallcraftui\View\Components\Radio;
 use Developermithu\Tallcraftui\View\Components\Range;
 use Developermithu\Tallcraftui\View\Components\Rating;
@@ -140,6 +141,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'rating' => Rating::class,
             'markdown' => Markdown::class,
             'progress' => Progress::class,
+            'progress-radial' => ProgressRadial::class,
         ];
 
         foreach ($components as $name => $class) {
