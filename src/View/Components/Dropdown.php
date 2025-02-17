@@ -225,7 +225,7 @@ class Dropdown extends Component
                 >
                     <ul 
                        {{ $attributes->twMerge([
-                                "ring-1 ring-black dark:ring-gray-700 ring-opacity-5 dark:bg-gray-800 dark:text-gray-100",
+                                "list-none ring-1 ring-gray-200 dark:ring-gray-700 dark:bg-gray-800 dark:text-gray-100",
                                 $roundedClass(),  
                                 $title ? 'py-1' : '',
                             ]) 

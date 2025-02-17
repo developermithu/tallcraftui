@@ -150,6 +150,12 @@ return [
     ],
 
     'input' => [
+        'size' => Size::MD->value,
+        'border-radius' => BorderRadius::Rounded->value,
+    ],
+
+    'select' => [
+        'size' => Size::MD->value,
         'border-radius' => BorderRadius::Rounded->value,
     ],
 
@@ -159,10 +165,6 @@ return [
 
     'rating' => [
         'size' => Size::MD->value,
-    ],
-
-    'select' => [
-        'border-radius' => BorderRadius::Rounded->value,
     ],
 
     'textarea' => [

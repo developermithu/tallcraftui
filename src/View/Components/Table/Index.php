@@ -16,6 +16,7 @@ class Index extends Component
         public bool|array $perPage = false,
         public ?bool $searchable = false,
         public ?bool $noLoading = false,
+        public ?bool $noSpinner = false,
         public LengthAwarePaginator|Paginator|null $paginate = null,
     ) {}
 
@@ -43,12 +44,14 @@ class Index extends Component
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-            <div @class([
-                "dark:border-gray-700", 
-                $shadowClass(), 
-                $roundedClass(),
-                'border divide-y divide-gray-200 dark:divide-gray-700' => !$attributes->get('borderless'),
-            ])>
+            <div {{ $attributes->twMerge([
+                        'border-gray-200 dark:border-gray-700',
+                        $shadowClass(), 
+                        $roundedClass(),
+                        $attributes->get('borderless') ? '' : 'border divide-y divide-gray-200 dark:divide-gray-700'
+                    ]) 
+                }}
+            >
                 @if(isset($bulkActions) || $searchable || isset($filters))
                     <div class="items-center justify-between block px-4 py-3 space-y-2 sm:flex sm:space-y-0">
                         <div class="flex items-center gap-3">
@@ -59,7 +62,7 @@ class Index extends Component
 
                         <div class="flex items-center gap-3">
                             @if($searchable)
-                                <form action="#" method="GET">
+                                <form onsubmit="event.preventDefault();" action="#" method="GET">
                                     <label for="categories-search" class="sr-only">Search</label>
                                     <div class="relative w-48 mt-1 sm:w-64 xl:w-96">
                                         <x-tc-input type="search" wire:model.live.debounce.250ms="tcSearch" placeholder="{{ __('Search') }}.." icon="magnifying-glass" class:icon="text-gray-500 size-[18px]" />
@@ -80,7 +83,8 @@ class Index extends Component
                             <div class="overflow-hidden">
                                 <table 
                                     @if(!$noLoading)
-                                        wire:loading.delay.class="opacity-40" 
+                                        wire:loading.delay.class="opacity-60" 
+                                        wire:target="tcSearch,tcPerPage,gotoPage,previousPage,nextPage,sortBy,destroy"
                                     @endif
                                     
                                     @class([
@@ -107,9 +111,10 @@ class Index extends Component
                             </div>
                         </div>
 
-                         @if(!$noLoading)
-                            <div wire:loading.delay class="absolute -translate-y-1/2 top-1/2 left-1/2">
-                                <x-tc-spinner class="size-9" />
+                         @if(!$noLoading && !$noSpinner)
+                            <div wire:loading.delay class="absolute -translate-y-1/2 top-1/2 left-1/2"
+                                wire:target="tcSearch,tcPerPage,gotoPage,previousPage,nextPage,sortBy,destroy">
+                                <x-tc-spinner class="size-6 md:size-8" />
                             </div>
                          @endif
                     </div>
