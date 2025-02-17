@@ -58,7 +58,7 @@ class InstallTallcraftuiCommand extends Command
             ->explode(',')
             ->filter()
             ->map(fn ($item) => trim($item))
-            ->push('"./vendor/developermithu/tallcraftui/src/View/Components/**/*.php",') // Add the new path as the last item
+            ->push('"./vendor/developermithu/tallcraftui/src/**/*.php",') // Add the new path as the last item
             ->implode(",\n\t\t");
 
         // Format the content array with correct syntax and indentation
