@@ -30,6 +30,7 @@
   ],
   "homepage": "https://tallcraftui.developermithu.com",
   "require": {
+    "illuminate/support": "^10.0|^11.0|^12.0",
     "blade-ui-kit/blade-heroicons": "^2.1",
     "gehrisandro/tailwind-merge-laravel": "^1.2"
   },
