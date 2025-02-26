@@ -37,6 +37,12 @@ class InstallTallcraftuiCommand extends Command
     private function setupTailwindConfig()
     {
         $tailwindJsPath = base_path('tailwind.config.js');
+
+        // Skip if tailwind.config.js doesn't exist
+        if (!File::exists($tailwindJsPath)) {
+            return;
+        }
+
         $tailwindJs = File::get($tailwindJsPath);
 
         $configContent = str($tailwindJs);
@@ -103,21 +109,21 @@ class InstallTallcraftuiCommand extends Command
         Artisan::call('vendor:publish --tag=tallcraftui-css --force');
 
         $appCssPath = resource_path('css/app.css');
-        $importStatement = '@import "./tallcraftui.css";'.PHP_EOL.PHP_EOL;
-
+        $importStatements = "@import './tallcraftui.css';".PHP_EOL;
+        $importStatements .= "@source '../../vendor/developermithu/tallcraftui/src/**/*.php';".PHP_EOL.PHP_EOL;
+    
         if (File::exists($appCssPath)) {
             // Read the current content of the app.css file
             $appCssContent = File::get($appCssPath);
-
-            // Check if the tallcraftui.css is already present
-            if (strpos($appCssContent, 'tallcraftui.css') === false) {
-                $updatedContent = $importStatement.$appCssContent;
-
+    
+            // Update the import statements if they are not already present
+            if (strpos($appCssContent, 'tallcraftui.css') === false || 
+                strpos($appCssContent, 'developermithu/tallcraftui') === false) {
+                $updatedContent = $importStatements.$appCssContent;
                 File::put($appCssPath, $updatedContent);
-
-                // $this->info('Imported `tallcraftui.css` to the top of `app.css`');
+                $this->info('TallCraftUI installed successfully.');
             } else {
-                // $this->info('tallcraftui.css already exists in app.css');
+                $this->warn('TallCraftUI is already installed.');
                 return;
             }
         } else {
