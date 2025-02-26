@@ -21,8 +21,8 @@ class CardFigure extends Component
         $default = config('tallcraftui.card.border-radius', 'rounded-lg');
 
         return match (true) {
-            $default === 'rounded' => 'rounded',
             $default === 'rounded-sm' => 'rounded-sm',
+            $default === 'rounded-xs' => 'rounded-xs',
             $default === 'rounded-md' => 'rounded-md',
             $default === 'rounded-lg' => 'rounded-lg',
             $default === 'rounded-xl' => 'rounded-xl',
@@ -41,7 +41,7 @@ class CardFigure extends Component
                 {{ $attributes->withoutTwMergeClasses()
                     ->twMerge([
                         'relative overflow-hidden group', 
-                        str_replace('rounded', 'rounded-t', $roundedClass()),
+                        str_replace('rounded-sm', 'rounded-t', $roundedClass()),
                     ]) 
                 }}
             >
@@ -51,7 +51,7 @@ class CardFigure extends Component
                         @class([
                             'w-full h-auto',
                             'group-hover:scale-110 transition duration-300' => $hoverable,
-                            str_replace('rounded', 'rounded-t', $roundedClass()),
+                            str_replace('rounded-sm', 'rounded-t', $roundedClass()),
                         ])
                     >
                 @endif    
@@ -72,7 +72,7 @@ class CardFigure extends Component
                 <div {{ $attributes->twMergeFor(
                         'overlay', 
                         'absolute inset-0 bg-black/20', 
-                        str_replace('rounded', 'rounded-t', $roundedClass()), 
+                        str_replace('rounded-sm', 'rounded-t', $roundedClass()), 
                         $overlay ? 'block' : 'hidden'
                     )}}
                 ></div>

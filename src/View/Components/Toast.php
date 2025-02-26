@@ -42,7 +42,7 @@ class Toast extends Component
                             {{ $attributes
                                 ->withoutTwMergeClasses()
                                 ->twMerge([
-                                    'fixed z-50 bg-white max-w-md dark:bg-gray-800 dark:border-gray-700 flex items-center p-4 mb-4 rounded-lg shadow border border-gray-200',
+                                    'fixed z-50 bg-white max-w-md dark:bg-gray-800 dark:border-gray-700 flex items-center p-4 mb-4 rounded-lg shadow-sm border border-gray-200',
                                 ]) 
                             }}
                         >
@@ -56,8 +56,8 @@ class Toast extends Component
                                 ></div>
                             </template>
 
-                            <div class="flex items-center justify-between w-full" :class="{ '!items-start' : toast?.description }">
-                                <div class="flex items-center" :class="{ '!items-start' : toast?.description }">
+                            <div class="flex items-center justify-between w-full" :class="{ 'items-start!' : toast?.description }">
+                                <div class="flex items-center" :class="{ 'items-start!' : toast?.description }">
                                     <div x-html="toast?.icon" class="mr-2"></div>
                                     <div>
                                         <h3 x-text="toast?.title" 

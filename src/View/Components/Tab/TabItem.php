@@ -50,7 +50,7 @@ class TabItem extends Component
                 {{ $attributes->withoutTwMergeClasses()->twMerge([
                         'text-sm px-1 inline-flex items-center justify-center font-semibold whitespace-nowrap transition ease-in-out',
                         $as != 'switch' ? 'py-4 border-b-2 gap-x-1.5' : '',
-                        $as === 'switch' ? 'py-2 my-1 rounded w-full gap-x-2' : '',
+                        $as === 'switch' ? 'py-2 my-1 rounded-sm w-full gap-x-2' : '',
                     ])
                 }}
             >

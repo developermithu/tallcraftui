@@ -4,8 +4,8 @@ namespace Developermithu\Tallcraftui\Enums;
 
 enum Shadow: string
 {
-    case Shadow = 'shadow';
-    case ShadowSm = 'shadow-sm';
+    case Shadow = 'shadow-sm';
+    case ShadowSm = 'shadow-xs';
     case ShadowMd = 'shadow-md';
     case ShadowLg = 'shadow-lg';
     case ShadowXl = 'shadow-xl';

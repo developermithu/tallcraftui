@@ -259,7 +259,7 @@ class ColorPicker extends Component
                                 $attributes
                                     ->withoutTwMergeClasses()
                                     ->twMerge([
-                                        "block w-full border-gray-200 pl-14 py-2.5 shadow-sm text-sm outline-none focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
+                                        "block w-full border-gray-200 pl-14 py-2.5 shadow-xs text-sm outline-hidden focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
                                         $disableClass(),
                                         $readonlyClass(),
                                         $roundedClass(),
@@ -289,13 +289,13 @@ class ColorPicker extends Component
                             x-transition:leave="transition ease-in duration-150"
                             x-transition:leave-start="transform opacity-100 scale-100"
                             x-transition:leave-end="transform opacity-0 scale-95"
-                            class="absolute right-0 z-10 mt-2 bg-white border border-gray-200 rounded dark:bg-gray-800 dark:border-gray-700 top-11"
+                            class="absolute right-0 z-10 mt-2 bg-white border border-gray-200 rounded-sm dark:bg-gray-800 dark:border-gray-700 top-11"
                         >
                             <div class="grid grid-cols-10 gap-1.5 p-3 overflow-y-auto max-h-56" style="scrollbar-width: thin">
                                 <template x-for="presetColor in presetColors" :key="presetColor">
                                     <div
                                         @click="setColor(presetColor)"
-                                        class="w-5 h-5 duration-200 rounded cursor-pointer hover:scale-110"
+                                        class="w-5 h-5 duration-200 rounded-sm cursor-pointer hover:scale-110"
                                         :style="{ backgroundColor: presetColor }"
                                     ></div>
                                 </template>

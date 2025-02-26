@@ -36,7 +36,7 @@ class Menu extends Component
     {
         return <<<'HTML'
             <ul {{ $attributes->withoutTwMergeClasses()->twMerge([
-                        "z-10 py-1 mt-2 bg-white dark:bg-gray-800 ring-1 ring-black dark:ring-gray-700 ring-opacity-5 focus:outline-none",
+                        "z-10 py-1 mt-2 bg-white dark:bg-gray-800 ring-1 ring-black dark:ring-gray-700 ring-opacity-5 focus:outline-hidden",
                         $widthClass(),
                         $roundedClass(),    
                         $shadowClass(),    

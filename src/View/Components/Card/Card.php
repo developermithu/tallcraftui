@@ -16,8 +16,8 @@ class Card extends Component
         $default = config('tallcraftui.card.border-radius', 'rounded-lg');
 
         return match (true) {
-            $default === 'rounded' => 'rounded',
             $default === 'rounded-sm' => 'rounded-sm',
+            $default === 'rounded-xs' => 'rounded-xs',
             $default === 'rounded-md' => 'rounded-md',
             $default === 'rounded-lg' => 'rounded-lg',
             $default === 'rounded-xl' => 'rounded-xl',

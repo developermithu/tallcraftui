@@ -128,7 +128,7 @@ class Stat extends Component
     {
         return <<<'HTML'
             <div {{ $attributes->withoutTwMergeClasses()->twMerge([
-                            "flex flex-col bg-white border shadow-sm dark:bg-gray-800",
+                            "flex flex-col bg-white border shadow-xs dark:bg-gray-800",
                             $statColorClasses(),
                             $roundedClass(),
                         ]) 

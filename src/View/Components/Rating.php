@@ -66,7 +66,7 @@ class Rating extends Component
                     }"
                 >
                     @for ($i = 1; $i <= $total; $i++)
-                        <button type="button" class="focus:outline-none"
+                        <button type="button" class="focus:outline-hidden"
 
                             @if(!$readonly)
                                 @click="rating = {{ $i }}"
@@ -87,7 +87,7 @@ class Rating extends Component
                             x-bind:class="[
                                     !readonly ? 'cursor-pointer' : 'cursor-default',
                                     (hoverRating >= {{ $i }} || (!hoverRating && rating >= {{ $i }})) 
-                                        ? '!text-amber-500' 
+                                        ? 'text-amber-500!' 
                                         : ''
                                 ]"  
                             />

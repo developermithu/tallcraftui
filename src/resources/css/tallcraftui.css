@@ -1,38 +1,59 @@
-@layer components {
-  .tc-table .table-striped tbody tr:nth-of-type(odd) {
+@utility tc-table {
+  & .table-striped tbody tr:nth-of-type(odd) {
     @apply bg-white dark:bg-transparent;
   }
 
-  .tc-table .table-striped tbody tr:nth-of-type(even) {
+  & .table-striped tbody tr:nth-of-type(even) {
     @apply bg-gray-50 dark:bg-gray-700;
   }
 
-  .tc-table .hoverable tbody tr {
+  & .hoverable tbody tr {
     @apply hover:bg-gray-50 dark:hover:bg-gray-700;
   }
+}
 
-  .tc-pagination nav div:nth-child(1) {
+@utility table-striped {
+  .tc-table & tbody tr:nth-of-type(odd) {
+    @apply bg-white dark:bg-transparent;
+  }
+
+  .tc-table & tbody tr:nth-of-type(even) {
+    @apply bg-gray-50 dark:bg-gray-700;
+  }
+}
+
+@utility hoverable {
+  .tc-table & tbody tr {
+    @apply hover:bg-gray-50 dark:hover:bg-gray-700;
+  }
+}
+
+@utility tc-pagination {
+  & nav div:nth-child(1) {
     @apply flex justify-between flex-1 gap-3 sm:hidden;
   }
 
-  .tc-pagination nav div:nth-child(2) {
+  & nav div:nth-child(2) {
     @apply hidden sm:flex-1 sm:flex sm:items-center sm:justify-between;
   }
 
-  .tc-pagination nav div:nth-child(2) div {
+  & nav div:nth-child(2) div {
     @apply block;
   }
 
-  .tc-pagination nav div:nth-child(2) div p {
+  & nav div:nth-child(2) div p {
     @apply flex gap-1;
   }
 
-  .tc-pagination nav,
-  .tc-pagination nav div:nth-child(2) {
+  & nav {
     @apply gap-5;
   }
 
-  .tc-pagination nav button {
-    @apply border focus:border-primary/50 focus:ring ring-primary/50 active:bg-gray-100 active:text-gray-700 dark:bg-gray-800 dark:border-primary/50 dark:text-gray-400 dark:hover:text-gray-300 dark:focus:border-primary;
+  & nav div:nth-child(2) {
+    @apply gap-5;
+  }
+
+  & nav button {
+    @apply border focus:border-primary/50 focus:ring-3 ring-primary/50 active:bg-gray-100 active:text-gray-700 dark:bg-gray-800 dark:border-primary/50 dark:text-gray-400 dark:hover:text-gray-300 dark:focus:border-primary;
   }
 }

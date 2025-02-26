@@ -211,7 +211,7 @@ class Dropdown extends Component
                     @endif
 
                     @class([
-                        "absolute bg-white dark:bg-gray-800 z-[999]",
+                        "absolute bg-white dark:bg-gray-800 z-999",
                         $widthClass(),   
                         $roundedClass(), 
                         $shadowClass(), 

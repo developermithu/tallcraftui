@@ -111,8 +111,8 @@ class Markdown extends Component
                             {{ $attributes->except(['wire:model', 'placeholder']) }}
                         ></textarea>
 
-                        <div class="absolute top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 !opacity-100 text-center hidden" 
-                            :class="uploading && '!block'"
+                        <div class="absolute top-1/2 start-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100! text-center hidden" 
+                            :class="uploading && 'block!'"
                         >
                             <div>Uploading...</div>
                         </div>

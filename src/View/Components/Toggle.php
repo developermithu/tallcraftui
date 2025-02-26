@@ -127,7 +127,7 @@ class Toggle extends Component
                     ->except(['wire:model'])
                     ->withoutTwMergeClasses()
                     ->twMerge([
-                        "relative bg-gray-200 rounded-full peer peer-focus:ring-2 ring-offset-2 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5  after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 duration-200",
+                        "relative bg-gray-200 rounded-full peer peer-focus:ring-2 ring-offset-2 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:rtl:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5  after:bg-white after:border-gray-300 after:border after:rounded-full after:transition-all dark:border-gray-600 duration-200",
                         $error ? 'bg-red-500' : '',
                         $toggleColor(),
                         $sizes(),

@@ -178,7 +178,7 @@ class Alert extends Component
                     }}
                 >
                 <div class="flex items-start">
-                    <div class="flex-shrink-0">
+                    <div class="shrink-0">
                         <x-tc-icon :name="$alertIcon()" class="size-5 opacity-80 {{ $errors ? 'text-red-500': '' }}" />
                     </div>
 
@@ -208,7 +208,7 @@ class Alert extends Component
                                 <button @click="visible = false"
                                         {{ $attributes->twMergeFor(
                                                 "action",
-                                                "flex items-center justify-center transition duration-200 ease-in-out bg-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-0 size-8",
+                                                "flex items-center justify-center transition duration-200 ease-in-out bg-transparent rounded-full focus:outline-hidden focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-0 size-8",
                                                 $actionColors(),
                                             )
                                         }}

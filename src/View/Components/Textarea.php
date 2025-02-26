@@ -71,7 +71,7 @@ class Textarea extends Component
                                     ->withoutTwMergeClasses()
                                     ->merge(['rows' => 3])
                                     ->twMerge([
-                                            "block w-full border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-white",
+                                            "block w-full border-gray-200 py-2.5 shadow-xs text-sm outline-hidden focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-white",
                                             $iconLeft ? 'pl-9' : '', 
                                             $icon || $iconRight ? 'pe-9' : '',
                                             $error ? 'border-red-500 dark:border-red-500 focus:border-red-500 dark:focus:border-red-500 focus:ring-red-500' : '',

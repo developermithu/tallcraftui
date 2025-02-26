@@ -75,7 +75,7 @@ class Select extends Component
                                 $attributes
                                     ->withoutTwMergeClasses()
                                     ->twMerge([
-                                        "block w-full border-gray-200 shadow-sm outline-none focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300",
+                                        "block w-full border-gray-200 shadow-xs outline-hidden focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300",
                                         $sizeClasses(),
                                         $errorClass,
                                         $disabledClass,

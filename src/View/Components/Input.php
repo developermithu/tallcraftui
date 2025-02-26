@@ -42,7 +42,7 @@ class Input extends Component
     {
         return match (true) {
             $this->attributes->get('rounded-none') => 'rounded-s-none',
-            $this->attributes->get('rounded-sm') => 'rounded-s-sm',
+            $this->attributes->get('rounded-xs') => 'rounded-s-sm',
             $this->attributes->get('rounded-md') => 'rounded-s-md',
             $this->attributes->get('rounded-lg') => 'rounded-s-lg',
             $this->attributes->get('rounded-xl') => 'rounded-s-xl',
@@ -57,7 +57,7 @@ class Input extends Component
     {
         return match (true) {
             $this->attributes->get('rounded-none') => 'rounded-e-none',
-            $this->attributes->get('rounded-sm') => 'rounded-e-sm',
+            $this->attributes->get('rounded-xs') => 'rounded-e-sm',
             $this->attributes->get('rounded-md') => 'rounded-e-md',
             $this->attributes->get('rounded-lg') => 'rounded-e-lg',
             $this->attributes->get('rounded-xl') => 'rounded-e-xl',
@@ -80,12 +80,12 @@ class Input extends Component
 
     public function inputPrefixPrependClass(): string
     {
-        return ($this->prefix || filled($this->prepend)) ? '!rounded-l-none' : '';
+        return ($this->prefix || filled($this->prepend)) ? 'rounded-l-none!' : '';
     }
 
     public function inputSuffixAppendClass(): string
     {
-        return ($this->suffix || filled($this->append)) ? '!rounded-r-none' : '';
+        return ($this->suffix || filled($this->append)) ? 'rounded-r-none!' : '';
     }
 
     public function fileInputClass(): string
@@ -207,7 +207,7 @@ class Input extends Component
                                     ->merge(['type' => 'text'])
                                     ->withoutTwMergeClasses()
                                     ->twMerge([
-                                        "block w-full border-gray-200 shadow-sm outline-none focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
+                                        "block w-full border-gray-200 shadow-xs outline-hidden focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
                                         $sizeClasses(),
                                         $iconLeftClass(),
                                         $iconRightClass(),

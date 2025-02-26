@@ -58,11 +58,11 @@ class Drawer extends Component
 
     public function bgBlurClasses()
     {
-        $isDefaultBlur = config('tallcraftui.drawer.blur', false);
+        $isDefaultBlur = config('tallcraftui.drawer.blur-sm', false);
 
         return match (true) {
-            $this->attributes->get('blur') => 'backdrop-blur',
             $this->attributes->get('blur-sm') => 'backdrop-blur-sm',
+            $this->attributes->get('blur-xs') => 'backdrop-blur-xs',
             $this->attributes->get('blur-md') => 'backdrop-blur-md',
             $this->attributes->get('blur-lg') => 'backdrop-blur-lg',
             $this->attributes->get('blur-xl') => 'backdrop-blur-xl',
@@ -71,7 +71,7 @@ class Drawer extends Component
             $this->attributes->get('blur-none') => 'backdrop-blur-none',
 
             default => match ($isDefaultBlur) {
-                true => 'backdrop-blur-sm',
+                true => 'backdrop-blur-xs',
                 default => '',
             },
         };
@@ -100,7 +100,7 @@ class Drawer extends Component
                             @keydown.window.escape="open = false"
                         @endif
                         
-                        class="relative z-[99]"
+                        class="relative z-99"
                     >
                         <!-- Baground Overlay -->
                         <div 
@@ -176,7 +176,7 @@ class Drawer extends Component
                                         > 
                                             @if($title || !$withoutDismissible)
                                                 <div class="px-4 mb-4 sm:px-5">                                                
-                                                    <div @class(["flex items-center justify-between gap-1.5 pb-1", '!justify-end' => !$title])>
+                                                    <div @class(["flex items-center justify-between gap-1.5 pb-1", 'justify-end!' => !$title])>
                                                         @if($title)
                                                             <h2 class="text-xl font-semibold leading-6 text-gray-900 dark:text-white">{{ $title }}</h2>
                                                         @endif

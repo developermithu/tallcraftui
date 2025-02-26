@@ -46,11 +46,11 @@ class Modal extends Component
 
     public function bgBlurClasses()
     {
-        $isDefaultBlur = config('tallcraftui.modal.blur', false);
+        $isDefaultBlur = config('tallcraftui.modal.blur-sm', false);
 
         return match (true) {
-            $this->attributes->get('blur') => 'backdrop-blur',
             $this->attributes->get('blur-sm') => 'backdrop-blur-sm',
+            $this->attributes->get('blur-xs') => 'backdrop-blur-xs',
             $this->attributes->get('blur-md') => 'backdrop-blur-md',
             $this->attributes->get('blur-lg') => 'backdrop-blur-lg',
             $this->attributes->get('blur-xl') => 'backdrop-blur-xl',
@@ -59,7 +59,7 @@ class Modal extends Component
             $this->attributes->get('blur-none') => 'backdrop-blur-none',
 
             default => match ($isDefaultBlur) {
-                true => 'backdrop-blur-sm',
+                true => 'backdrop-blur-xs',
                 default => '',
             },
         };
@@ -70,8 +70,8 @@ class Modal extends Component
         $positions = [
             'top' => 'flex items-start justify-center h-screen',
             'bottom' => 'flex items-end justify-center h-screen',
-            'left' => 'flex items-center justify-start w-screen h-screen !pl-10',
-            'right' => 'flex items-center justify-end w-screen h-screen !pr-10',
+            'left' => 'flex items-center justify-start w-screen h-screen pl-10!',
+            'right' => 'flex items-center justify-end w-screen h-screen pr-10!',
             'center' => 'flex items-center justify-center w-screen h-screen',
         ];
 
@@ -112,7 +112,7 @@ class Modal extends Component
                 id="{{ $id }}"
 
                 @class([
-                    "fixed inset-0 z-[999999] px-4 py-14 overflow-y-auto jetstream-modal sm:px-0", 
+                    "fixed inset-0 z-999999 px-4 py-14 overflow-y-auto jetstream-modal sm:px-0", 
                     $modalPosition(),
                 ])
                 

@@ -93,7 +93,7 @@ class Password extends Component
                                     ->withoutTwMergeClasses()
                                     ->whereDoesntStartWith('wire:model')
                                     ->twMerge([
-                                        "block w-full border-gray-200 py-2.5 shadow-sm text-sm outline-none focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
+                                        "block w-full border-gray-200 py-2.5 shadow-xs text-sm outline-hidden focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
                                         $iconLeftClass(),
                                         $disableClass(),
                                         $readonlyClass(),
