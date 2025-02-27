@@ -17,18 +17,64 @@ class InstallTallcraftuiCommand extends Command
      */
     public function handle()
     {
-        $this->publishAndImportTallcraftuiCSS();
+        $this->installTailwindFormsPlugin();
+        $this->publishAndImportTallcraftuiAssets();
         $this->setupTailwindConfig();
-
+    
         // Rename component prefix if Jetstream or Breeze are detected
         $this->renameComponentPrefix();
-
+    
         // Clear view cache
         Artisan::call('view:clear');
-
+    
         $this->info("\n");
         $this->info('✅  Run `npm run dev` or `bun dev`');
         $this->info('🌟  Love TallCraftUI? give it a star: https://github.com/developermithu/tallcraftui');
+    }
+
+    private function installTailwindFormsPlugin()
+    {
+        $packageJsonPath = base_path('package.json');
+        
+        if (!File::exists($packageJsonPath)) {
+            $this->error('package.json not found.');
+            return;
+        }
+    
+        $packageJson = json_decode(File::get($packageJsonPath), true);
+        
+        // Check if @tailwindcss/forms is already installed in dependencies or devDependencies
+        if (isset($packageJson['dependencies']['@tailwindcss/forms']) || 
+            isset($packageJson['devDependencies']['@tailwindcss/forms'])) {
+            return;
+        }
+    
+        if (!$this->confirm('Would you like to install @tailwindcss/forms?', true)) {
+            return;
+        }
+    
+        $packageManager = $this->choice(
+            'Which package manager would you like to use?',
+            ['npm', 'yarn', 'pnpm', 'bun'],
+            0
+        );
+    
+        $command = match ($packageManager) {
+            'npm' => 'npm install -D @tailwindcss/forms',
+            'yarn' => 'yarn add -D @tailwindcss/forms',
+            'pnpm' => 'pnpm add -D @tailwindcss/forms',
+            'bun' => 'bun add -D @tailwindcss/forms',
+        };
+    
+        $this->info("\nInstalling @tailwindcss/forms using {$packageManager}...\n");
+        
+        $process = shell_exec($command);
+        
+        if ($process !== null) {
+            $this->info("\n@tailwindcss/forms installed successfully.\n");
+        } else {
+            $this->error("\nFailed to install @tailwindcss/forms. Please install it manually.\n");
+        }
     }
 
     /**
@@ -104,27 +150,37 @@ class InstallTallcraftuiCommand extends Command
         });
     }
 
-    protected function publishAndImportTallcraftuiCSS()
+    protected function publishAndImportTallcraftuiAssets()
     {
         Artisan::call('vendor:publish --tag=tallcraftui-css --force');
-
+    
         $appCssPath = resource_path('css/app.css');
-        $importStatements = "@import './tallcraftui.css';".PHP_EOL;
-        $importStatements .= "@source '../../vendor/developermithu/tallcraftui/src/**/*.php';".PHP_EOL.PHP_EOL;
-    
+        $importStatements = [];
+        
         if (File::exists($appCssPath)) {
-            // Read the current content of the app.css file
             $appCssContent = File::get($appCssPath);
-    
-            // Update the import statements if they are not already present
-            if (strpos($appCssContent, 'tallcraftui.css') === false || 
-                strpos($appCssContent, 'developermithu/tallcraftui') === false) {
-                $updatedContent = $importStatements.$appCssContent;
+            
+            // Check each import separately and add only if missing
+            if (strpos($appCssContent, 'tallcraftui.css') === false) {
+                $importStatements[] = "@import './tallcraftui.css';";
+            }
+
+            if (strpos($appCssContent, '@tailwindcss/forms') === false) {
+                $importStatements[] = "@plugin '@tailwindcss/forms';";
+            }
+            
+            if (strpos($appCssContent, 'developermithu/tallcraftui') === false) {
+                $importStatements[] = "@source '../../vendor/developermithu/tallcraftui/src/**/*.php';";
+            }
+            
+            if (!empty($importStatements)) {
+                // Add new line after imports if any were added
+                $importStatements[] = '';
+                $updatedContent = implode(PHP_EOL, $importStatements) . PHP_EOL . $appCssContent;
                 File::put($appCssPath, $updatedContent);
                 $this->info('TallCraftUI installed successfully.');
             } else {
-                $this->warn('TallCraftUI is already installed.');
-                return;
+                $this->info('TallCraftUI already installed.');
             }
         } else {
             $this->error('`app.css` file not found.');
