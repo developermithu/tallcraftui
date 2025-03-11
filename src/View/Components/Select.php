@@ -4,18 +4,24 @@ namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
 use Developermithu\Tallcraftui\Helpers\BorderRadiusHelper;
+use Developermithu\Tallcraftui\Traits\HasSelectSizes;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class Select extends Component
 {
+    use HasSelectSizes;
+    
     public string $uuid;
 
     public function __construct(
         public ?string $label = null,
-        public ?Collection $options = null,
+        public Collection|array $options = new Collection(),
+        public ?string $optionValue = 'id',
+        public ?string $optionLabel = 'name',
         public ?string $placeholder = null,
+        public bool $withoutPlaceholder = false,
         public ?string $hint = null,
     ) {
         $this->uuid = md5(serialize($this));
@@ -24,28 +30,6 @@ class Select extends Component
     public function roundedClass(): string
     {
         return BorderRadiusHelper::getRoundedClass('select', $this->attributes);
-    }
-
-    public function sizeClasses(): string
-    {
-        $sizes = [
-            'xs' => 'py-1 text-xs',
-            'sm' => 'py-1.5 text-xs',
-            'md' => 'py-2 text-sm',
-            'lg' => 'py-2.5 text-base',
-            'xl' => 'py-3 text-lg',
-            '2xl' => 'py-3.5 text-xl',
-        ];
-
-        foreach ($sizes as $key => $class) {
-            if ($this->attributes->has($key)) {
-                return $class;
-            }
-        }
-
-        $defaultSize = config('tallcraftui.select.size', 'md');
-
-        return $sizes[$defaultSize] ?? $sizes['md'];
     }
 
     public function render(): View|Closure|string
@@ -76,7 +60,7 @@ class Select extends Component
                                     ->withoutTwMergeClasses()
                                     ->twMerge([
                                         "block w-full border-gray-200 shadow-xs outline-hidden focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300",
-                                        $sizeClasses(),
+                                        $getSizeClasses(),
                                         $errorClass,
                                         $disabledClass,
                                         $readonlyClass,
@@ -84,15 +68,21 @@ class Select extends Component
                                     ])
                              }}>
                     
-                            @if (!$options->isEmpty())
+                            @if(!$withoutPlaceholder)
                                 <option value="">-- {{ __($placeholder ?? 'choose option') }} -- </option>
-
-                                @foreach ($options as $key => $name)
-                                    <option value="{{ $key }}"> {{ $name }} </option>
-                                @endforeach
-                            @else
-                                {{ $slot }}
                             @endif
+
+                            @if (is_array($options) || $options instanceof Illuminate\Support\Collection)
+                                @foreach ($options as $key => $option)
+                                    @if (is_object($option) || is_array($option))
+                                        <option value="{{ data_get($option, $optionValue) }}">{{ data_get($option, $optionLabel) }}</option>
+                                    @else
+                                        <option value="{{ $key }}">{{ $option }}</option>
+                                    @endif
+                                @endforeach
+                            @endif
+                            
+                            {{ $slot }}
                         </select>
 
                         @if($hint && !$error)
