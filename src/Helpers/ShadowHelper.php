@@ -16,7 +16,7 @@ class ShadowHelper
             $attributes->get('shadow-xl') => 'shadow-xl',
             $attributes->get('shadow-2xl') => 'shadow-2xl',
             $attributes->get('shadow-none') => 'shadow-none',
-            default => config("tallcraftui.{$componentName}.shadow-sm", 'shadow-md'),
+            default => config("tallcraftui.{$componentName}.shadow", 'shadow-sm'),
         };
     }
 }

@@ -1,18 +1,17 @@
 <?php
 
-namespace Developermithu\Tallcraftui\Traits;
+namespace Developermithu\Tallcraftui\Traits\Sizes;
 
-trait HasProgressSizes
+trait HasRadioSizes
 {
     public function getSizeClasses(): string
     {
         $sizes = [
-            'xs' => 'h-1',
-            'sm' => 'h-2',
-            'md' => 'h-3',
-            'lg' => 'h-4',
-            'xl' => 'h-5',
-            '2xl' => 'h-6',
+            'sm' => 'size-4',
+            'md' => 'size-[18px]',
+            'lg' => 'size-6',
+            'xl' => 'size-7',
+            '2xl' => 'size-8',
         ];
 
         foreach ($sizes as $key => $class) {
@@ -21,7 +20,7 @@ trait HasProgressSizes
             }
         }
 
-        $defaultSize = config('tallcraftui.progress.size', 'md');
+        $defaultSize = config('tallcraftui.radio.size', 'md');
 
         return $sizes[$defaultSize] ?? $sizes['md'];
     }

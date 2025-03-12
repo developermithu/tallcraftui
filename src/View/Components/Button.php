@@ -4,8 +4,8 @@ namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
 use Developermithu\Tallcraftui\Helpers\BorderRadiusHelper;
-use Developermithu\Tallcraftui\Traits\HasButtonColors;
-use Developermithu\Tallcraftui\Traits\HasButtonSizes;
+use Developermithu\Tallcraftui\Traits\Colors\HasButtonColors;
+use Developermithu\Tallcraftui\Traits\Sizes\HasButtonSizes;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -69,12 +69,12 @@ class Button extends Component
                     
                 @if(!$link)
                     wire:loading.attr="disabled" wire:target="{{ $spinnerTarget() }}"
-                    {{ $attributes->whereDoesntStartWith('class')->merge(['type' => 'submit']) }}
+                    {{ $attributes->except($colorAttributes)->whereDoesntStartWith('class')->merge(['type' => 'submit']) }}
                 @endif
                 
                 {{ $attributes
-                        ->except($colorAttributes)
                         ->withoutTwMergeClasses()
+                        ->except($colorAttributes)
                         ->twMerge([
                             $buttonBaseClasses(), 
                             $roundedClass(), 

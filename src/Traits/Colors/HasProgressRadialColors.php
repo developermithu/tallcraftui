@@ -1,6 +1,6 @@
 <?php
 
-namespace Developermithu\Tallcraftui\Traits;
+namespace Developermithu\Tallcraftui\Traits\Colors;
 
 trait HasProgressRadialColors
 {
