@@ -4,8 +4,8 @@ namespace Developermithu\Tallcraftui\Enums;
 
 enum BorderRadius: string
 {
-    case Rounded = 'rounded-sm';
-    case RoundedSm = 'rounded-xs';
+    case RoundedXs = 'rounded-xs';
+    case RoundedSm = 'rounded-sm';
     case RoundedMd = 'rounded-md';
     case RoundedLg = 'rounded-lg';
     case RoundedXl = 'rounded-xl';
