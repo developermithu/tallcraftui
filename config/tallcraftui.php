@@ -61,33 +61,33 @@ return [
     ],
 
     'alert' => [
-        'border-radius' => BorderRadius::Rounded->value,
+        'border-radius' => BorderRadius::RoundedSm->value,
     ],
 
     'badge' => [
-        'border-radius' => BorderRadius::Rounded->value,
+        'border-radius' => BorderRadius::RoundedSm->value,
     ],
 
     'breadcrumb' => [
-        'border-radius' => BorderRadius::Rounded->value,
+        'border-radius' => BorderRadius::RoundedSm->value,
     ],
 
     'button' => [
         'size' => Size::MD->value,
-        'border-radius' => BorderRadius::Rounded->value,
+        'border-radius' => BorderRadius::RoundedSm->value,
     ],
 
     'card' => [
-        'shadow' => Shadow::ShadowSm->value,
+        'shadow' => Shadow::ShadowXs->value,
         'border-radius' => BorderRadius::RoundedLg->value,
     ],
 
     'dropdown' => [
         'width' => Width::W48->value,
-        'shadow' => Shadow::Shadow->value,
+        'shadow' => Shadow::ShadowSm->value,
         'position' => DropdownPosition::BOTTOM_END->value,
         'animation' => DropdownAnimation::FADE->value,
-        'border-radius' => BorderRadius::Rounded->value,
+        'border-radius' => BorderRadius::RoundedSm->value,
     ],
 
     'drawer' => [
@@ -133,7 +133,7 @@ return [
 
     'menu' => [
         'width' => Width::W56->value,
-        'shadow' => Shadow::Shadow->value,
+        'shadow' => Shadow::ShadowSm->value,
         'border-radius' => BorderRadius::RoundedMd->value,
     ],
 
@@ -146,17 +146,17 @@ return [
      */
     'checkbox' => [
         'size' => Size::MD->value,
-        'border-radius' => BorderRadius::Rounded->value,
+        'border-radius' => BorderRadius::RoundedSm->value,
     ],
 
     'input' => [
         'size' => Size::MD->value,
-        'border-radius' => BorderRadius::Rounded->value,
+        'border-radius' => BorderRadius::RoundedSm->value,
     ],
 
     'select' => [
         'size' => Size::MD->value,
-        'border-radius' => BorderRadius::Rounded->value,
+        'border-radius' => BorderRadius::RoundedSm->value,
     ],
 
     'radio' => [
@@ -168,11 +168,11 @@ return [
     ],
 
     'textarea' => [
-        'border-radius' => BorderRadius::Rounded->value,
+        'border-radius' => BorderRadius::RoundedSm->value,
     ],
 
     'toggle' => [
-        'border-radius' => BorderRadius::Rounded->value,
+        'border-radius' => BorderRadius::RoundedSm->value,
     ],
 
     'markdown' => [

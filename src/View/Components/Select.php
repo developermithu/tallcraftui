@@ -4,7 +4,7 @@ namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
 use Developermithu\Tallcraftui\Helpers\BorderRadiusHelper;
-use Developermithu\Tallcraftui\Traits\HasSelectSizes;
+use Developermithu\Tallcraftui\Traits\Sizes\HasSelectSizes;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\View\Component;

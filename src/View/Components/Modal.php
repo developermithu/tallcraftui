@@ -3,12 +3,14 @@
 namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
-use Developermithu\Tallcraftui\Helpers\BorderRadiusHelper;
+use Developermithu\Tallcraftui\Traits\ModalTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Modal extends Component
 {
+    use ModalTrait;
+
     public function __construct(
         public ?string $id = null,
         public bool $persistent = false,
@@ -16,80 +18,6 @@ class Modal extends Component
         public bool $dismissible = false,
         public bool $withoutTrapFocus = false,
     ) {}
-
-    public function sizeClasses()
-    {
-        $sizes = [
-            'sm' => 'w-full sm:max-w-sm',
-            'md' => 'w-full sm:max-w-md',
-            'lg' => 'w-full sm:max-w-lg',
-            'xl' => 'w-full sm:max-w-xl',
-            '2xl' => 'w-full sm:max-w-2xl',
-            '3xl' => 'w-full sm:mx-6 md:mx-8 lg:mx-0 sm:max-w-3xl',
-            '4xl' => 'w-full sm:mx-6 md:mx-8 lg:mx-0 sm:max-w-4xl',
-            '5xl' => 'w-full sm:mx-6 md:mx-8 lg:mx-0 sm:max-w-5xl',
-            '6xl' => 'w-full sm:mx-6 md:mx-8 xl:mx-0 sm:max-w-6xl',
-            '7xl' => 'w-full sm:mx-6 md:mx-8 2xl:mx-0 sm:max-w-7xl',
-            'full' => 'fixed inset-0 w-screen h-screen',
-        ];
-
-        foreach ($sizes as $key => $class) {
-            if ($this->attributes->has($key)) {
-                return $class;
-            }
-        }
-
-        $defaultSize = config('tallcraftui.modal.size', 'lg');
-
-        return $sizes[$defaultSize] ?? $sizes['lg'];
-    }
-
-    public function bgBlurClasses()
-    {
-        $isDefaultBlur = config('tallcraftui.modal.blur-sm', false);
-
-        return match (true) {
-            $this->attributes->get('blur-sm') => 'backdrop-blur-sm',
-            $this->attributes->get('blur-xs') => 'backdrop-blur-xs',
-            $this->attributes->get('blur-md') => 'backdrop-blur-md',
-            $this->attributes->get('blur-lg') => 'backdrop-blur-lg',
-            $this->attributes->get('blur-xl') => 'backdrop-blur-xl',
-            $this->attributes->get('blur-2xl') => 'backdrop-blur-2xl',
-            $this->attributes->get('blur-3xl') => 'backdrop-blur-3xl',
-            $this->attributes->get('blur-none') => 'backdrop-blur-none',
-
-            default => match ($isDefaultBlur) {
-                true => 'backdrop-blur-xs',
-                default => '',
-            },
-        };
-    }
-
-    public function modalPosition()
-    {
-        $positions = [
-            'top' => 'flex items-start justify-center h-screen',
-            'bottom' => 'flex items-end justify-center h-screen',
-            'left' => 'flex items-center justify-start w-screen h-screen pl-10!',
-            'right' => 'flex items-center justify-end w-screen h-screen pr-10!',
-            'center' => 'flex items-center justify-center w-screen h-screen',
-        ];
-
-        foreach ($positions as $key => $class) {
-            if ($this->attributes->has($key)) {
-                return $class;
-            }
-        }
-
-        $defaultPosition = config('tallcraftui.modal.position', 'top');
-
-        return $positions[$defaultPosition] ?? $positions['top'];
-    }
-
-    public function roundedClass(): string
-    {
-        return BorderRadiusHelper::getRoundedClass('modal', $this->attributes);
-    }
 
     public function render(): View|Closure|string
     {
@@ -113,7 +41,7 @@ class Modal extends Component
 
                 @class([
                     "fixed inset-0 z-999999 px-4 py-14 overflow-y-auto jetstream-modal sm:px-0", 
-                    $modalPosition(),
+                    $getModalPosition(),
                 ])
                 
                 style="display: none;"
@@ -135,7 +63,7 @@ class Modal extends Component
                         x-transition:leave-end="opacity-0"
                     @endif 
                 >
-                    <div @class(["absolute inset-0 bg-gray-700/80", $bgBlurClasses()])></div>
+                    <div @class(["absolute inset-0 bg-gray-700/80", $getBgBlurClasses()])></div>
                 </div>
 
                 <div 
@@ -159,8 +87,8 @@ class Modal extends Component
                             ->except('wire:model')
                             ->twMerge([
                                 "overflow-hidden transition-all transform p-4 md:p-5 bg-white dark:bg-gray-900 shadow-xl",
-                                $sizeClasses(),
-                                $roundedClass(),
+                                $getSizeClasses(),
+                                $getRoundedClasses(),
                             ]) 
                     }}
                 >

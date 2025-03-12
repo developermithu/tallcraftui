@@ -3,12 +3,14 @@
 namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
-use Developermithu\Tallcraftui\Helpers\HeightHelper;
+use Developermithu\Tallcraftui\Traits\Sizes\HasDrawerSizes;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Drawer extends Component
 {
+    use HasDrawerSizes;
+
     public function __construct(
         public ?string $title = null,
         public ?string $id = null,
@@ -24,41 +26,9 @@ class Drawer extends Component
         public bool $withoutTrapFocus = false,
     ) {}
 
-    public function widthClass(): string
-    {
-        $widths = [
-            'sm' => 'max-w-sm',
-            'md' => 'max-w-md',
-            'lg' => 'max-w-lg',
-            'xl' => 'max-w-xl',
-            '2xl' => 'max-w-2xl',
-            '3xl' => 'max-w-3xl',
-            '4xl' => 'max-w-4xl',
-            '5xl' => 'max-w-5xl',
-            '6xl' => 'max-w-6xl',
-            '7xl' => 'max-w-7xl',
-            'full' => 'max-w-full',
-        ];
-
-        foreach ($widths as $key => $class) {
-            if ($this->attributes->has($key)) {
-                return $class;
-            }
-        }
-
-        $defaultWidth = config('tallcraftui.drawer.width', 'lg');
-
-        return $widths[$defaultWidth] ?? $widths['lg'];
-    }
-
-    public function heightClass(): string
-    {
-        return HeightHelper::getHeightClass('drawer', $this->attributes);
-    }
-
     public function bgBlurClasses()
     {
-        $isDefaultBlur = config('tallcraftui.drawer.blur-sm', false);
+        $isDefaultBlur = config('tallcraftui.drawer.blur', false);
 
         return match (true) {
             $this->attributes->get('blur-sm') => 'backdrop-blur-sm',
@@ -167,7 +137,7 @@ class Drawer extends Component
                                                 x-transition:leave-end="translate-x-full"
                                         @endif
 
-                                        @class(['w-screen', $widthClass() => !$top && !$bottom])
+                                        @class(['w-screen', $getSizeClasses() => !$top && !$bottom])
                                     >
                                         <div @class([
                                                 "flex flex-col py-5 h-full overflow-y-auto bg-white dark:bg-gray-800 border-l shadow-lg border-neutral-100/70 dark:border-gray-700", 

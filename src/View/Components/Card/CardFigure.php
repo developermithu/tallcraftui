@@ -3,11 +3,14 @@
 namespace Developermithu\Tallcraftui\View\Components\Card;
 
 use Closure;
+use Developermithu\Tallcraftui\Traits\CardTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class CardFigure extends Component
 {
+    use CardTrait;
+
     public function __construct(
         public ?string $img = null,
         public ?string $alt = null,
@@ -16,24 +19,6 @@ class CardFigure extends Component
         public ?bool $hoverable = false,
     ) {}
 
-    public function roundedClass(): string
-    {
-        $default = config('tallcraftui.card.border-radius', 'rounded-lg');
-
-        return match (true) {
-            $default === 'rounded-sm' => 'rounded-sm',
-            $default === 'rounded-xs' => 'rounded-xs',
-            $default === 'rounded-md' => 'rounded-md',
-            $default === 'rounded-lg' => 'rounded-lg',
-            $default === 'rounded-xl' => 'rounded-xl',
-            $default === 'rounded-2xl' => 'rounded-2xl',
-            $default === 'rounded-3xl' => 'rounded-3xl',
-            $default === 'rounded-full' => 'rounded-full',
-            $default === 'rounded-none' => 'rounded-none',
-            default => 'rounded-lg',
-        };
-    }
-
     public function render(): View|Closure|string
     {
         return <<<'HTML'
@@ -41,9 +26,9 @@ class CardFigure extends Component
                 {{ $attributes->withoutTwMergeClasses()
                     ->twMerge([
                         'relative overflow-hidden group', 
-                        str_replace('rounded-sm', 'rounded-t', $roundedClass()),
+                        str_replace('rounded-sm', 'rounded-t', $getRoundedClass()),
                     ]) 
-                }}
+                }} 
             >
                 @if($img)
                     <img src="{{ $img }}"
@@ -51,7 +36,7 @@ class CardFigure extends Component
                         @class([
                             'w-full h-auto',
                             'group-hover:scale-110 transition duration-300' => $hoverable,
-                            str_replace('rounded-sm', 'rounded-t', $roundedClass()),
+                            str_replace('rounded-sm', 'rounded-t', $getRoundedClass()),
                         ])
                     >
                 @endif    
@@ -72,7 +57,7 @@ class CardFigure extends Component
                 <div {{ $attributes->twMergeFor(
                         'overlay', 
                         'absolute inset-0 bg-black/20', 
-                        str_replace('rounded-sm', 'rounded-t', $roundedClass()), 
+                        str_replace('rounded-sm', 'rounded-t', $getRoundedClass()), 
                         $overlay ? 'block' : 'hidden'
                     )}}
                 ></div>

@@ -3,12 +3,15 @@
 namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
-use Developermithu\Tallcraftui\Helpers\BorderRadiusHelper;
+use Developermithu\Tallcraftui\Traits\Borders\HasInputBorders;
+use Developermithu\Tallcraftui\Traits\Sizes\HasInputSizes;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Input extends Component
 {
+    use HasInputSizes, HasInputBorders;
+
     public string $uuid;
 
     public function __construct(
@@ -31,41 +34,6 @@ class Input extends Component
         public bool $appendIsSelect = true,
     ) {
         $this->uuid = md5(serialize($this));
-    }
-
-    public function roundedClass(): string
-    {
-        return BorderRadiusHelper::getRoundedClass('input', $this->attributes);
-    }
-
-    public function prefixRoundClasses()
-    {
-        return match (true) {
-            $this->attributes->get('rounded-none') => 'rounded-s-none',
-            $this->attributes->get('rounded-xs') => 'rounded-s-sm',
-            $this->attributes->get('rounded-md') => 'rounded-s-md',
-            $this->attributes->get('rounded-lg') => 'rounded-s-lg',
-            $this->attributes->get('rounded-xl') => 'rounded-s-xl',
-            $this->attributes->get('rounded-2xl') => 'rounded-s-2xl',
-            $this->attributes->get('rounded-3xl') => 'rounded-s-3xl',
-            $this->attributes->get('rounded-full') => 'rounded-s-full',
-            default => 'rounded-s',
-        };
-    }
-
-    public function suffixRoundClasses()
-    {
-        return match (true) {
-            $this->attributes->get('rounded-none') => 'rounded-e-none',
-            $this->attributes->get('rounded-xs') => 'rounded-e-sm',
-            $this->attributes->get('rounded-md') => 'rounded-e-md',
-            $this->attributes->get('rounded-lg') => 'rounded-e-lg',
-            $this->attributes->get('rounded-xl') => 'rounded-e-xl',
-            $this->attributes->get('rounded-2xl') => 'rounded-e-2xl',
-            $this->attributes->get('rounded-3xl') => 'rounded-e-3xl',
-            $this->attributes->get('rounded-full') => 'rounded-e-full',
-            default => 'rounded-e',
-        };
     }
 
     public function iconLeftClass(): string
@@ -103,61 +71,17 @@ class Input extends Component
         return $this->attributes->get('readonly') ? 'bg-gray-200 opacity-80 border-gray-400 border-dashed pointer-events-none' : '';
     }
 
-    public function sizeClasses(): string
-    {
-        $sizes = [
-            'xs' => 'py-1 text-xs',
-            'sm' => 'py-1.5 text-xs',
-            'md' => 'py-2 text-sm',
-            'lg' => 'py-2.5 text-base',
-            'xl' => 'py-3 text-lg',
-            '2xl' => 'py-3.5 text-xl',
-        ];
-
-        foreach ($sizes as $key => $class) {
-            if ($this->attributes->has($key)) {
-                return $class;
-            }
-        }
-
-        $defaultSize = config('tallcraftui.input.size', 'md');
-
-        return $sizes[$defaultSize] ?? $sizes['md'];
-    }
-
-    public function addonSizeClasses(): string
-    {
-        $sizes = [
-            'xs' => 'px-1.5 py-1 text-xs',
-            'sm' => 'px-2 py-1.5 text-xs',
-            'md' => 'px-3 py-2 text-sm',
-            'lg' => 'px-4 py-3 text-base',
-            'xl' => 'px-5 py-4 text-lg',
-            '2xl' => 'px-6 py-3.5 text-xl',
-        ];
-
-        foreach ($sizes as $key => $class) {
-            if ($this->attributes->has($key)) {
-                return $class;
-            }
-        }
-
-        $defaultSize = config('tallcraftui.input.size', 'md');
-
-        return $sizes[$defaultSize] ?? $sizes['md'];
-    }
-
     public function prefixPrependClass(): string
     {
         return $this->prefix || $this->prepend && $this->prependIsSelect === false
-            ? 'border border-gray-200 dark:border-gray-700 ' . $this->addonSizeClasses()
+            ? 'border border-gray-200 dark:border-gray-700 ' . $this->getAddonSizeClasses()
             : '';
     }
 
     public function suffixAppendClass(): string
     {
         return $this->suffix || $this->append && $this->appendIsSelect === false
-            ? 'border border-gray-200 dark:border-gray-700 ' . $this->addonSizeClasses()
+            ? 'border border-gray-200 dark:border-gray-700 ' . $this->getAddonSizeClasses()
             : '';
     }
 
@@ -190,7 +114,7 @@ class Input extends Component
                             @class([
                                 "inline-flex items-center text-sm text-gray-500 rounded-r-none min-w-fit border-e-0 bg-gray-50 dark:bg-gray-700 dark:text-gray-300",
                                 $prefixPrependClass(),
-                                $prefixRoundClasses(),
+                                $getPrefixRoundClasses(),
                             ])
                         >
                             {{  $prefix ?? $prepend }}
@@ -208,7 +132,7 @@ class Input extends Component
                                     ->withoutTwMergeClasses()
                                     ->twMerge([
                                         "block w-full border-gray-200 shadow-xs outline-hidden focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
-                                        $sizeClasses(),
+                                        $getSizeClasses(),
                                         $iconLeftClass(),
                                         $iconRightClass(),
                                         $inputPrefixPrependClass(),
@@ -216,7 +140,7 @@ class Input extends Component
                                         $fileInputClass(),
                                         $disableClass(),
                                         $readonlyClass(),
-                                        $roundedClass(),
+                                        $getRoundedClass(),
                                         $errorClass,
                                         filled($prepend) ? 'rounded-l-none' : '',
                                         filled($append) ? 'rounded-r-none' : '',
@@ -236,7 +160,7 @@ class Input extends Component
                             @class([
                                 "inline-flex items-center min-w-fit rounded-l-none border-s-0 bg-gray-50 text-sm text-gray-500 dark:bg-gray-700 dark:text-gray-300",
                                 $suffixAppendClass(),
-                                $suffixRoundClasses(),   
+                                $getSuffixRoundClasses(),   
                             ])
                         >
                             {{ $suffix ?? $append }}

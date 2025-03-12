@@ -3,8 +3,8 @@
 namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
-use Developermithu\Tallcraftui\Traits\HasProgressRadialColors;
-use Developermithu\Tallcraftui\Traits\HasProgressRadialSizes;
+use Developermithu\Tallcraftui\Traits\Colors\HasProgressRadialColors;
+use Developermithu\Tallcraftui\Traits\Sizes\HasProgressRadialSizes;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 

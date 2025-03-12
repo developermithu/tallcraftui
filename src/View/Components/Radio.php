@@ -3,13 +3,14 @@
 namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
-use Developermithu\Tallcraftui\Traits\HasCheckboxColors;
+use Developermithu\Tallcraftui\Traits\Colors\HasRadioColors;
+use Developermithu\Tallcraftui\Traits\Sizes\HasRadioSizes;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Radio extends Component
 {
-    use HasCheckboxColors;
+    use HasRadioSizes, HasRadioColors;
 
     public string $uuid;
 
@@ -19,27 +20,6 @@ class Radio extends Component
         public ?bool $textLeft = false,
     ) {
         $this->uuid = md5(serialize($this));
-    }
-
-    public function sizeClasses(): string
-    {
-        $sizes = [
-            'sm' => 'size-4',
-            'md' => 'size-[18px]',
-            'lg' => 'size-6',
-            'xl' => 'size-7',
-            '2xl' => 'size-8',
-        ];
-
-        foreach ($sizes as $key => $class) {
-            if ($this->attributes->has($key)) {
-                return $class;
-            }
-        }
-
-        $defaultSize = config('tallcraftui.radio.size', 'md');
-
-        return $sizes[$defaultSize] ?? $sizes['md'];
     }
 
     public function disabledAndReadonlyClass(): string
@@ -84,8 +64,8 @@ class Radio extends Component
                             ->withoutTwMergeClasses()
                             ->twMerge([
                                 "border-gray-300",
-                                $sizeClasses(), 
-                                $colorClasses(),       
+                                $getSizeClasses(), 
+                                $getColorClasses(),       
                                 $errorClass,                                
                                 $disabledAndReadonlyClass(),                          
                             ])

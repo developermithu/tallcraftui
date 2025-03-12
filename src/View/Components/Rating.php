@@ -3,11 +3,14 @@
 namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
+use Developermithu\Tallcraftui\Traits\Sizes\HasRatingSizes;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Rating extends Component
 {
+    use HasRatingSizes;
+
     public string $uuid;
 
     public function __construct(
@@ -18,27 +21,6 @@ class Rating extends Component
         public ?string $icon = 'star',
     ) {
         $this->uuid = md5(serialize($this));
-    }
-
-    public function sizeClasses(): string
-    {
-        $sizes = [
-            'sm' => 'size-4',
-            'md' => 'size-5',
-            'lg' => 'size-6',
-            'xl' => 'size-7',
-            '2xl' => 'size-8',
-        ];
-
-        foreach ($sizes as $key => $class) {
-            if ($this->attributes->has($key)) {
-                return $class;
-            }
-        }
-
-        $defaultSize = config('tallcraftui.rating.size', 'lg');
-
-        return $sizes[$defaultSize] ?? $sizes['lg'];
     }
 
     public function render(): View|Closure|string
@@ -80,7 +62,7 @@ class Rating extends Component
                                     ->withoutTwMergeClasses()
                                     ->twMerge([
                                         'hover:scale-110 active:scale-125 duration-200 text-gray-300',
-                                        $sizeClasses(),
+                                        $getSizeClasses(),
                                 ]) 
                             }}  
                                 
