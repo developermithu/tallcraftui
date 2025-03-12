@@ -4,6 +4,8 @@ namespace Developermithu\Tallcraftui\Traits\Colors;
 
 trait HasProgressColors
 {
+    use HasColorAttributes;
+    
     public function getColorClasses(): string
     {
         return match (true) {
