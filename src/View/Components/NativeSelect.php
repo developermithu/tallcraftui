@@ -4,14 +4,14 @@ namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
 use Developermithu\Tallcraftui\Helpers\BorderRadiusHelper;
-use Developermithu\Tallcraftui\Traits\Sizes\HasSelectSizes;
+use Developermithu\Tallcraftui\Traits\Sizes\HasNativeSelectSizes;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
-class Select extends Component
+class NativeSelect extends Component
 {
-    use HasSelectSizes;
+    use HasNativeSelectSizes;
     
     public string $uuid;
 
@@ -29,7 +29,7 @@ class Select extends Component
 
     public function roundedClass(): string
     {
-        return BorderRadiusHelper::getRoundedClass('select', $this->attributes);
+        return BorderRadiusHelper::getRoundedClass('native-select', $this->attributes);
     }
 
     public function render(): View|Closure|string
