@@ -37,7 +37,7 @@ use Developermithu\Tallcraftui\View\Components\ProgressRadial;
 use Developermithu\Tallcraftui\View\Components\Radio;
 use Developermithu\Tallcraftui\View\Components\Range;
 use Developermithu\Tallcraftui\View\Components\Rating;
-use Developermithu\Tallcraftui\View\Components\Select;
+use Developermithu\Tallcraftui\View\Components\NativeSelect;
 use Developermithu\Tallcraftui\View\Components\Separator;
 use Developermithu\Tallcraftui\View\Components\Spinner;
 use Developermithu\Tallcraftui\View\Components\Stat;
@@ -93,7 +93,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'icon' => Icon::class,
             'textarea' => Textarea::class,
             'toggle' => Toggle::class,
-            'select' => Select::class,
+            'native-select' => NativeSelect::class,
             'checkbox' => Checkbox::class,
             'radio' => Radio::class,
             'alert' => Alert::class,
@@ -154,7 +154,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
         Blade::component('tc-label', Label::class);
         Blade::component('tc-hint', Hint::class);
         Blade::component('tc-badge', Badge::class);
-        Blade::component('tc-select', Select::class);
+        Blade::component('tc-native-select', NativeSelect::class);
         Blade::component('tc-input', Input::class);
         Blade::component('tc-spinner', Spinner::class);
     }

@@ -125,11 +125,11 @@ class Index extends Component
                                 @if($perPage)
                                     <span>Per page:</span> 
 
-                                    <x-tc-select wire:model.change="tcPerPage" class="py-1.5 min-w-[4.5rem]">
+                                    <x-tc-native-select wire:model.change="tcPerPage" class="py-1.5 min-w-[4.5rem]">
                                         @foreach($perPageValues() as $value)
                                             <option value="{{ $value }}">{{ $value }}</option>
                                         @endforeach
-                                    </x-tc-select>
+                                    </x-tc-native-select>
                                 @endif
                             </div>
                         

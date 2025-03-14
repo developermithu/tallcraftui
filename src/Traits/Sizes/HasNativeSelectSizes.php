@@ -2,7 +2,7 @@
 
 namespace Developermithu\Tallcraftui\Traits\Sizes;
 
-trait HasSelectSizes
+trait HasNativeSelectSizes
 {
     public function getSizeClasses(): string
     {
@@ -21,7 +21,7 @@ trait HasSelectSizes
             }
         }
 
-        $defaultSize = config('tallcraftui.select.size', 'md');
+        $defaultSize = config('tallcraftui.native-select.size', 'md');
 
         return $sizes[$defaultSize] ?? $sizes['md'];
     }

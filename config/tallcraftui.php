@@ -154,7 +154,7 @@ return [
         'border-radius' => BorderRadius::RoundedSm->value,
     ],
 
-    'select' => [
+    'native-select' => [
         'size' => Size::MD->value,
         'border-radius' => BorderRadius::RoundedSm->value,
     ],
