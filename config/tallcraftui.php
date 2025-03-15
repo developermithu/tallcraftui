@@ -159,6 +159,10 @@ return [
         'border-radius' => BorderRadius::RoundedSm->value,
     ],
 
+    'select' => [
+        'size' => Size::MD->value,
+    ],
+
     'radio' => [
         'size' => Size::MD->value,
     ],
