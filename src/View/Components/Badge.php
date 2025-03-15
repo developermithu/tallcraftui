@@ -50,7 +50,7 @@ class Badge extends Component
                     <x-tc-icon :name="$iconLeft" {{ $attributes->twMergeFor('icon', $getIconSize()) }} />
                 @endif
 
-                {{ __($label) }}
+                {{ $label ? __($label) : $slot }}
 
                 @if($iconRight)
                     <x-tc-icon :name="$iconRight" {{ $attributes->twMergeFor('icon', $getIconSize()) }} />
