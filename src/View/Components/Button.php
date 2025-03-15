@@ -42,7 +42,7 @@ class Button extends Component
 
     public function buttonBaseClasses(): string
     {
-        return 'inline-flex gap-x-1.5 items-center border border-transparent w-fit justify-center font-semibold text-xs uppercase tracking-widest disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-200 dark:focus:ring-offset-0';
+        return 'inline-flex gap-x-1.5 items-center border border-transparent w-fit justify-center font-semibold uppercase tracking-widest disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-200 dark:focus:ring-offset-0';
     }
 
     public function roundedClass(): string
@@ -88,9 +88,9 @@ class Button extends Component
                 >
                 
                 @if($icon)
-                    <x-tc-icon :name="$icon" {{ $attributes->twMergeFor('icon', $getCircleIconSize()) }} />
+                    <x-tc-icon :name="$icon" {{ $attributes->twMergeFor('icon', $getIconSize()) }} />
                 @elseif ($iconLeft)
-                    <x-tc-icon :name="$iconLeft" {{ $attributes->twMergeFor('icon', $getCircleIconSize()) }} />
+                    <x-tc-icon :name="$iconLeft" {{ $attributes->twMergeFor('icon', $getIconSize()) }} />
                 @endif
 
                 {{ $label ? __($label) : '' }}
@@ -98,7 +98,7 @@ class Button extends Component
                 {{ $slot }}
 
                 @if($iconRight && !$spinner)
-                    <x-tc-icon :name="$iconRight" {{ $attributes->twMergeFor('icon', $getCircleIconSize()) }} />
+                    <x-tc-icon :name="$iconRight" {{ $attributes->twMergeFor('icon', $getIconSize()) }} />
                 @endif
 
                 @if($spinner)
