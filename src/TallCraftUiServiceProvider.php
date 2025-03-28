@@ -38,6 +38,7 @@ use Developermithu\Tallcraftui\View\Components\Radio;
 use Developermithu\Tallcraftui\View\Components\Range;
 use Developermithu\Tallcraftui\View\Components\Rating;
 use Developermithu\Tallcraftui\View\Components\NativeSelect;
+use Developermithu\Tallcraftui\View\Components\Select;
 use Developermithu\Tallcraftui\View\Components\Separator;
 use Developermithu\Tallcraftui\View\Components\Spinner;
 use Developermithu\Tallcraftui\View\Components\Stat;
@@ -94,6 +95,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'textarea' => Textarea::class,
             'toggle' => Toggle::class,
             'native-select' => NativeSelect::class,
+            'select' => Select::class,
             'checkbox' => Checkbox::class,
             'radio' => Radio::class,
             'alert' => Alert::class,
