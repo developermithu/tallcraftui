@@ -30,7 +30,7 @@ class ThemeToggle extends Component
                         document.documentElement.classList.remove('dark');
                     }
                 }
-            }" x-init="init()">
+            }">
                 <label class="sr-only">Theme</label>
                 <button
                     @click="toggleDarkMode()"
