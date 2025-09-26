@@ -34,20 +34,25 @@ class ThemeToggle extends Component
                 <label class="sr-only">Theme</label>
                 <button
                     @click="toggleDarkMode()"
-                    class="flex items-center justify-center w-6 h-6 p-1 xxs:w-10 xxs:h-10 xxs:p-1.5 bg-transparent rounded-full hover:bg-gray-100 dark:hover:bg-slate-700 dark:ring-inset dark:ring-white/5"
                     aria-label="Theme"
+                    {{ $attributes
+                        ->withoutTwMergeClasses()
+                        ->twMerge([
+                            'flex items-center justify-center w-6 h-6 p-1 xxs:w-10 xxs:h-10 xxs:p-1.5 bg-transparent rounded-full hover:bg-gray-100 dark:hover:bg-slate-700 dark:ring-inset dark:ring-white/5',
+                        ])
+                    }}
                 >
-                    <x-icon
+                    <x-tc-icon
+                        x-cloak
                         name="sun"
-                        class="text-teal-500 dark:!text-teal-500"
                         x-show="!isDarkMode"
-                        x-cloak
+                        {{ $attributes->twMergeFor('icon-light', 'text-teal-500 dark:text-teal-500') }}
                     />
-                    <x-icon
-                        name="moon"
-                        class="text-teal-500 dark:!text-teal-500"
-                        x-show="isDarkMode"
+                    <x-tc-icon
                         x-cloak
+                        name="moon"
+                        x-show="isDarkMode"
+                        {{ $attributes->twMergeFor('icon-dark', 'text-teal-500 dark:text-teal-500') }}
                     />
                 </button>
             </div>
