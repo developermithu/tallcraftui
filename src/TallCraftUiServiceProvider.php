@@ -51,6 +51,7 @@ use Developermithu\Tallcraftui\View\Components\Table\Td;
 use Developermithu\Tallcraftui\View\Components\Table\Th;
 use Developermithu\Tallcraftui\View\Components\Table\Tr;
 use Developermithu\Tallcraftui\View\Components\Textarea;
+use Developermithu\Tallcraftui\View\Components\ThemeToggle;
 use Developermithu\Tallcraftui\View\Components\Toast;
 use Developermithu\Tallcraftui\View\Components\Toggle;
 use Developermithu\Tallcraftui\View\Components\Tooltip;
@@ -144,6 +145,7 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'markdown' => Markdown::class,
             'progress' => Progress::class,
             'progress-radial' => ProgressRadial::class,
+            'theme-toggle' => ThemeToggle::class,
         ];
 
         foreach ($components as $name => $class) {
