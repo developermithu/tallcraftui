@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath' | { read -r f; case \"$f\" in *.php) [ -x \"$CLAUDE_PROJECT_DIR/vendor/bin/pint\" ] && \"$CLAUDE_PROJECT_DIR/vendor/bin/pint\" -q \"$f\";; esac; } 2>/dev/null || true",
+            "timeout": 30,
+            "statusMessage": "Formatting with Pint..."
+          }
+        ]
+      }
+    ]
+  }
+}
