@@ -86,7 +86,7 @@ class Modal extends Component
                         $attributes
                             ->except('wire:model')
                             ->twMerge([
-                                "overflow-hidden transition-all transform p-4 md:p-5 bg-white dark:bg-gray-900 shadow-xl",
+                                "relative overflow-hidden transition-all transform p-4 md:p-5 bg-white dark:bg-gray-900 shadow-xl",
                                 $getSizeClasses(),
                                 $getRoundedClasses(),
                             ]) 
