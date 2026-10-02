@@ -60,7 +60,11 @@ use Illuminate\Support\ServiceProvider;
 
 class TallCraftUiServiceProvider extends ServiceProvider
 {
-    public function register(): void {}
+    public function register(): void
+    {
+        // Fill in keys missing from an older published config
+        $this->mergeConfigFrom(__DIR__.'/../config/tallcraftui.php', 'tallcraftui');
+    }
 
     public function boot(): void
     {

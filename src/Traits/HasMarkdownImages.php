@@ -32,6 +32,11 @@ trait HasMarkdownImages
         return $this->markdownImageDisk ?? 'public';
     }
 
+    protected function getMarkdownImageFolder(): string
+    {
+        return trim($this->markdownImageFolder ?? 'markdown', '/');
+    }
+
     protected function deleteMarkdownImages(?string $content): void
     {
         if (empty($content)) {
@@ -42,15 +47,41 @@ trait HasMarkdownImages
 
     protected function deleteMarkdownImageUrls(array $urls): void
     {
+        $disk = Storage::disk($this->getMarkdownImageDisk());
+
         foreach ($urls as $imageUrl) {
-            $path = parse_url($imageUrl, PHP_URL_PATH);
-            if ($path) {
-                $path = str_replace('/storage/', '', $path);
-                if (Storage::disk($this->getMarkdownImageDisk())->exists($path)) {
-                    Storage::disk($this->getMarkdownImageDisk())->delete($path);
-                }
+            $path = $this->markdownImagePath($imageUrl);
+
+            if ($path && $disk->exists($path)) {
+                $disk->delete($path);
             }
         }
+    }
+
+    /**
+     * Resolve an image URL to a path on the markdown disk, or null when the URL
+     * doesn't point to an image inside the markdown upload folder. Markdown is
+     * user content, so never delete anything outside that folder.
+     */
+    protected function markdownImagePath(string $imageUrl): ?string
+    {
+        $basePath = rtrim((string) parse_url(Storage::disk($this->getMarkdownImageDisk())->url(''), PHP_URL_PATH), '/');
+        $urlPath = rawurldecode((string) parse_url($imageUrl, PHP_URL_PATH));
+
+        if (! str_starts_with($urlPath, $basePath.'/')) {
+            return null;
+        }
+
+        $path = substr($urlPath, strlen($basePath) + 1);
+        $folder = $this->getMarkdownImageFolder();
+
+        if (str_contains($path, '..') || ($folder !== '' && ! str_starts_with($path, $folder.'/'))) {
+            return null;
+        }
+
+        $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+
+        return in_array($extension, config('tallcraftui.upload.mimes'), true) ? $path : null;
     }
 
     protected static function extractImageUrls(?string $content): array

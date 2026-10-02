@@ -4,13 +4,14 @@ namespace Developermithu\Tallcraftui\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Route;
 use Illuminate\View\Component;
 
 class Markdown extends Component
 {
     public string $uuid;
 
-    public string $uploadUrl;
+    public ?string $uploadUrl;
 
     public function __construct(
         public ?string $label = null,
@@ -21,7 +22,7 @@ class Markdown extends Component
         public ?array $config = null,
     ) {
         $this->uuid = md5(serialize($this));
-        $this->uploadUrl = route('tallcraftui.upload', absolute: false);
+        $this->uploadUrl = Route::has('tallcraftui.upload') ? route('tallcraftui.upload', absolute: false) : null;
     }
 
     public function getDefaultConfig(): array
@@ -51,7 +52,9 @@ class Markdown extends Component
                         editor: null,
                         value: '',
                         config: @js($config ?? $getDefaultConfig()),
-                        uploadUrl: '{{ $uploadUrl }}?disk={{ $disk }}&folder={{ $folder }}&_token={{ csrf_token() }}',
+                        uploadUrl: @js($uploadUrl),
+                        uploadDisk: @js($disk),
+                        uploadFolder: @js($folder),
                         uploading: false,
                         init() {
                             // Wait for x-modelable to sync the initial value from wire:model
@@ -79,22 +82,39 @@ class Markdown extends Component
                             this.config.element = this.$refs.textarea
                             this.config.initialValue = this.value ?? ''
                             this.config.imageUploadFunction = (file, onSuccess, onError) => {
+                                if (! this.uploadUrl) {
+                                    return onError('Image upload is disabled.');
+                                }
+
                                 if (file.type.split('/')[0] !== 'image') {
                                     return onError('File must be an image.');
                                 }
 
                                 var data = new FormData()
                                 data.append('file', file)
+                                data.append('disk', this.uploadDisk ?? '')
+                                data.append('folder', this.uploadFolder ?? '')
 
                                 this.uploading = true
 
                                 fetch(this.uploadUrl, { 
                                     method: 'POST', 
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'X-CSRF-TOKEN': @js(csrf_token()),
+                                    },
                                     body: data 
                                 })
-                                .then(response => response.json())
-                                .then(data => onSuccess(data.location))
-                                .catch((err) => onError('Error uploading image!'))
+                                .then(async response => {
+                                    const data = await response.json().catch(() => ({}))
+
+                                    if (! response.ok) {
+                                        throw new Error(data.errors?.file?.[0] ?? data.message ?? 'Error uploading image!')
+                                    }
+
+                                    onSuccess(data.location)
+                                })
+                                .catch((err) => onError(err.message || 'Error uploading image!'))
                                 .finally(() => this.uploading = false)
                             }
                             
