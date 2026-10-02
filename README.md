@@ -12,6 +12,31 @@
 [TallCraftUI](https://tallcraftui.com) is a Laravel blade UI components library built on the [TALL Stack](https://tallstack.dev), providing **pre-built**, **customizable components** that seamlessly integrate with [Livewire](https://livewire.laravel.com) to create modern, responsive applications with **minimal effort**.
 
 
+## ✅ Requirements
+
+| TallCraftUI | PHP | Laravel | Livewire | Tailwind CSS |
+| --- | --- | --- | --- | --- |
+| 3.x | 8.2+ | 12, 13 | 4 | 4.1+ |
+| 2.x (bug fixes only) | 8.1+ | 10, 11, 12 | 3 | 4 |
+
+Alpine.js comes with Livewire, so don't install it separately.
+
+
+## 📦 Installation
+
+```bash
+composer require developermithu/tallcraftui
+php artisan install:tallcraftui
+```
+
+Then run `npm run dev` (or `bun dev`). See the [installation guide](https://tallcraftui.com/docs/installation) for details.
+
+
+## ⬆️ Upgrading
+
+Upgrading from 2.x? Follow the [upgrade guide](UPGRADE.md). All changes are listed in the [changelog](CHANGELOG.md).
+
+
 ## 📚 Documentation
 
 For complete documentation, please visit the official [TallCraftUI](https://tallcraftui.com) website.
