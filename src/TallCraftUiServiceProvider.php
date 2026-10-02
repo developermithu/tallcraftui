@@ -31,13 +31,13 @@ use Developermithu\Tallcraftui\View\Components\Markdown;
 use Developermithu\Tallcraftui\View\Components\Menu;
 use Developermithu\Tallcraftui\View\Components\MenuItem;
 use Developermithu\Tallcraftui\View\Components\Modal;
+use Developermithu\Tallcraftui\View\Components\NativeSelect;
 use Developermithu\Tallcraftui\View\Components\Password;
 use Developermithu\Tallcraftui\View\Components\Progress;
 use Developermithu\Tallcraftui\View\Components\ProgressRadial;
 use Developermithu\Tallcraftui\View\Components\Radio;
 use Developermithu\Tallcraftui\View\Components\Range;
 use Developermithu\Tallcraftui\View\Components\Rating;
-use Developermithu\Tallcraftui\View\Components\NativeSelect;
 use Developermithu\Tallcraftui\View\Components\Select;
 use Developermithu\Tallcraftui\View\Components\Separator;
 use Developermithu\Tallcraftui\View\Components\Spinner;
@@ -88,7 +88,29 @@ class TallCraftUiServiceProvider extends ServiceProvider
     {
         $prefix = config('tallcraftui.prefix');
 
-        $components = [
+        foreach (self::components() as $name => $class) {
+            Blade::component($prefix.$name, $class);
+        }
+
+        // TallCraftUI internal components
+        Blade::component('tc-icon', Icon::class);
+        Blade::component('tc-button', Button::class);
+        Blade::component('tc-label', Label::class);
+        Blade::component('tc-hint', Hint::class);
+        Blade::component('tc-badge', Badge::class);
+        Blade::component('tc-native-select', NativeSelect::class);
+        Blade::component('tc-input', Input::class);
+        Blade::component('tc-spinner', Spinner::class);
+    }
+
+    /**
+     * Public component names (without prefix) mapped to their classes.
+     *
+     * @return array<string, class-string>
+     */
+    public static function components(): array
+    {
+        return [
             'button' => Button::class,
             'badge' => Badge::class,
             'input' => Input::class,
@@ -147,19 +169,5 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'progress-radial' => ProgressRadial::class,
             'theme-toggle' => ThemeToggle::class,
         ];
-
-        foreach ($components as $name => $class) {
-            Blade::component($prefix.$name, $class);
-        }
-
-        // TallCraftUI internal components
-        Blade::component('tc-icon', Icon::class);
-        Blade::component('tc-button', Button::class);
-        Blade::component('tc-label', Label::class);
-        Blade::component('tc-hint', Hint::class);
-        Blade::component('tc-badge', Badge::class);
-        Blade::component('tc-native-select', NativeSelect::class);
-        Blade::component('tc-input', Input::class);
-        Blade::component('tc-spinner', Spinner::class);
     }
 }

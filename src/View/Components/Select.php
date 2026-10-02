@@ -271,7 +271,7 @@ class Select extends Component
                                 ->whereDoesntStartWith('wire:model')
                                 ->withoutTwMergeClasses()
                                 ->twMerge([
-                                    "relative w-full cursor-pointer bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 pl-3 pr-10 text-left shadow-xs outline-none focus:ring-1 focus:ring-primary focus:border-primary",
+                                    "relative w-full cursor-pointer bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 pl-3 pr-10 text-left shadow-xs outline-hidden focus:ring-1 focus:ring-primary focus:border-primary",
                                     $errorClass,
                                     $disabledClass,
                                     $readonlyClass,
@@ -346,7 +346,7 @@ class Select extends Component
                                     @keydown.enter.prevent="selectFocusedOption()"
                                     @keydown.arrow-up.prevent="focusPreviousOption()"
                                     @keydown.arrow-down.prevent="focusNextOption()"
-                                    class="w-full px-3 py-2 text-sm border border-gray-200 rounded dark:border-gray-700 focus:outline-none focus:ring-primary focus:border-primary dark:bg-gray-800"
+                                    class="w-full px-3 py-2 text-sm border border-gray-200 rounded dark:border-gray-700 focus:outline-hidden focus:ring-primary focus:border-primary dark:bg-gray-800"
                                     placeholder="Search..."
                                 />
                             </div>

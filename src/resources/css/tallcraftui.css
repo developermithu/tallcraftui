@@ -1,3 +1,12 @@
+/* Scan TallCraftUI components (path is relative to the published resources/css/tallcraftui.css) */
+@source '../../vendor/developermithu/tallcraftui/src/**/*.php';
+
+/* Default brand colors. Define --color-primary / --color-secondary in your own @theme to override. */
+@theme default {
+  --color-primary: #6d28d9;
+  --color-secondary: #a21caf;
+}
+
 @utility tc-table {
   & .table-striped tbody tr:nth-of-type(odd) {
     @apply bg-white dark:bg-transparent;
