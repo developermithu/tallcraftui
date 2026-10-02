@@ -15,7 +15,51 @@ class Toast extends Component
                 @persist('tallcraftui-toaster')
                     <div
                         x-cloak
-                        x-data="{ show: false, timer: null, toast: null }"
+                        x-data="{
+                            show: false,
+                            timer: null,
+                            toast: null,
+                            getPositionStyle(position) {
+                                const styles = {
+                                    'top-left': { top: '1rem', left: '1rem' },
+                                    'top-right': { top: '1rem', right: '1rem' },
+                                    'bottom-left': { bottom: '1rem', left: '1rem' },
+                                    'bottom-right': { bottom: '1rem', right: '1rem' }
+                                };
+                                return styles[position] || { top: '1rem', right: '1rem' };
+                            },
+                            getPositionClasses(position) {
+                                const classes = {
+                                    'top-left': 'origin-top-left',
+                                    'top-right': 'origin-top-right',
+                                    'bottom-left': 'origin-bottom-left',
+                                    'bottom-right': 'origin-bottom-right'
+                                };
+                                return classes[position] || 'origin-top-right';
+                            },
+                            getAnimationClasses(position) {
+                                return position && position.startsWith('bottom')
+                                    ? 'animate-slide-in-bottom'
+                                    : 'animate-slide-in-top';
+                            },
+                            getProgressBarColor(type) {
+                                const colors = {
+                                    'success': 'bg-green-500',
+                                    'error': 'bg-red-500',
+                                    'warning': 'bg-yellow-500',
+                                    'info': 'bg-blue-500'
+                                };
+                                return colors[type] || 'bg-green-500';
+                            },
+                            getProgressBarStyle(timeout) {
+                                if (!timeout) return '';
+                                return {
+                                    width: '100%',
+                                    transform: 'scaleX(1)',
+                                    animation: `progress ${timeout}ms linear forwards`
+                                };
+                            }
+                        }"
                         @tallcraftui-toast.window="
                             clearTimeout(timer);
                             toast = $event.detail.toast;
@@ -77,73 +121,40 @@ class Toast extends Component
                     </div>
 
                     <script>
-                        function getPositionStyle(position) {
-                            const styles = {
-                                'top-left': { top: '1rem', left: '1rem' },
-                                'top-right': { top: '1rem', right: '1rem' },
-                                'bottom-left': { bottom: '1rem', left: '1rem' },
-                                'bottom-right': { bottom: '1rem', right: '1rem' }
-                            };
-                            return styles[position] || { top: '1rem', right: '1rem' };
-                        }
+                        (() => {
+                            window.TallCraftUI = window.TallCraftUI || {};
 
-                        function getPositionClasses(position) {
-                            const classes = {
-                                'top-left': 'origin-top-left',
-                                'top-right': 'origin-top-right',
-                                'bottom-left': 'origin-bottom-left',
-                                'bottom-right': 'origin-bottom-right'
-                            };
-                            return classes[position] || 'origin-top-right';
-                        }
+                            window.toast = function(payload) {
+                                window.dispatchEvent(new CustomEvent('tallcraftui-toast', {detail: payload}));
+                            }
 
-                        function getAnimationClasses(position) {
-                            return position && position.startsWith('bottom') 
-                                ? 'animate-slide-in-bottom' 
-                                : 'animate-slide-in-top';
-                        }
+                            // Register once, even if this script runs again (e.g. after wire:navigate)
+                            if (window.TallCraftUI.toastErrorHandler) return;
+                            window.TallCraftUI.toastErrorHandler = true;
 
-                        function getProgressBarColor(type) {
-                            const colors = {
-                                'success': 'bg-green-500',
-                                'error': 'bg-red-500',
-                                'warning': 'bg-yellow-500',
-                                'info': 'bg-blue-500'
-                            };
-                            return colors[type] || 'bg-green-500';
-                        }
-
-                        
-                        function getProgressBarStyle(timeout) {
-                            if (!timeout) return '';
-                            return {
-                                width: '100%',
-                                transform: 'scaleX(1)',
-                                animation: `progress ${timeout}ms linear forwards`
-                            };
-                        }
-                        
-                        window.toast = function(payload) {
-                            window.dispatchEvent(new CustomEvent('tallcraftui-toast', {detail: payload}));
-                        }
-                        
-                        document.addEventListener('livewire:init', () => {
-                            Livewire.interceptRequest(({ onError }) => {
-                                onError(({ body, preventDefault }) => {
-                                    try {
-                                        let result = JSON.parse(body);
-                                        if (result?.toast && typeof window.toast === "function") {
-                                            window.toast(result);
+                            const registerErrorHandler = () => {
+                                Livewire.interceptRequest(({ onError }) => {
+                                    onError(({ body, preventDefault }) => {
+                                        try {
+                                            let result = JSON.parse(body);
+                                            if (result?.toast && typeof window.toast === "function") {
+                                                window.toast(result);
+                                            }
+                                            if ((result?.prevent_default ?? false) === true) {
+                                                preventDefault();
+                                            }
+                                        } catch (e) {
+                                            console.error(e);
                                         }
-                                        if ((result?.prevent_default ?? false) === true) {
-                                            preventDefault();
-                                        }
-                                    } catch (e) {
-                                        console.error(e);
-                                    }
+                                    });
                                 });
-                            });
-                        });
+                            };
+
+                            // Livewire may already be loaded when the toast first renders on a wire:navigate page
+                            window.Livewire
+                                ? registerErrorHandler()
+                                : document.addEventListener('livewire:init', registerErrorHandler);
+                        })();
                     </script>
 
                     <style>
