@@ -55,7 +55,9 @@ class Drawer extends Component
             @endphp
             
             <div 
-                x-data="{ open: @entangle($attributes->wire('model')) }" 
+                x-data="{ open: false }"
+                x-modelable="open"
+                {{ $attributes->whereStartsWith('wire:model') }}
                 @close.stop="open = false"
                 @close.window="open = false"
                 @close-modal.window="open = false"

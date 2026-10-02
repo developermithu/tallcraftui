@@ -127,11 +127,11 @@ class Toast extends Component
                             window.dispatchEvent(new CustomEvent('tallcraftui-toast', {detail: payload}));
                         }
                         
-                        document.addEventListener('livewire:initialized', () => {
-                            Livewire.hook('request', ({fail}) => {
-                                fail(({status, content, preventDefault}) => {
+                        document.addEventListener('livewire:init', () => {
+                            Livewire.interceptRequest(({ onError }) => {
+                                onError(({ body, preventDefault }) => {
                                     try {
-                                        let result = JSON.parse(content);
+                                        let result = JSON.parse(body);
                                         if (result?.toast && typeof window.toast === "function") {
                                             window.toast(result);
                                         }

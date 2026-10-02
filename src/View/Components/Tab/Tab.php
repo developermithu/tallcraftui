@@ -23,9 +23,11 @@ class Tab extends Component
         return <<<'HTML'
             <div
                 x-data="{
-                    activeTab: @entangle($attributes->wire('model')),
+                    activeTab: null,
                     items: []
                 }"
+                x-modelable="activeTab"
+                {{ $attributes->whereStartsWith('wire:model') }}
                 class="w-full"
             >
                 <div                         

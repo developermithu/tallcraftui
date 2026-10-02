@@ -49,14 +49,17 @@ class Markdown extends Component
                 <div class="relative flex-1" 
                     x-data="{ 
                         editor: null,
-                        value: @entangle($attributes->wire('model')),
+                        value: '',
                         config: @js($config ?? $getDefaultConfig()),
                         uploadUrl: '{{ $uploadUrl }}?disk={{ $disk }}&folder={{ $folder }}&_token={{ csrf_token() }}',
                         uploading: false,
                         init() {
-                            this.initEditor()
-                            
+                            // Wait for x-modelable to sync the initial value from wire:model
+                            this.$nextTick(() => this.initEditor())
+
                             this.$watch('value', (newValue) => {
+                                if (!this.editor) return
+
                                 if (newValue !== this.editor.value()) {
                                     this.value = newValue || ''
                                     this.destroyEditor()
@@ -101,6 +104,8 @@ class Markdown extends Component
                             })
                         }
                     }"
+                    x-modelable="value"
+                    {{ $attributes->whereStartsWith('wire:model') }}
                     wire:ignore
                     x-on:livewire:navigating.window="destroyEditor()"
                 >

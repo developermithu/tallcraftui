@@ -63,39 +63,40 @@ class Select extends Component
                         open: false,
                         search: '',
                         selected: [],
+                        value: null,
                         focusedOptionIndex: 0,
-                        name: @js($name),
-                        
+
                         init() {
-                            this.initializeComponent();
-                            
-                            this.$watch('selected', value => {
-                                if (this.multiple) {
-                                    this.$wire.set(this.name, value.map(item => item.id));
-                                } else {
-                                    this.$wire.set(this.name, value[0]?.id ?? null);
+                            this.options = this.formatOptions(@js($options ?? []));
+
+                            // x-modelable syncs value from wire:model after init()
+                            this.$watch('value', () => this.syncSelectedFromValue());
+
+                            this.$watch('selected', () => {
+                                const value = this.valueFromSelected();
+
+                                if (JSON.stringify(value) !== JSON.stringify(this.value)) {
+                                    this.value = value;
                                 }
                             });
                         },
-                        
-                        initializeComponent() {
-                            const rawOptions = @js($options ?? []);
-                            this.options = this.formatOptions(rawOptions);
-                            
-                            try {
-                                const wireValue = this.$wire.get(this.name);
-                                if (wireValue) {
-                                    const values = Array.isArray(wireValue) ? wireValue : [wireValue];
-                                    this.selected = this.options.filter(option => 
-                                        values.includes(option.id)
-                                    );
-                                } else {
-                                    this.selected = [];
-                                }
-                            } catch (e) {
-                                console.warn('Error initializing Select component:', e);
-                                this.selected = [];
+
+                        valueFromSelected() {
+                            return this.multiple
+                                ? this.selected.map(item => item.id)
+                                : (this.selected[0]?.id ?? null);
+                        },
+
+                        syncSelectedFromValue() {
+                            if (JSON.stringify(this.value) === JSON.stringify(this.valueFromSelected())) {
+                                return;
                             }
+
+                            const values = this.value === null || this.value === undefined || this.value === ''
+                                ? []
+                                : (Array.isArray(this.value) ? this.value : [this.value]);
+
+                            this.selected = this.options.filter(option => values.includes(option.id));
                         },
                         
                         formatOptions(options) {
@@ -246,6 +247,8 @@ class Select extends Component
                             }
                         }
                     }"
+                    x-modelable="value"
+                    {{ $attributes->whereStartsWith('wire:model') }}
                     class="relative"
                     @click.outside="closeSelect()"
                 >
@@ -265,6 +268,7 @@ class Select extends Component
                         x-ref="selectField"
                         {{ 
                             $attributes
+                                ->whereDoesntStartWith('wire:model')
                                 ->withoutTwMergeClasses()
                                 ->twMerge([
                                     "relative w-full cursor-pointer bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 pl-3 pr-10 text-left shadow-xs outline-none focus:ring-1 focus:ring-primary focus:border-primary",

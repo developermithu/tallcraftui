@@ -26,7 +26,7 @@ trait WithTcTable
         $this->tcPerPage = session()->get('tcPerPage', $this->tcPerPage);
     }
 
-    public function updated(string $propertyName)
+    public function updatedWithTcTable(string $propertyName)
     {
         if (in_array($propertyName, ['tcSearch', 'tcPerPage'])) {
             $this->resetPage();

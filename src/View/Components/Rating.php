@@ -42,10 +42,12 @@ class Rating extends Component
 
                 <div class="flex items-center gap-1" 
                     x-data="{ 
-                        rating: @entangle($attributes->wire('model')), 
+                        rating: 0,
                         hoverRating: 0,
                         readonly: @js($readonly)
                     }"
+                    x-modelable="rating"
+                    {{ $attributes->whereStartsWith('wire:model') }}
                 >
                     @for ($i = 1; $i <= $total; $i++)
                         <button type="button" class="focus:outline-hidden"

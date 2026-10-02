@@ -48,7 +48,7 @@ class Password extends Component
             <div 
                 x-data="{ 
                     show: false, 
-                    password: @entangle($attributes->wire('model')->value()) ?? '',
+                    password: '',
                     generatePassword() {
                         const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}[]|:;<>,.?/~`';
                         let newPassword = '';
@@ -57,8 +57,9 @@ class Password extends Component
                         }
                         this.password = newPassword;
                     }
-                }"  
-                          
+                }"
+                x-modelable="password"
+                {{ $attributes->whereStartsWith('wire:model') }}
                 @class(['flex items-center gap-3' => $inline])
             >
                 @php

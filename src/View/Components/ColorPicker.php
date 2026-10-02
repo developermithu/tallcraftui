@@ -217,7 +217,7 @@ class ColorPicker extends Component
 
             <div 
                 x-data="{
-                    color: @entangle($attributes->wire('model')),
+                    color: null,
                     isOpen: false,
                     presetColors: {{ json_encode($colors) }},
                     togglePicker() {
@@ -232,6 +232,8 @@ class ColorPicker extends Component
                         this.closeColorPicker();
                     }
                 }"
+                x-modelable="color"
+                {{ $attributes->whereStartsWith('wire:model') }}
                 @click.away="closeColorPicker()"
                 @class(['flex items-center gap-3' => $inline])
             >
@@ -241,11 +243,11 @@ class ColorPicker extends Component
 
                 <div class="relative flex items-center flex-1">
                     <div class="w-full">
-                        <div class="absolute w-12 h-full border-r rounded-l dark:border-gray-700" :style="{ backgroundColor: $wire.{{ $attributes->wire('model')->value() }} }">
+                        <div class="absolute w-12 h-full border-r rounded-l dark:border-gray-700" :style="{ backgroundColor: color }">
                             <input
                                 type="color"
                                 class="block w-full h-full opacity-0 cursor-pointer"
-                                {{ $attributes->wire('model') }}
+                                x-model="color"
                             />
                         </div>
                     
@@ -253,10 +255,10 @@ class ColorPicker extends Component
                             id="{{ $uuid }}"
                             type="text"
                             x-model="color"
-                            @input="$wire.set('{{ $attributes->wire('model')->value() }}', $event.target.value)"
                             placeholder="{{ $attributes->whereStartsWith('placeholder')->first() }}"
-                            {{ 
+                            {{
                                 $attributes
+                                    ->whereDoesntStartWith('wire:model')
                                     ->withoutTwMergeClasses()
                                     ->twMerge([
                                         "block w-full border-gray-200 pl-14 py-2.5 shadow-xs text-sm outline-hidden focus:ring-primary focus:border-primary dark:focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400",
