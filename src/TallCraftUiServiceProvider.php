@@ -57,6 +57,9 @@ use Developermithu\Tallcraftui\View\Components\Toggle;
 use Developermithu\Tallcraftui\View\Components\Tooltip;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\ComponentAttributeBag;
+use TailwindMerge\Contracts\TailwindMergeContract;
+use TailwindMerge\TailwindMerge;
 
 class TallCraftUiServiceProvider extends ServiceProvider
 {
@@ -64,10 +67,19 @@ class TallCraftUiServiceProvider extends ServiceProvider
     {
         // Fill in keys missing from an older published config
         $this->mergeConfigFrom(__DIR__.'/../config/tallcraftui.php', 'tallcraftui');
+
+        // Same binding as gehrisandro/tailwind-merge-laravel; respects a published config/tailwind-merge.php
+        if (! $this->app->bound(TailwindMergeContract::class)) {
+            $this->app->singleton(TailwindMergeContract::class, fn (): TailwindMerge => TailwindMerge::factory()
+                ->withConfiguration(config('tailwind-merge', []))
+                ->withCache($this->app->make('cache')->store())
+                ->make());
+        }
     }
 
     public function boot(): void
     {
+        $this->registerTwMergeMacros();
         $this->registerComponents();
 
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
@@ -85,6 +97,40 @@ class TallCraftUiServiceProvider extends ServiceProvider
             $this->commands([
                 InstallTallcraftuiCommand::class,
             ]);
+        }
+    }
+
+    /**
+     * Class-merging macros used by every component template.
+     * Same behavior as gehrisandro/tailwind-merge-laravel, which may also be installed.
+     */
+    private function registerTwMergeMacros(): void
+    {
+        if (! ComponentAttributeBag::hasMacro('twMerge')) {
+            ComponentAttributeBag::macro('twMerge', function (...$args): ComponentAttributeBag {
+                /** @var ComponentAttributeBag $this */
+                $this->offsetSet('class', resolve(TailwindMergeContract::class)->merge($args, $this->get('class', '')));
+
+                return $this;
+            });
+        }
+
+        if (! ComponentAttributeBag::hasMacro('twMergeFor')) {
+            ComponentAttributeBag::macro('twMergeFor', function (string $for, ...$args): ComponentAttributeBag {
+                /** @var ComponentAttributeBag $this */
+                $attribute = 'class'.($for !== '' ? ':'.$for : '');
+
+                $this->offsetSet('class', resolve(TailwindMergeContract::class)->merge($args, $this->get($attribute, '')));
+
+                return $this->only('class');
+            });
+        }
+
+        if (! ComponentAttributeBag::hasMacro('withoutTwMergeClasses')) {
+            ComponentAttributeBag::macro('withoutTwMergeClasses', function (): ComponentAttributeBag {
+                /** @var ComponentAttributeBag $this */
+                return $this->whereDoesntStartWith('class:');
+            });
         }
     }
 
