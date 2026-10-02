@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-TallCraftUI is a Blade UI component library for the TALL stack (Laravel 10–12, Tailwind v4). Docs: https://tallcraftui.com.
+TallCraftUI is a Blade UI component library for the TALL stack (Laravel 12–13, Livewire 4, Tailwind v4). Docs: https://tallcraftui.com.
 
 ## Branches
 
