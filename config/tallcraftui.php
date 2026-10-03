@@ -35,6 +35,22 @@ return [
 
     /**
      * --------------------------------------------------------------------------
+     * Markdown Image Upload
+     * --------------------------------------------------------------------------
+     *
+     * Endpoint used by <x-markdown /> to upload images. Only the listed disks
+     * are accepted; the folder comes from the component's `folder` prop.
+     */
+    'upload' => [
+        'enabled' => env('TALLCRAFTUI_UPLOAD_ENABLED', true),
+        'middleware' => ['web', 'auth'],
+        'disks' => ['public'],
+        'mimes' => ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif'],
+        'max_size' => 2048, // in kilobytes
+    ],
+
+    /**
+     * --------------------------------------------------------------------------
      * Icon Configuration
      * --------------------------------------------------------------------------
      *

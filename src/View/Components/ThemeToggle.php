@@ -14,23 +14,30 @@ class ThemeToggle extends Component
             <div x-data="{
                 isDarkMode: false,
                 init() {
-                    this.isDarkMode = localStorage.getItem('dark-mode') === 'true' ||
-                        (!('dark-mode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                    this.isDarkMode = TallCraftUI.isDarkMode();
                     this.applyTheme();
                 },
                 toggleDarkMode() {
                     this.isDarkMode = !this.isDarkMode;
                     localStorage.setItem('dark-mode', this.isDarkMode);
                     this.applyTheme();
+                    this.$dispatch('tallcraftui-theme-changed', { dark: this.isDarkMode });
                 },
                 applyTheme() {
-                    if (this.isDarkMode) {
-                        document.documentElement.classList.add('dark');
-                    } else {
-                        document.documentElement.classList.remove('dark');
-                    }
+                    document.documentElement.classList.toggle('dark', this.isDarkMode);
                 }
-            }">
+            }"
+                @tallcraftui-theme-changed.window="isDarkMode = $event.detail.dark"
+                x-on:livewire:navigated.window="applyTheme()"
+            >
+                <script>
+                    // Apply the saved theme as early as possible to avoid a flash of the wrong theme
+                    window.TallCraftUI = window.TallCraftUI || {};
+                    window.TallCraftUI.isDarkMode = () => localStorage.getItem('dark-mode') === 'true' ||
+                        (!('dark-mode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                    document.documentElement.classList.toggle('dark', window.TallCraftUI.isDarkMode());
+                </script>
+
                 <label class="sr-only">Theme</label>
                 <button
                     @click="toggleDarkMode()"

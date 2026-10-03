@@ -70,7 +70,7 @@ class Tooltip extends Component
                         @endif
                         @class([
                             'relative z-50 px-2.5 py-1.5 text-white rounded-sm dark:bg-gray-700 bg-gray-900 font-medium',
-                            'bg-linear-to-t from-blue-600 to-purple-600 bg-opacity-90' => $gradient
+                            'bg-linear-to-t from-blue-600 to-purple-600' => $gradient
                         ])
                     >
                         <p x-text="tooltipText" 
@@ -94,7 +94,7 @@ class Tooltip extends Component
                             <div
                                 @class([
                                     'w-1.5 h-1.5 transform dark:bg-gray-700 bg-gray-900',
-                                    'bg-indigo-600! bg-opacity-90' => $gradient,
+                                    'bg-indigo-600!' => $gradient,
                                     'origin-top-left -rotate-45' => $position() === 'top',
                                     'origin-bottom-left rotate-45' => $position() === 'bottom',
                                     'origin-top-left rotate-45' => $position() === 'left',

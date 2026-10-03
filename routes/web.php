@@ -1,19 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
+use Developermithu\Tallcraftui\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 
-Route::prefix(config('tallcraftui.route_prefix'))->group(function () {
-    // Authenticated Web Routes
-    Route::middleware(['web', 'auth'])->group(function () {
-        Route::post('/upload', function (Request $request) {
-            $file = $request->file('file');
-            $path = $file->store($request->folder, $request->disk);
-
-            return response()->json([
-                'location' => Storage::disk($request->disk)->url($path),
-            ]);
-        })->name('tallcraftui.upload');
-    });
-});
+if (config('tallcraftui.upload.enabled')) {
+    Route::prefix(config('tallcraftui.route_prefix'))
+        ->middleware(config('tallcraftui.upload.middleware'))
+        ->group(function () {
+            Route::post('/upload', UploadController::class)->name('tallcraftui.upload');
+        });
+}

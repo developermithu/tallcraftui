@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-TallCraftUI is a Blade UI component library for the TALL stack (Laravel 10–12, Tailwind v4). Docs: https://tallcraftui.com.
+TallCraftUI is a Blade UI component library for the TALL stack (Laravel 12–13, Livewire 4, Tailwind v4). Docs: https://tallcraftui.com.
 
 ## Branches
 
@@ -13,6 +13,7 @@ TallCraftUI is a Blade UI component library for the TALL stack (Laravel 10–12,
 - There is no test suite, CI, or static analysis. Changes are verified manually in a local Herd Laravel app that requires this package via a composer path repository — tell the user what to check there (variants, dark mode, custom prefix).
 - Run Pint only on files you changed (`vendor/bin/pint path/to/File.php`), never repo-wide — much of the existing code isn't Pint-clean and repo-wide runs create noisy diffs. Requires `composer install` first.
 - Docs live in a separate repo. When a component's props, variants, or behavior change, remind the user to update the docs.
+- Record user-facing changes in `CHANGELOG.md` (Keep a Changelog), and give every breaking change an `UPGRADE.md` entry in the same PR.
 
 ## Architecture & conventions
 

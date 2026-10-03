@@ -31,13 +31,13 @@ use Developermithu\Tallcraftui\View\Components\Markdown;
 use Developermithu\Tallcraftui\View\Components\Menu;
 use Developermithu\Tallcraftui\View\Components\MenuItem;
 use Developermithu\Tallcraftui\View\Components\Modal;
+use Developermithu\Tallcraftui\View\Components\NativeSelect;
 use Developermithu\Tallcraftui\View\Components\Password;
 use Developermithu\Tallcraftui\View\Components\Progress;
 use Developermithu\Tallcraftui\View\Components\ProgressRadial;
 use Developermithu\Tallcraftui\View\Components\Radio;
 use Developermithu\Tallcraftui\View\Components\Range;
 use Developermithu\Tallcraftui\View\Components\Rating;
-use Developermithu\Tallcraftui\View\Components\NativeSelect;
 use Developermithu\Tallcraftui\View\Components\Select;
 use Developermithu\Tallcraftui\View\Components\Separator;
 use Developermithu\Tallcraftui\View\Components\Spinner;
@@ -57,13 +57,29 @@ use Developermithu\Tallcraftui\View\Components\Toggle;
 use Developermithu\Tallcraftui\View\Components\Tooltip;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\ComponentAttributeBag;
+use TailwindMerge\Contracts\TailwindMergeContract;
+use TailwindMerge\TailwindMerge;
 
 class TallCraftUiServiceProvider extends ServiceProvider
 {
-    public function register(): void {}
+    public function register(): void
+    {
+        // Fill in keys missing from an older published config
+        $this->mergeConfigFrom(__DIR__.'/../config/tallcraftui.php', 'tallcraftui');
+
+        // Same binding as gehrisandro/tailwind-merge-laravel; respects a published config/tailwind-merge.php
+        if (! $this->app->bound(TailwindMergeContract::class)) {
+            $this->app->singleton(TailwindMergeContract::class, fn (): TailwindMerge => TailwindMerge::factory()
+                ->withConfiguration(config('tailwind-merge', []))
+                ->withCache($this->app->make('cache')->store())
+                ->make());
+        }
+    }
 
     public function boot(): void
     {
+        $this->registerTwMergeMacros();
         $this->registerComponents();
 
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
@@ -84,11 +100,67 @@ class TallCraftUiServiceProvider extends ServiceProvider
         }
     }
 
+    /**
+     * Class-merging macros used by every component template.
+     * Same behavior as gehrisandro/tailwind-merge-laravel, which may also be installed.
+     */
+    private function registerTwMergeMacros(): void
+    {
+        if (! ComponentAttributeBag::hasMacro('twMerge')) {
+            ComponentAttributeBag::macro('twMerge', function (...$args): ComponentAttributeBag {
+                /** @var ComponentAttributeBag $this */
+                $this->offsetSet('class', resolve(TailwindMergeContract::class)->merge($args, $this->get('class', '')));
+
+                return $this;
+            });
+        }
+
+        if (! ComponentAttributeBag::hasMacro('twMergeFor')) {
+            ComponentAttributeBag::macro('twMergeFor', function (string $for, ...$args): ComponentAttributeBag {
+                /** @var ComponentAttributeBag $this */
+                $attribute = 'class'.($for !== '' ? ':'.$for : '');
+
+                $this->offsetSet('class', resolve(TailwindMergeContract::class)->merge($args, $this->get($attribute, '')));
+
+                return $this->only('class');
+            });
+        }
+
+        if (! ComponentAttributeBag::hasMacro('withoutTwMergeClasses')) {
+            ComponentAttributeBag::macro('withoutTwMergeClasses', function (): ComponentAttributeBag {
+                /** @var ComponentAttributeBag $this */
+                return $this->whereDoesntStartWith('class:');
+            });
+        }
+    }
+
     private function registerComponents(): void
     {
         $prefix = config('tallcraftui.prefix');
 
-        $components = [
+        foreach (self::components() as $name => $class) {
+            Blade::component($prefix.$name, $class);
+        }
+
+        // TallCraftUI internal components
+        Blade::component('tc-icon', Icon::class);
+        Blade::component('tc-button', Button::class);
+        Blade::component('tc-label', Label::class);
+        Blade::component('tc-hint', Hint::class);
+        Blade::component('tc-badge', Badge::class);
+        Blade::component('tc-native-select', NativeSelect::class);
+        Blade::component('tc-input', Input::class);
+        Blade::component('tc-spinner', Spinner::class);
+    }
+
+    /**
+     * Public component names (without prefix) mapped to their classes.
+     *
+     * @return array<string, class-string>
+     */
+    public static function components(): array
+    {
+        return [
             'button' => Button::class,
             'badge' => Badge::class,
             'input' => Input::class,
@@ -147,19 +219,5 @@ class TallCraftUiServiceProvider extends ServiceProvider
             'progress-radial' => ProgressRadial::class,
             'theme-toggle' => ThemeToggle::class,
         ];
-
-        foreach ($components as $name => $class) {
-            Blade::component($prefix.$name, $class);
-        }
-
-        // TallCraftUI internal components
-        Blade::component('tc-icon', Icon::class);
-        Blade::component('tc-button', Button::class);
-        Blade::component('tc-label', Label::class);
-        Blade::component('tc-hint', Hint::class);
-        Blade::component('tc-badge', Badge::class);
-        Blade::component('tc-native-select', NativeSelect::class);
-        Blade::component('tc-input', Input::class);
-        Blade::component('tc-spinner', Spinner::class);
     }
 }

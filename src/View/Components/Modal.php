@@ -27,7 +27,9 @@ class Modal extends Component
             @endphp
 
             <div
-                x-data="{ show: @entangle($attributes->wire('model')) }"
+                x-data="{ show: false }"
+                x-modelable="show"
+                {{ $attributes->whereStartsWith('wire:model') }}
                 @close.stop="show = false"
                 @close.window="show = false"
                 @close-modal.window="show = false"
