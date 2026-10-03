@@ -2,6 +2,8 @@
 
 ## Upgrading from 2.x to 3.0
 
+> **Beta:** 3.0 is currently in beta (`v3.0.0-beta.1`). Breaking changes may still be adjusted before the stable release, so don't use it in production yet. Please [report any issues](https://github.com/developermithu/tallcraftui/issues).
+
 Estimated time: about 30 minutes for most apps.
 
 3.0 keeps every component tag, prop, variant attribute and config key from 2.x. The breaking changes are the platform requirements, a few `wire:model` behaviors, and the hardened Markdown upload endpoint.
@@ -24,9 +26,13 @@ Follow the official [Livewire 4 upgrade guide](https://livewire.laravel.com/docs
 
 ### 2. Update the package
 
+While 3.0 is in beta, opt in to the pre-release:
+
 ```bash
-composer require developermithu/tallcraftui:^3.0
+composer require developermithu/tallcraftui:^3.0@beta
 ```
+
+Once 3.0 is stable, use `composer require developermithu/tallcraftui:^3.0`.
 
 ### 3. Update your CSS
 
