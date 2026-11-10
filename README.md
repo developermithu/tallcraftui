@@ -19,7 +19,7 @@ For complete documentation, please visit the official [TallCraftUI](https://tall
 
 ## 🔗 Discord
 
-Join our [Discord](https://discord.gg/gmFTB9YRV6) community.
+Join our [Telegram](https://t.me/tallcraftui) community.
 
 ## 🔧 Contributing
 We appreciate your willingness to contribute to **TallCraftUI**. You can find the contribution guidelines in the [documentation site](https://tallcraftui.com/docs/how-to-contribute).
